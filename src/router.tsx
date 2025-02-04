@@ -20,6 +20,7 @@ const router = createBrowserRouter(
           element: <HomePage />,
           handle: {
             logo: true,
+            search: true,
           },
         },
         {

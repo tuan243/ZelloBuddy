@@ -3,14 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --primary: #3459a7;
-  --secondary: #ebedef;
   --background: #ffffff;
   --foreground: #0d0d0d;
+  --primary: #52b361;
+  --primaryForeground: #ffffff;
   --section: #f7f7f8;
   --inactive: #a9adb2;
   --tabIndicator: #212121;
   --subtitle: #6f7071;
   --danger: #f50000;
   --skeleton: #ebedef;
+
+  --zaui-light-button-primary-background: #d1f0db;
+  --zaui-light-button-primary-text: #135328;
+
+  --safe-top: var(--zaui-safe-area-inset-top, env(safe-area-inset-top, 30px));
+  --safe-bottom: max(
+    16px,
+    var(--zaui-safe-area-inset-bottom, env(safe-area-inset-bottom, 30px))
+  );
 }

@@ -7,13 +7,20 @@
   > div > div {
     padding: 12px 16px;
     background-color: #212121;
-    color: #FFFFFFF2;
+    color: #fffffff2;
     border-radius: 8px;
   }
 }
 
-.zaui-sheet{
+.zaui-sheet {
   .zaui-sheet-content {
     min-height: unset;
   }
+}
+
+.zaui-btn {
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,7 +1,8 @@
-import { Product } from "types";
+import { Product } from "@/types";
 import { formatPrice } from "@/utils/format";
 import TransitionLink from "./transition-link";
 import { useState } from "react";
+import { Button } from "zmp-ui";
 
 export interface ProductItemProps {
   product: Product;
@@ -17,7 +18,7 @@ export default function ProductItem(props: ProductItemProps) {
 
   return (
     <TransitionLink
-      className="flex flex-col cursor-pointer group"
+      className="flex flex-col cursor-pointer group bg-background rounded-xl p-2 shadow-[0_10px_24px_#0D0D0D17]"
       to={`/product/${props.product.id}`}
       replace={props.replace}
       onClick={() => setSelected(true)}
@@ -26,7 +27,7 @@ export default function ProductItem(props: ProductItemProps) {
         <>
           <img
             src={props.product.image}
-            className="w-full aspect-square object-cover rounded-t-lg"
+            className="w-full aspect-square object-cover rounded-lg"
             style={{
               viewTransitionName:
                 isTransitioning && selected // only animate the "clicked" product item in related products list
@@ -35,18 +36,28 @@ export default function ProductItem(props: ProductItemProps) {
             }}
             alt={props.product.name}
           />
-          <div className="py-2">
-            <div className="text-3xs text-subtitle truncate">
-              {props.product.category.name}
-            </div>
-            <div className="text-xs h-9 line-clamp-2">{props.product.name}</div>
-            <div className="mt-0.5 text-sm font-medium">
+          <div className="pt-2 pb-3">
+            <div className="text-xs pt-1 pb-0.5">{props.product.name}</div>
+            <div className="mt-0.5 text-sm font-bold text-primary">
               {formatPrice(props.product.price)}
             </div>
-            <div className="text-3xs text-subtitle line-through">
-              {formatPrice(props.product.price)}
-            </div>
+            {props.product.originalPrice && (
+              <div className="text-3xs space-x-0.5">
+                <span className="text-subtitle line-through">
+                  {formatPrice(props.product.originalPrice)}
+                </span>
+                <span className="text-danger">
+                  -
+                  {100 -
+                    Math.round(
+                      (props.product.price * 100) / props.product.originalPrice
+                    )}
+                  %
+                </span>
+              </div>
+            )}
           </div>
+          <Button size="small">Thêm vào giỏ</Button>
         </>
       )}
     </TransitionLink>

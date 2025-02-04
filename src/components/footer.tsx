@@ -1,4 +1,4 @@
-import { CartIcon, CategoryIcon, HomeIcon, ProfileIcon } from "./vectors";
+import { CartIcon, CategoryIcon, HomeIcon, PackageIcon } from "./vectors";
 import HorizontalDivider from "./horizontal-divider";
 import { useAtomValue } from "jotai";
 import { cartState } from "@/state";
@@ -14,6 +14,11 @@ const NAV_ITEMS = [
     name: "Danh mục",
     path: "/categories",
     icon: CategoryIcon,
+  },
+  {
+    name: "Đơn hàng",
+    path: "/orders",
+    icon: PackageIcon,
   },
   {
     name: "Giỏ hàng",
@@ -33,11 +38,6 @@ const NAV_ITEMS = [
       );
     },
   },
-  {
-    name: "Thành viên",
-    path: "/profile",
-    icon: ProfileIcon,
-  },
 ];
 
 export default function Footer() {
@@ -45,10 +45,9 @@ export default function Footer() {
     <>
       <HorizontalDivider />
       <div
-        className="w-full px-4 pt-2 grid"
+        className="w-full px-4 pt-2 grid pb-sb"
         style={{
           gridTemplateColumns: `repeat(${NAV_ITEMS.length}, 1fr)`,
-          paddingBottom: `max(16px, env(safe-area-inset-bottom)`,
         }}
       >
         {NAV_ITEMS.map((item) => {

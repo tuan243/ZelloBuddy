@@ -1,52 +1,52 @@
 [
   {
     "id": 1,
-    "name": "Áo len",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/ao-len.webp"
+    "name": "Rau, củ, quả",
+    "image": "/category/fruits.png"
   },
   {
     "id": 2,
-    "name": "Blazer",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/blazer.webp"
+    "name": "Thịt",
+    "image": "/category/meat.png"
   },
   {
     "id": 3,
-    "name": "Đầm",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/dam.webp"
+    "name": "Thủy hải sản",
+    "image": "/category/fish.png"
   },
   {
     "id": 4,
-    "name": "Áo phông",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/ao-phong.webp"
+    "name": "Bơ, sữa, trứng",
+    "image": "/category/egg.png"
   },
   {
     "id": 5,
-    "name": "Áo gi lê",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/ao-gile.webp"
+    "name": "Bánh tươi",
+    "image": "/category/bread.png"
   },
   {
     "id": 6,
-    "name": "Chân váy",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/chan-vay.webp"
+    "name": "Bánh kẹo ngũ cốc",
+    "image": "/category/cookies.png"
   },
   {
     "id": 7,
-    "name": "Quần short",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/quan-short.webp"
+    "name": "Thực phẩm chế biến",
+    "image": "/category/sushi.png"
   },
   {
     "id": 8,
-    "name": "Quần bò",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/quan-jean.webp"
+    "name": "Thực phẩm đông lạnh",
+    "image": "/category/ice-cream.png"
   },
   {
     "id": 9,
-    "name": "Túi xách",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/tui-xach.webp"
+    "name": "Gia vị",
+    "image": "/category/sauce.png"
   },
   {
     "id": 10,
-    "name": "Phụ kiện",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/phu-kien.webp"
+    "name": "Nước giải khát",
+    "image": "/category/beverage.png"
   }
 ]

@@ -13,7 +13,7 @@ export function PageSkeleton() {
         </div>
         <Carousel
           slides={[1, 2, 3].map(() => (
-            <div className="w-full aspect-video rounded-lg bg-skeleton animate-pulse" />
+            <div className="w-full aspect-[2/1] rounded-[18px] bg-skeleton animate-pulse" />
           ))}
           disabled
         />

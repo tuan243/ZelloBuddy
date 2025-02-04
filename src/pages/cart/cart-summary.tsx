@@ -1,9 +1,9 @@
-import Button from "@/components/button";
 import { CustomerSupportIcon } from "@/components/vectors";
 import { useCheckout, useCustomerSupport } from "@/hooks";
 import { useAtomValue } from "jotai";
 import { cartTotalState } from "@/state";
 import { formatPrice } from "@/utils/format";
+import { Button } from "zmp-ui";
 
 export default function CartSummary() {
   const { totalItems, totalAmount } = useAtomValue(cartTotalState);
@@ -21,7 +21,7 @@ export default function CartSummary() {
       <Button className="w-10 h-10 !p-2" onClick={contact}>
         <CustomerSupportIcon />
       </Button>
-      <Button primary onClick={checkout} disabled={totalItems === 0}>
+      <Button onClick={checkout} disabled={totalItems === 0}>
         Mua ngay
       </Button>
     </div>

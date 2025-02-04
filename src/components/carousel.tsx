@@ -56,7 +56,7 @@ export interface CarouselProps {
 }
 
 export default function Carousel(props: CarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center" }, [
     Autoplay({ active: !props.disabled }),
   ]);
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -64,15 +64,15 @@ export default function Carousel(props: CarouselProps) {
 
   return (
     <div className="overflow-hidden" ref={emblaRef}>
-      <div className="flex">
+      <div className="flex space-x-2 mt-2 mx-4">
         {props.slides.map((slide, i) => (
-          <div key={i} className="flex-none basis-full p-4 pb-0">
+          <div key={i} className="flex-none basis-full">
             {slide}
           </div>
         ))}
       </div>
 
-      <div className="py-4 flex justify-center items-center space-x-2">
+      <div className="py-2 flex justify-center items-center space-x-2">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}

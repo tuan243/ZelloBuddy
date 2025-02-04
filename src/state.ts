@@ -1,14 +1,18 @@
 import { atom } from "jotai";
 import { atomFamily, unwrap } from "jotai/utils";
-import { Cart, Category, Color, Product } from "types";
+import { Cart, Category, Color, Product } from "@/types";
 import { requestWithFallback } from "@/utils/request";
-import { getUserInfo } from "zmp-sdk";
+import { getSetting, getUserInfo, GetUserInfoReturns } from "zmp-sdk";
 
-export const userState = atom(() =>
-  getUserInfo({
-    avatarType: "normal",
-  })
-);
+export const userState = atom(async () => {
+  const { authSetting } = await getSetting({});
+  if (authSetting["scope.userInfo"]) {
+    const { userInfo } = await getUserInfo({});
+    return userInfo;
+  } else {
+    return false;
+  }
+});
 
 export const bannersState = atom(() =>
   requestWithFallback<string[]>("/banners", [])

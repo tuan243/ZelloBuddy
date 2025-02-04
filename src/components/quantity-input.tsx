@@ -11,7 +11,7 @@ export default function QuantityInput(props: QuantityInputProps) {
   return (
     <div className="flex items-center">
       <button
-        className="p-1 bg-secondary rounded"
+        className="p-1 rounded"
         onClick={() =>
           props.onChange(Math.max(props.minValue ?? 0, props.value - 1))
         }
@@ -31,7 +31,7 @@ export default function QuantityInput(props: QuantityInputProps) {
         }
       />
       <button
-        className="p-1 bg-secondary rounded"
+        className="p-1 rounded"
         onClick={() => props.onChange(props.value + 1)}
       >
         <PlusIcon width={10} height={10} />

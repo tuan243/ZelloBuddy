@@ -1,19 +1,17 @@
 import { SearchIcon } from "@/components/vectors";
-import { forwardRef, HTMLAttributes, HTMLProps } from "react";
+import { forwardRef, HTMLProps } from "react";
 
 const SearchBar = forwardRef<HTMLInputElement, HTMLProps<HTMLInputElement>>(
   (props, ref) => {
     return (
-      <div className="px-4">
-        <div className="relative w-full">
-          <input
-            ref={ref}
-            className="w-full h-12 pl-12 pr-3 bg-section text-lg rounded-lg outline-none placeholder:text-inactive"
-            placeholder="Tìm kiếm"
-            {...props}
-          />
-          <SearchIcon className="absolute top-3 left-3" />
-        </div>
+      <div className="relative flex-1">
+        <input
+          ref={ref}
+          className="w-full h-8 pl-10 pr-3 bg-section text-lg text-foreground rounded-lg outline-none placeholder:text-inactive"
+          placeholder="Bạn muốn mua gì..."
+          {...props}
+        />
+        <SearchIcon className="absolute top-1 left-2" />
       </div>
     );
   }

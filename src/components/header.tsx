@@ -1,21 +1,19 @@
 import { useAtomValue } from "jotai";
-import {
-  UIMatch,
-  useLocation,
-  useMatches,
-  useNavigate,
-} from "react-router-dom";
-import { categoriesStateUpwrapped } from "@/state";
-import headerLogoImage from "@/static/header-logo.svg";
+import { useLocation, useNavigate } from "react-router-dom";
+import { categoriesStateUpwrapped, userState } from "@/state";
 import { BackIcon } from "./vectors";
 import { useMemo } from "react";
 import { useRouteHandle } from "@/hooks";
+import { getConfig } from "@/utils/template";
+import headerIllus from "@/static/header-illus.svg";
+import SearchBar from "./search-bar";
 
 export default function Header() {
   const categories = useAtomValue(categoriesStateUpwrapped);
   const navigate = useNavigate();
   const location = useLocation();
   const [handle, match] = useRouteHandle();
+  const userInfo = useAtomValue(userState);
 
   const title = useMemo(() => {
     if (handle) {
@@ -29,22 +27,48 @@ export default function Header() {
 
   const showBack = location.key !== "default" && handle?.back !== false;
 
-  if (handle?.logo) {
-    return (
-      <div className="h-14 w-full flex items-center px-4 py-2">
-        <img src={headerLogoImage} className="max-h-full flex-none" />
-      </div>
-    );
-  }
-
   return (
-    <div className="h-12 w-full flex items-center pl-2 pr-[106px] py-2 space-x-1">
-      {showBack && (
-        <div className="p-2 cursor-pointer" onClick={() => navigate(-1)}>
-          <BackIcon />
+    <div
+      className="w-full flex flex-col px-4 space-x-1 bg-primary text-primaryForeground pt-st overflow-hidden bg-no-repeat bg-right-top"
+      style={{
+        backgroundImage: `url(${headerIllus})`,
+      }}
+    >
+      <div className="w-full min-h-12 pr-[90px] flex py-2 space-x-2 items-center">
+        {handle.logo ? (
+          <>
+            <img
+              src={getConfig((c) => c.template.logoUrl)}
+              className="flex-none w-8 h-8 rounded-full"
+            />
+            <div className="flex-1 overflow-hidden">
+              <h1 className="text-lg font-bold">
+                {getConfig((c) => c.template.shopName)}
+              </h1>
+              <p className="overflow-x-auto whitespace-nowrap text-2xs">
+                {getConfig((c) => c.template.shopAddress)}
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            {handle.back && showBack && (
+              <div className="p-2 cursor-pointer" onClick={() => navigate(-1)}>
+                <BackIcon />
+              </div>
+            )}
+            <div className="text-xl font-medium truncate">{title}</div>
+          </>
+        )}
+      </div>
+      {handle.search && (
+        <div className="w-full py-2 flex space-x-2">
+          <SearchBar />
+          {!!userInfo && (
+            <img className="w-8 h-8 rounded-full" src={userInfo.avatar} />
+          )}
         </div>
       )}
-      <div className="text-xl font-medium truncate">{title}</div>
     </div>
   );
 }

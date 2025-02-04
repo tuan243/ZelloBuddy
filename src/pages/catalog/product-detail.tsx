@@ -1,22 +1,17 @@
-import Button from "@/components/button";
 import HorizontalDivider from "@/components/horizontal-divider";
 import { useAtomValue } from "jotai";
-import {
-  unstable_useViewTransitionState,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { productState } from "@/state";
 import { formatPrice } from "@/utils/format";
 import ShareButton from "./share-buttont";
 import VariantPicker from "./variant-picker";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Collapse from "@/components/collapse";
 import RelatedProducts from "./related-products";
 import { useAddToCart } from "@/hooks";
 import toast from "react-hot-toast";
-import { Color, Size } from "types";
+import { Color, Size } from "@/types";
+import { Button } from "zmp-ui";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -122,7 +117,6 @@ export default function ProductDetailPage() {
       <HorizontalDivider />
       <div className="flex-none grid grid-cols-2 gap-2 py-3 px-4">
         <Button
-          large
           onClick={() => {
             addToCart(1);
             toast.success("Đã thêm vào giỏ hàng");
@@ -131,8 +125,6 @@ export default function ProductDetailPage() {
           Thêm vào giỏ
         </Button>
         <Button
-          large
-          primary
           onClick={() => {
             addToCart(1);
             navigate("/cart");
