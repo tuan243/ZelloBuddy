@@ -10,6 +10,7 @@ import {
   recommendedProductsState,
   searchResultState,
 } from "@/state";
+import ProductGrid from "@/components/product-grid";
 
 export function SearchResult() {
   const searchResult = useAtomValue(searchResultState);
@@ -18,23 +19,18 @@ export function SearchResult() {
     <div className="w-full space-y-2 bg-section">
       <Section title={`Kết quả (${searchResult.length})`}>
         {searchResult.length ? (
-          <div className="py-2 px-4 grid grid-cols-2 gap-4">
-            {searchResult.map((product) => (
-              <ProductItem key={product.id} product={product} />
-            ))}
-          </div>
+          <ProductGrid products={searchResult} />
         ) : (
           <EmptySearchResult />
         )}
       </Section>
-      {searchResult.length === 0 && <RecommendedProducts />}
     </div>
   );
 }
 
 export function EmptySearchResult() {
   return (
-    <div className="p-6 space-y-4 flex flex-col items-center">
+    <div className="p-6 space-y-4 flex flex-col items-center mt-[100px]">
       <SearchIconLarge />
       <div className="text-inactive text-center text-2xs">
         Không có sản phẩm bạn tìm kiếm
@@ -76,41 +72,14 @@ export function RecommendedProducts() {
 }
 
 export default function SearchPage() {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [localKeyword, setLocalKeyword] = useState("");
-  const [keyword, setKeyword] = useAtom(keywordState);
+  const keyword = useAtomValue(keywordState);
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-    return () => {
-      setKeyword("");
-    };
-  }, []);
-
-  return (
-    <>
-      <div className="py-2">
-        <SearchBar
-          ref={inputRef}
-          value={localKeyword}
-          onChange={(e) => setLocalKeyword(e.currentTarget.value)}
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-              setKeyword(localKeyword);
-            }
-          }}
-          onBlur={() => setKeyword(localKeyword)}
-        />
-      </div>
-      {keyword ? (
-        <Suspense fallback={<SearchResultSkeleton />}>
-          <SearchResult />
-        </Suspense>
-      ) : (
-        <RecommendedProducts />
-      )}
-    </>
-  );
+  if (keyword) {
+    return (
+      <Suspense fallback={<SearchResultSkeleton />}>
+        <SearchResult />
+      </Suspense>
+    );
+  }
+  return <RecommendedProducts />;
 }

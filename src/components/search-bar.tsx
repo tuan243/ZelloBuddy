@@ -1,20 +1,45 @@
-import { SearchIcon } from "@/components/vectors";
-import { forwardRef, HTMLProps } from "react";
+import { keywordState } from "@/state";
+import { useAtom } from "jotai";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Input } from "zmp-ui";
+import { InputProps } from "zmp-ui/input";
 
-const SearchBar = forwardRef<HTMLInputElement, HTMLProps<HTMLInputElement>>(
-  (props, ref) => {
-    return (
-      <div className="relative flex-1">
-        <input
-          ref={ref}
-          className="w-full h-8 pl-10 pr-3 bg-section text-lg text-foreground rounded-lg outline-none placeholder:text-inactive"
-          placeholder="Bạn muốn mua gì..."
-          {...props}
-        />
-        <SearchIcon className="absolute top-1 left-2" />
-      </div>
-    );
-  }
-);
+const SearchBar = (props: InputProps) => {
+  const [localKeyword, setLocalKeyword] = useState("");
+  const [keyword, setKeyword] = useAtom(keywordState);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/search" && inputRef.current) {
+      inputRef.current.focus();
+    }
+    return () => {
+      setKeyword("");
+    };
+  }, [location]);
+
+  return (
+    <Input.Search
+      size="small"
+      placeholder="Bạn muốn mua gì..."
+      className="border-none outline-none m-0"
+      style={{
+        viewTransitionName: "search-bar",
+      }}
+      value={localKeyword}
+      onChange={(e) => setLocalKeyword(e.currentTarget.value)}
+      onKeyUp={(e) => {
+        if (e.key === "Enter") {
+          setKeyword(localKeyword);
+        }
+      }}
+      onBlur={() => setKeyword(localKeyword)}
+      clearable
+      {...props}
+    />
+  );
+};
 
 export default SearchBar;

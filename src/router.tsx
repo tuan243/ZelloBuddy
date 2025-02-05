@@ -72,6 +72,8 @@ const router = createBrowserRouter(
           path: "/search",
           element: <SearchPage />,
           handle: {
+            search: true,
+            back: true,
             title: "Tìm kiếm",
           },
         },

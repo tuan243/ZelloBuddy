@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <div
-      className="w-full flex flex-col px-4 space-x-1 bg-primary text-primaryForeground pt-st overflow-hidden bg-no-repeat bg-right-top"
+      className="w-full flex flex-col px-4 bg-primary text-primaryForeground pt-st overflow-hidden bg-no-repeat bg-right-top"
       style={{
         backgroundImage: `url(${headerIllus})`,
       }}
@@ -53,7 +53,10 @@ export default function Header() {
         ) : (
           <>
             {handle.back && showBack && (
-              <div className="p-2 cursor-pointer" onClick={() => navigate(-1)}>
+              <div
+                className="py-1 px-2 cursor-pointer"
+                onClick={() => navigate(-1)}
+              >
                 <BackIcon />
               </div>
             )}
@@ -63,7 +66,13 @@ export default function Header() {
       </div>
       {handle.search && (
         <div className="w-full py-2 flex space-x-2">
-          <SearchBar />
+          <SearchBar
+            onFocus={() => {
+              if (location.pathname !== "/search") {
+                navigate("/search", { unstable_viewTransition: true });
+              }
+            }}
+          />
           {!!userInfo && (
             <img className="w-8 h-8 rounded-full" src={userInfo.avatar} />
           )}
