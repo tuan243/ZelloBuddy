@@ -64,6 +64,7 @@ const router = createBrowserRouter(
           path: "/product/:id",
           element: <ProductDetailPage />,
           handle: {
+            back: true,
             scrollRestoration: 0, // when user selects another product in related products, scroll to the top of the page
           },
         },

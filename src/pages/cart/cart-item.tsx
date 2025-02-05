@@ -1,7 +1,7 @@
 import Checkbox from "@/components/checkbox";
 import QuantityInput from "@/components/quantity-input";
 import { useAddToCart } from "@/hooks";
-import { CartItem as CartItemProps } from "types";
+import { CartItem as CartItemProps } from "@/types";
 import { formatPrice } from "@/utils/format";
 import { animated, useSpring } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";

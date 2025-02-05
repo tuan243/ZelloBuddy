@@ -57,7 +57,9 @@ export default function ProductItem(props: ProductItemProps) {
               </div>
             )}
           </div>
-          <Button size="small">Thêm vào giỏ</Button>
+          <Button variant="secondary" size="small">
+            Thêm vào giỏ
+          </Button>
         </>
       )}
     </TransitionLink>

@@ -5,7 +5,7 @@ export interface Product {
   originalPrice?: number;
   image: string;
   category: Category;
-  details?: Detail[];
+  detail?: string;
   sizes?: Size[];
   colors?: Color[];
 }
@@ -16,10 +16,6 @@ export interface Category {
   image: string;
 }
 
-export interface Detail {
-  title: string;
-  content: string;
-}
 export type Size = string;
 
 export interface Color {

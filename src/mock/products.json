@@ -6,12 +6,7 @@
     "price": 67900,
     "originalPrice": 69900,
     "image": "/product/apples.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Táo giòn nhập khẩu, tươi ngon và giàu dinh dưỡng."
-      }
-    ]
+    "detail": "- Xuất xứ: Mỹ\n- Quy cách đóng túi: 400 - 500g(+/-100g), 2-3 trái\n- Lưu ý: Trong quá trình vận chuyển có thể xảy ra tình trạng trái bị va chạm cấn trái nhẹ\n- Hướng dẫn bảo quản: Bảo quản ngăn mát tủ lạnh để đảm bảo độ tươi ngon."
   },
   {
     "id": 2,
@@ -20,12 +15,7 @@
     "price": 27900,
     "originalPrice": 30000,
     "image": "/product/cabbage.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Cải ngọt thủy canh, tươi ngon và giàu dinh dưỡng."
-      }
-    ]
+    "detail": "Cải ngọt thủy canh, tươi ngon và giàu dinh dưỡng."
   },
   {
     "id": 3,
@@ -34,12 +24,7 @@
     "price": 313000,
     "originalPrice": 500000,
     "image": "/product/creamy.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Kem hộp Socola, thơm ngon và mát lạnh."
-      }
-    ]
+    "detail": "Kem hộp Socola, thơm ngon và mát lạnh."
   },
   {
     "id": 4,
@@ -48,12 +33,7 @@
     "price": 150000,
     "originalPrice": 300000,
     "image": "/product/danisa.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Bánh quy hộp thiếc, giòn tan và thơm ngon."
-      }
-    ]
+    "detail": "Bánh quy hộp thiếc, giòn tan và thơm ngon."
   },
   {
     "id": 5,
@@ -62,12 +42,7 @@
     "price": 150000,
     "originalPrice": 300000,
     "image": "/product/pans.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Bội nồi 4 món, tiện lợi và bền bỉ."
-      }
-    ]
+    "detail": "Bội nồi 4 món, tiện lợi và bền bỉ."
   },
   {
     "id": 6,
@@ -76,12 +51,7 @@
     "price": 150000,
     "originalPrice": 300000,
     "image": "/product/tide.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Bột giặt có nước xả, sạch sẽ và thơm mát."
-      }
-    ]
+    "detail": "Bột giặt có nước xả, sạch sẽ và thơm mát."
   },
   {
     "id": 7,
@@ -90,12 +60,7 @@
     "price": 150000,
     "originalPrice": 300000,
     "image": "/product/sunhouse.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Nồi cơm điện xanh dương, tiện lợi và bền bỉ."
-      }
-    ]
+    "detail": "Nồi cơm điện xanh dương, tiện lợi và bền bỉ."
   },
   {
     "id": 8,
@@ -104,11 +69,6 @@
     "price": 409000,
     "originalPrice": 420000,
     "image": "/product/milk.png",
-    "details": [
-      {
-        "title": "Mô tả sản phẩm",
-        "content": "Sữa tiệt trùng ít đường, thơm ngon và bổ dưỡng."
-      }
-    ]
+    "detail": "Sữa tiệt trùng ít đường, thơm ngon và bổ dưỡng."
   }
 ]

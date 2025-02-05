@@ -1,5 +1,5 @@
 import { ChevronRight, ShareDecor } from "@/components/vectors";
-import { Product } from "types";
+import { Product } from "@/types";
 import { openShareSheet } from "zmp-sdk";
 
 export default function ShareButton(props: { product: Product }) {
@@ -16,13 +16,14 @@ export default function ShareButton(props: { product: Product }) {
 
   return (
     <button
-      className="relative p-4 w-full flex space-x-1 bg-[#016BD9] rounded-lg text-white text-sm font-medium cursor-pointer"
+      className="relative w-full h-10 rounded-lg cursor-pointer overflow-hidden"
       onClick={share}
     >
-      <div>Chia sẻ ngay cho bạn bè</div>
-      <ChevronRight />
-      <div className="absolute right-5 top-[11px]">
-        <ShareDecor />
+      <div className="absolute inset-0 bg-[var(--zaui-light-button-secondary-background)] opacity-50" />
+      <ShareDecor className="absolute inset-0" />
+      <div className="relative flex space-x-1 text-primary text-sm font-medium p-2">
+        <div>Chia sẻ ngay cho bạn bè</div>
+        <ChevronRight />
       </div>
     </button>
   );
