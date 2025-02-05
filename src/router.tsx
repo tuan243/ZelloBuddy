@@ -27,7 +27,7 @@ const router = createBrowserRouter(
           path: "/categories",
           element: <CategoryListPage />,
           handle: {
-            title: "Danh mục sản phẩm",
+            title: "Danh mục",
             back: false,
           },
         },
@@ -56,6 +56,8 @@ const router = createBrowserRouter(
           path: "/category/:id",
           element: <ProductListPage />,
           handle: {
+            back: true,
+            search: true,
             title: ({ categories, params }) =>
               categories.find((c) => c.id === Number(params.id))?.name,
           },

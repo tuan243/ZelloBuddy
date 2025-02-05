@@ -37,7 +37,7 @@ export default function ProductDetailPage() {
   return (
     <div className="w-full h-full flex flex-col">
       <div className="flex-1 overflow-y-auto">
-        <div className="w-full p-4 pb-2 space-y-4">
+        <div className="w-full p-4 pb-2 space-y-4 bg-section">
           <img
             key={product.id}
             src={product.image}
@@ -70,7 +70,7 @@ export default function ProductDetailPage() {
         </div>
         {product.detail && (
           <>
-            <div className="bg-section h-2 w-full"></div>
+            <div className="bg-background h-2 w-full"></div>
             <Section title="Mô tả sản phẩm">
               <div className="text-sm whitespace-pre-wrap text-subtitle p-4 pt-2">
                 {product.detail}
@@ -78,14 +78,14 @@ export default function ProductDetailPage() {
             </Section>
           </>
         )}
-        <div className="bg-section h-2 w-full"></div>
+        <div className="bg-background h-2 w-full"></div>
         <Section title="Sản phẩm khác">
           <RelatedProducts currentProductId={product.id} />
         </Section>
       </div>
 
       <HorizontalDivider />
-      <div className="flex-none grid grid-cols-2 gap-2 py-3 px-4">
+      <div className="flex-none grid grid-cols-2 gap-2 py-3 px-4 bg-section">
         <Button
           variant="tertiary"
           onClick={() => {

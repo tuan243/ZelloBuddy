@@ -1,17 +1,32 @@
-import ProductFilter from "./product-filter";
 import HorizontalDivider from "@/components/horizontal-divider";
 import ProductGrid from "@/components/product-grid";
 import { useAtomValue } from "jotai";
-import { productsState } from "@/state";
+import { productsBySelectedCategoryState, productsState } from "@/state";
+import CategorySlider from "@/components/category-slider";
+import { Suspense } from "react";
+import { ProductGridSkeleton } from "../search";
+import { EmptyCategory } from "@/components/empty";
+
+function ProductList() {
+  const products = useAtomValue(productsBySelectedCategoryState);
+
+  if (!products.length) {
+    return <EmptyCategory />;
+  }
+
+  return <ProductGrid products={products} className="pt-4" />;
+}
 
 export default function ProductListPage() {
-  const products = useAtomValue(productsState);
-
   return (
-    <>
-      <ProductFilter />
+    <div className="h-full flex flex-col bg-section">
+      <CategorySlider />
       <HorizontalDivider />
-      <ProductGrid products={products} className="pt-4 pb-[13px]" />
-    </>
+      <div className="flex-1 overflow-y-auto">
+        <Suspense fallback={<ProductGridSkeleton className="pt-4" />}>
+          <ProductList />
+        </Suspense>
+      </div>
+    </div>
   );
 }

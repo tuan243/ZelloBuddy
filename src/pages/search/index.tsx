@@ -1,23 +1,25 @@
 import ProductItem from "@/components/product-item";
-import SearchBar from "@/components/search-bar";
 import Section from "@/components/section";
 import { ProductItemSkeleton } from "@/components/skeleton";
-import { SearchIconLarge } from "@/components/vectors";
-import { useAtom, useAtomValue } from "jotai";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useAtomValue } from "jotai";
+import { HTMLAttributes, Suspense } from "react";
 import {
   keywordState,
   recommendedProductsState,
   searchResultState,
 } from "@/state";
 import ProductGrid from "@/components/product-grid";
+import { EmptySearchResult } from "@/components/empty";
 
 export function SearchResult() {
   const searchResult = useAtomValue(searchResultState);
 
   return (
-    <div className="w-full space-y-2 bg-section">
-      <Section title={`Kết quả (${searchResult.length})`}>
+    <div className="w-full h-full space-y-2 bg-background">
+      <Section
+        title={`Kết quả (${searchResult.length})`}
+        className="h-full flex flex-col overflow-y-auto"
+      >
         {searchResult.length ? (
           <ProductGrid products={searchResult} />
         ) : (
@@ -28,27 +30,30 @@ export function SearchResult() {
   );
 }
 
-export function EmptySearchResult() {
-  return (
-    <div className="p-6 space-y-4 flex flex-col items-center mt-[100px]">
-      <SearchIconLarge />
-      <div className="text-inactive text-center text-2xs">
-        Không có sản phẩm bạn tìm kiếm
-      </div>
-    </div>
-  );
-}
-
 export function SearchResultSkeleton() {
   return (
     <Section title={`Kết quả`}>
-      <div className="py-2 px-4 grid grid-cols-2 gap-4">
-        <ProductItemSkeleton />
-        <ProductItemSkeleton />
-        <ProductItemSkeleton />
-        <ProductItemSkeleton />
-      </div>
+      <ProductGridSkeleton />
     </Section>
+  );
+}
+
+export function ProductGridSkeleton({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={"grid grid-cols-2 px-4 pt-2 pb-8 gap-4 ".concat(
+        className ?? ""
+      )}
+      {...props}
+    >
+      <ProductItemSkeleton />
+      <ProductItemSkeleton />
+      <ProductItemSkeleton />
+      <ProductItemSkeleton />
+    </div>
   );
 }
 

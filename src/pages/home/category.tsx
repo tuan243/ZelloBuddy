@@ -7,7 +7,7 @@ export default function Category() {
 
   return (
     <div
-      className="bg-background grid gap-x-2 gap-y-4 py-2 px-4 overflow-x-auto"
+      className="bg-section grid gap-x-2 gap-y-4 py-2 px-4 overflow-x-auto"
       style={{
         gridTemplateColumns: `repeat(${Math.ceil(
           categories.length > 4 ? categories.length / 2 : categories.length
@@ -22,7 +22,7 @@ export default function Category() {
         >
           <img
             src={category.image}
-            className="w-12 h-12 object-cover rounded-full bg-[#E9E9E9]"
+            className="w-12 h-12 object-cover rounded-full bg-skeleton"
             alt={category.name}
           />
           <div className="text-center text-3xs w-full line-clamp-2 text-subtitle">

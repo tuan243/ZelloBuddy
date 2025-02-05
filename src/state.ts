@@ -111,3 +111,18 @@ export const searchResultState = atom(async (get) => {
     product.name.toLowerCase().includes(keyword.toLowerCase())
   );
 });
+
+export const selectedCategoryIndexState = atom(0);
+
+export const productsBySelectedCategoryState = atom(async (get) => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const index = get(selectedCategoryIndexState);
+  const categories = await get(categoriesState);
+  const products = await get(productsState);
+  const category = categories[index];
+  if (category) {
+    return products.filter((product) => product.categoryId === category.id);
+  } else {
+    return [];
+  }
+});

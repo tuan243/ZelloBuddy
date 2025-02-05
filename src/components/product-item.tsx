@@ -18,7 +18,7 @@ export default function ProductItem(props: ProductItemProps) {
 
   return (
     <TransitionLink
-      className="flex flex-col cursor-pointer group bg-background rounded-xl p-2 shadow-[0_10px_24px_#0D0D0D17]"
+      className="flex flex-col cursor-pointer group bg-section rounded-xl p-2 shadow-[0_10px_24px_#0D0D0D17]"
       to={`/product/${props.product.id}`}
       replace={props.replace}
       onClick={() => setSelected(true)}

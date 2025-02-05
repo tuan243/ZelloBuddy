@@ -3,11 +3,12 @@ import Section from "./section";
 import HorizontalDivider from "./horizontal-divider";
 import Carousel from "./carousel";
 import { ChevronDown } from "./vectors";
+import { Button } from "zmp-ui";
 
 export function PageSkeleton() {
   return (
-    <div className="min-h-full bg-section">
-      <div className="bg-background pt-2">
+    <div className="min-h-full bg-background">
+      <div className="bg-section pt-2">
         <div className="px-4">
           <div className="w-full h-12 rounded-lg bg-skeleton animate-pulse" />
         </div>
@@ -18,7 +19,7 @@ export function PageSkeleton() {
           disabled
         />
       </div>
-      <div className="bg-background space-y-2 mt-2">
+      <div className="bg-section space-y-2 mt-2">
         <Tabs
           items={[1, 2, 3, 4]}
           value={undefined}
@@ -69,14 +70,20 @@ export function PageSkeleton() {
 
 export function ProductItemSkeleton() {
   return (
-    <div className="flex flex-col">
-      <div className="w-full aspect-square bg-skeleton animate-pulse rounded-t-lg" />
-      <div className="py-2 space-y-0.5">
-        <div className="h-[14px] w-1/5 bg-skeleton animate-pulse rounded-lg" />
-        <div className="h-9 bg-skeleton animate-pulse rounded-lg" />
-        <div className="h-[18px] w-1/2 bg-skeleton animate-pulse rounded-lg" />
-        <div className="h-[14px] w-1/3 bg-skeleton animate-pulse rounded-lg" />
+    <div className="flex flex-col cursor-progress group bg-section rounded-xl p-2 shadow-[0_10px_24px_#0D0D0D17]">
+      <div className="w-full aspect-square bg-skeleton animate-pulse rounded-lg" />
+      <div className="pt-2 pb-3">
+        <div className="text-xs pt-1 pb-0.5 bg-skeleton animate-pulse rounded-lg inline-block text-transparent">
+          Lorem ipsum dolor sit
+        </div>
+        <div className="mt-0.5 text-sm font-bold bg-skeleton animate-pulse rounded-lg inline-block text-transparent">
+          Lorem ipsum dolor sit
+        </div>
+        <div className="text-3xs space-x-0.5 bg-skeleton animate-pulse rounded-lg inline-block text-transparent">
+          Lorem ipsum dolor sit
+        </div>
       </div>
+      <Button variant="secondary" size="small"></Button>
     </div>
   );
 }

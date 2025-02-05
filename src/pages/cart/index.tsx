@@ -4,8 +4,8 @@ import CartSummary from "./cart-summary";
 import HorizontalDivider from "@/components/horizontal-divider";
 import { useAtomValue } from "jotai";
 import { cartState } from "@/state";
-import { EmptyBoxIcon } from "@/components/vectors";
 import SelectAll from "./select-all";
+import { EmptyBoxIcon } from "@/components/vectors";
 
 export default function CartPage() {
   const cart = useAtomValue(cartState);

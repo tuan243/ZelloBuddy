@@ -8,9 +8,9 @@ import { ScrollRestoration } from "./scroll-restoration";
 
 export default function Layout() {
   return (
-    <div className="w-screen h-screen flex flex-col bg-background text-foreground">
+    <div className="w-screen h-screen flex flex-col bg-section text-foreground">
       <Header />
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto bg-background">
         <Suspense fallback={<PageSkeleton />}>
           <Outlet />
         </Suspense>

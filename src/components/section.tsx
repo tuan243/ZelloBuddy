@@ -6,11 +6,12 @@ import TransitionLink from "./transition-link";
 export interface SectionProps {
   title: ReactNode;
   viewMoreTo?: To;
+  className?: string;
 }
 
 export default function Section(props: PropsWithChildren<SectionProps>) {
   return (
-    <div className="bg-background">
+    <div className={"bg-section ".concat(props.className ?? "")}>
       <div className="flex items-center justify-between px-2">
         <div className="text-sm font-medium p-2 pt-3 truncate">
           {props.title}
