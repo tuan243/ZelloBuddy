@@ -14,22 +14,10 @@ const SWIPE_TO_DELTE_OFFSET = 80;
 
 export default function CartItem(props: CartItemProps) {
   const [quantity, setQuantity] = useState(props.quantity);
-  const { addToCart } = useAddToCart(props.product, props.id);
+  const { addToCart } = useAddToCart(props.product);
 
   const [selectedItemIds, setSelectedItemIds] = useAtom(
     selectedCartItemIdsState
-  );
-
-  const displayOptions = useMemo(
-    () =>
-      Object.entries({
-        Size: props.options.size,
-        Color: props.options.color,
-      })
-        .filter(([_, value]) => value !== undefined)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join(" | "),
-    [props.options]
   );
 
   // update cart
@@ -77,24 +65,9 @@ export default function CartItem(props: CartItemProps) {
         style={{ x }}
         className="bg-white pl-4 flex items-center space-x-4 relative"
       >
-        <Checkbox
-          checked={selectedItemIds.includes(props.id)}
-          onChange={(checked) => {
-            if (checked) {
-              setSelectedItemIds([...selectedItemIds, props.id]);
-            } else {
-              setSelectedItemIds(
-                selectedItemIds.filter((id) => id !== props.id)
-              );
-            }
-          }}
-        />
         <img src={props.product.image} className="w-14 h-14 rounded-lg" />
         <div className="py-4 pr-4 flex-1 border-b-[0.5px] border-black/10">
           <div className="text-sm">{props.product.name}</div>
-          {displayOptions && (
-            <div className="text-xs text-subtitle mt-0.5">{displayOptions}</div>
-          )}
           <div className="flex items-center py-2 space-x-2">
             <div className="flex-1 flex flex-wrap items-center space-x-0.5">
               <div className="text-xs font-medium text-primary">

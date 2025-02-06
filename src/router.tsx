@@ -8,6 +8,7 @@ import ProfilePage from "@/pages/profile";
 import SearchPage from "@/pages/search";
 import { createBrowserRouter } from "react-router-dom";
 import { getBasePath } from "@/utils/zma";
+import OrdersPage from "./pages/orders";
 
 const router = createBrowserRouter(
   [
@@ -29,6 +30,13 @@ const router = createBrowserRouter(
           handle: {
             title: "Danh mục",
             back: false,
+          },
+        },
+        {
+          path: "/orders",
+          element: <OrdersPage />,
+          handle: {
+            title: "Đơn hàng",
           },
         },
         {

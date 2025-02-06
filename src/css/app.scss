@@ -23,8 +23,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:active {
+    opacity: 0.75;
+  }
 }
 
 .zaui-btn-tertiary {
   background-color: var(--skeleton);
+
+  &:active,
+  &:focus {
+    background-color: var(--skeleton);
+  }
 }

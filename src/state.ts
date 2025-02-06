@@ -84,14 +84,8 @@ export const cartState = atom<Cart>([]);
 
 export const selectedCartItemIdsState = atom<number[]>([]);
 
-export const checkoutItemsState = atom((get) => {
-  const ids = get(selectedCartItemIdsState);
-  const cart = get(cartState);
-  return cart.filter((item) => ids.includes(item.id));
-});
-
 export const cartTotalState = atom((get) => {
-  const items = get(checkoutItemsState);
+  const items = get(cartState);
   return {
     totalItems: items.length,
     totalAmount: items.reduce(

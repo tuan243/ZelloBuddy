@@ -1,5 +1,6 @@
-import Button from "./button";
+import { Button } from "zmp-ui";
 import { MinusIcon, PlusIcon } from "./vectors";
+import { useEffect, useState } from "react";
 
 export interface QuantityInputProps {
   value: number;
@@ -8,34 +9,43 @@ export interface QuantityInputProps {
 }
 
 export default function QuantityInput(props: QuantityInputProps) {
+  const [localValue, setLocalValue] = useState(String(props.value));
+
+  useEffect(() => {
+    setLocalValue(String(props.value));
+  }, [props.value]);
+
   return (
-    <div className="flex items-center">
-      <button
-        className="p-1 rounded"
+    <div className="w-full flex items-center">
+      <Button
+        size="small"
+        variant="tertiary"
+        className="min-w-0 aspect-square"
         onClick={() =>
           props.onChange(Math.max(props.minValue ?? 0, props.value - 1))
         }
       >
-        <MinusIcon width={10} height={10} />
-      </button>
+        <MinusIcon width={14} height={14} />
+      </Button>
       <input
         style={{ width: `calc(${String(props.value).length}ch + 16px)` }}
-        className="px-2 text-xs focus:outline-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        value={props.value}
+        className="flex-1 text-center font-medium text-xs px-2 focus:outline-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         type="number"
         inputMode="numeric"
-        onChange={(e) =>
-          props.onChange(
-            Math.max(props.minValue ?? 0, Number(e.currentTarget.value))
-          )
+        value={localValue}
+        onChange={(e) => setLocalValue(e.currentTarget.value)}
+        onBlur={() =>
+          props.onChange(Math.max(props.minValue ?? 0, Number(localValue)))
         }
       />
-      <button
-        className="p-1 rounded"
+      <Button
+        size="small"
+        variant="tertiary"
+        className="min-w-0 aspect-square"
         onClick={() => props.onChange(props.value + 1)}
       >
-        <PlusIcon width={10} height={10} />
-      </button>
+        <PlusIcon width={14} height={14} />
+      </Button>
     </div>
   );
 }

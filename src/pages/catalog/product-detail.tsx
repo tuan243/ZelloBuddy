@@ -4,12 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { productState } from "@/state";
 import { formatPrice } from "@/utils/format";
 import ShareButton from "./share-buttont";
-import { useEffect, useState } from "react";
-import Collapse from "@/components/collapse";
 import RelatedProducts from "./related-products";
 import { useAddToCart } from "@/hooks";
-import toast from "react-hot-toast";
-import { Color, Size } from "@/types";
 import { Button } from "zmp-ui";
 import Section from "@/components/section";
 
@@ -17,22 +13,8 @@ export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = useAtomValue(productState(Number(id)))!;
-  const [selectedColor, setSelectedColor] = useState<Color>();
-  const [selectedSize, setSelectedSize] = useState<Size>();
 
-  useEffect(() => {
-    setSelectedColor(product.colors?.[0]);
-    setSelectedSize(product.sizes?.[0]);
-  }, [id]);
-
-  const { addToCart, setOptions } = useAddToCart(product);
-
-  useEffect(() => {
-    setOptions({
-      size: selectedSize,
-      color: selectedColor?.name,
-    });
-  }, [selectedSize, selectedColor]);
+  const { addToCart } = useAddToCart(product);
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -89,8 +71,9 @@ export default function ProductDetailPage() {
         <Button
           variant="tertiary"
           onClick={() => {
-            addToCart(1);
-            toast.success("Đã thêm vào giỏ hàng");
+            addToCart(1, {
+              toast: true,
+            });
           }}
         >
           Thêm vào giỏ

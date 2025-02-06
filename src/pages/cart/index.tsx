@@ -6,19 +6,13 @@ import { useAtomValue } from "jotai";
 import { cartState } from "@/state";
 import SelectAll from "./select-all";
 import { EmptyBoxIcon } from "@/components/vectors";
+import { EmptyCart } from "@/components/empty";
 
 export default function CartPage() {
   const cart = useAtomValue(cartState);
 
   if (!cart.length) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center space-y-8">
-        <EmptyBoxIcon />
-        <div className="text-2xs text-inactive text-center">
-          Không có sản phẩm trong giỏ hàng
-        </div>
-      </div>
-    );
+    return <EmptyCart />;
   }
   return (
     <div className="w-full h-full flex flex-col">
