@@ -9,6 +9,8 @@ import SearchPage from "@/pages/search";
 import { createBrowserRouter } from "react-router-dom";
 import { getBasePath } from "@/utils/zma";
 import OrdersPage from "./pages/orders";
+import ShippingAddressPage from "./pages/cart/shipping-address";
+import StationsPage from "./pages/cart/stations";
 
 const router = createBrowserRouter(
   [
@@ -29,7 +31,7 @@ const router = createBrowserRouter(
           element: <CategoryListPage />,
           handle: {
             title: "Danh mục",
-            back: false,
+            noBack: true,
           },
         },
         {
@@ -44,6 +46,23 @@ const router = createBrowserRouter(
           element: <CartPage />,
           handle: {
             title: "Giỏ hàng",
+            noBack: true,
+          },
+        },
+        {
+          path: "/shipping-address",
+          element: <ShippingAddressPage />,
+          handle: {
+            title: "Địa chỉ nhận hàng",
+            noFooter: true,
+          },
+        },
+        {
+          path: "/stations",
+          element: <StationsPage />,
+          handle: {
+            title: "Điểm nhận hàng",
+            noFooter: true,
           },
         },
         {
@@ -64,7 +83,6 @@ const router = createBrowserRouter(
           path: "/category/:id",
           element: <ProductListPage />,
           handle: {
-            back: true,
             search: true,
             title: ({ categories, params }) =>
               categories.find((c) => c.id === Number(params.id))?.name,
@@ -74,7 +92,6 @@ const router = createBrowserRouter(
           path: "/product/:id",
           element: <ProductDetailPage />,
           handle: {
-            back: true,
             scrollRestoration: 0, // when user selects another product in related products, scroll to the top of the page
           },
         },
@@ -83,7 +100,7 @@ const router = createBrowserRouter(
           element: <SearchPage />,
           handle: {
             search: true,
-            back: true,
+
             title: "Tìm kiếm",
           },
         },

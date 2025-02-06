@@ -22,3 +22,23 @@ export interface CartItem {
 }
 
 export type Cart = CartItem[];
+
+export interface ShippingAddress {
+  alias: string;
+  address: string;
+  name: string;
+  phone: string;
+}
+
+export interface Station {
+  id: number;
+  name: string;
+  image: string;
+  address: string;
+  location: Location;
+}
+
+export interface Location {
+  lat: number;
+  lng: number;
+}

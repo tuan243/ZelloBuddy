@@ -1,12 +1,13 @@
 import { useAtomValue } from "jotai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { categoriesStateUpwrapped, userState } from "@/state";
-import { BackIcon } from "./vectors";
+import { BackIcon, ChevronRight } from "./vectors";
 import { useMemo } from "react";
 import { useRouteHandle } from "@/hooks";
 import { getConfig } from "@/utils/template";
 import headerIllus from "@/static/header-illus.svg";
 import SearchBar from "./search-bar";
+import TransitionLink from "./transition-link";
 
 export default function Header() {
   const categories = useAtomValue(categoriesStateUpwrapped);
@@ -25,7 +26,7 @@ export default function Header() {
     }
   }, [handle, categories]);
 
-  const showBack = location.key !== "default" && handle?.back !== false;
+  const showBack = location.key !== "default" && !handle?.noBack;
 
   return (
     <div
@@ -35,24 +36,27 @@ export default function Header() {
       }}
     >
       <div className="w-full min-h-12 pr-[90px] flex py-2 space-x-2 items-center">
-        {handle.logo ? (
+        {handle?.logo ? (
           <>
             <img
               src={getConfig((c) => c.template.logoUrl)}
               className="flex-none w-8 h-8 rounded-full"
             />
-            <div className="flex-1 overflow-hidden">
-              <h1 className="text-lg font-bold">
-                {getConfig((c) => c.template.shopName)}
-              </h1>
+            <TransitionLink to="/stations" className="flex-1 overflow-hidden">
+              <div className="flex items-center space-x-1">
+                <h1 className="text-lg font-bold">
+                  {getConfig((c) => c.template.shopName)}
+                </h1>
+                <ChevronRight />
+              </div>
               <p className="overflow-x-auto whitespace-nowrap text-2xs">
                 {getConfig((c) => c.template.shopAddress)}
               </p>
-            </div>
+            </TransitionLink>
           </>
         ) : (
           <>
-            {handle.back && showBack && (
+            {showBack && (
               <div
                 className="py-1 px-2 cursor-pointer"
                 onClick={() => navigate(-1)}
@@ -64,7 +68,7 @@ export default function Header() {
           </>
         )}
       </div>
-      {handle.search && (
+      {handle?.search && (
         <div className="w-full py-2 flex space-x-2">
           <SearchBar
             onFocus={() => {

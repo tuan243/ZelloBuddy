@@ -1,8 +1,18 @@
 import { atom } from "jotai";
-import { atomFamily, unwrap } from "jotai/utils";
-import { Cart, Category, Color, Product } from "@/types";
+import { atomFamily, atomWithStorage, unwrap } from "jotai/utils";
+import {
+  Cart,
+  Category,
+  Location,
+  Product,
+  ShippingAddress,
+  Station,
+} from "@/types";
 import { requestWithFallback } from "@/utils/request";
-import { getSetting, getUserInfo, GetUserInfoReturns } from "zmp-sdk";
+import { getLocation, getSetting, getUserInfo } from "zmp-sdk";
+import toast from "react-hot-toast";
+import { calculateDistance } from "./utils/location";
+import { formatDistant } from "./utils/format";
 
 export const userState = atom(async () => {
   const { authSetting } = await getSetting({});
@@ -47,31 +57,6 @@ export const productsState = atom(async (get) => {
 export const flashSaleProductsState = atom((get) => get(productsState));
 
 export const recommendedProductsState = atom((get) => get(productsState));
-
-export const sizesState = atom(["S", "M", "L", "XL"]);
-
-export const selectedSizeState = atom<string | undefined>(undefined);
-
-export const colorsState = atom<Color[]>([
-  {
-    name: "Đỏ",
-    hex: "#FFC7C7",
-  },
-  {
-    name: "Xanh dương",
-    hex: "#DBEBFF",
-  },
-  {
-    name: "Xanh lá",
-    hex: "#D1F0DB",
-  },
-  {
-    name: "Xám",
-    hex: "#D9E2ED",
-  },
-]);
-
-export const selectedColorState = atom<Color | undefined>(undefined);
 
 export const productState = atomFamily((id: number) =>
   atom(async (get) => {
@@ -120,3 +105,57 @@ export const productsBySelectedCategoryState = atom(async (get) => {
     return [];
   }
 });
+
+export const stationsState = atom(async () => {
+  let location: Location | undefined;
+  try {
+    const { token } = await getLocation({});
+    // Phía tích hợp làm theo hướng dẫn tại https://mini.zalo.me/documents/api/getLocation/ để chuyển đổi token thành thông tin vị trí người dùng ở server.
+    // location = await decodeToken(token);
+
+    // Các bước bên dưới để demo chức năng, phía tích hợp có thể bỏ đi sau.
+    toast(`Token lấy được: ${token}`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    toast(
+      "Phía tích hợp cần decode token thành thông tin vị trí người dùng ở server."
+    );
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    toast("Giả lập vị trí tại VNG Campus...");
+    location = {
+      lat: 10.773756,
+      lng: 106.689247,
+    };
+    // End demo
+  } catch (error) {
+    console.warn(error);
+  }
+
+  const stations = await requestWithFallback<Station[]>("/stations", []);
+  const stationsWithDistance = stations.map((station) => ({
+    ...station,
+    distance: location
+      ? formatDistant(
+          calculateDistance(
+            location.lat,
+            location.lng,
+            station.location.lat,
+            station.location.lng
+          )
+        )
+      : undefined,
+  }));
+
+  return stationsWithDistance;
+});
+
+export const selectedStationIndexState = atom(0);
+
+export const selectedStationState = atom(async (get) => {
+  const index = get(selectedStationIndexState);
+  const stations = await get(stationsState);
+  return stations[index];
+});
+
+export const shippingAddressState = atomWithStorage<
+  ShippingAddress | undefined
+>("shippingAddress", undefined);

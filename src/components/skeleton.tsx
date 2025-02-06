@@ -98,3 +98,22 @@ export function SelectSkeleton(props: { width: number }) {
     </div>
   );
 }
+
+export function StationSkeleton() {
+  return (
+    <button className="flex items-center space-x-4 p-4 pr-2 bg-section rounded-lg text-left">
+      <div className="h-14 w-14 rounded-lg bg-skeleton animate-pulse" />
+      <div className="flex-1 space-y-0.5">
+        <div className="bg-skeleton animate-pulse rounded-lg inline-block text-transparent text-sm">
+          Lorem, ipsum dolor
+        </div>
+        <div className="bg-skeleton animate-pulse rounded-lg inline-block text-transparent text-xs">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo facilis
+        </div>
+        <div className="bg-primary opacity-25 animate-pulse rounded-lg inline-block text-transparent text-xs">
+          4,3 km
+        </div>
+      </div>
+    </button>
+  );
+}

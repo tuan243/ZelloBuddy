@@ -4,9 +4,8 @@ import CartSummary from "./cart-summary";
 import HorizontalDivider from "@/components/horizontal-divider";
 import { useAtomValue } from "jotai";
 import { cartState } from "@/state";
-import SelectAll from "./select-all";
-import { EmptyBoxIcon } from "@/components/vectors";
 import { EmptyCart } from "@/components/empty";
+import Delivery from "./delivery";
 
 export default function CartPage() {
   const cart = useAtomValue(cartState);
@@ -16,12 +15,11 @@ export default function CartPage() {
   }
   return (
     <div className="w-full h-full flex flex-col">
-      <SelectAll />
-      <HorizontalDivider />
-      <CartList />
-      <HorizontalDivider />
+      <div className="flex-1 px-4 py-2 space-y-2">
+        <Delivery />
+        <CartList />
+      </div>
       <ApplyVoucher />
-      <HorizontalDivider />
       <CartSummary />
     </div>
   );

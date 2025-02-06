@@ -110,13 +110,15 @@ export function useCheckout() {
 export function useRouteHandle() {
   const matches = useMatches() as UIMatch<
     undefined,
-    {
-      title?: string | Function;
-      logo?: boolean;
-      back?: boolean;
-      search?: boolean;
-      scrollRestoration?: number;
-    }
+    | {
+        title?: string | Function;
+        logo?: boolean;
+        search?: boolean;
+        noFooter?: boolean;
+        noBack?: boolean;
+        scrollRestoration?: number;
+      }
+    | undefined
   >[];
   const lastMatch = matches[matches.length - 1];
 
