@@ -23,6 +23,11 @@ export interface CartItem {
 
 export type Cart = CartItem[];
 
+export interface Location {
+  lat: number;
+  lng: number;
+}
+
 export interface ShippingAddress {
   alias: string;
   address: string;
@@ -38,7 +43,21 @@ export interface Station {
   location: Location;
 }
 
-export interface Location {
-  lat: number;
-  lng: number;
+export type Delivery =
+  | ({
+      type: "shipping";
+    } & ShippingAddress)
+  | ({
+      type: "pickup";
+    } & Station);
+
+export type OrderStatus = "pending" | "shipping" | "completed";
+
+export interface Order {
+  id: number;
+  status: OrderStatus;
+  createdAt: Date;
+  receivedAt: Date;
+  items: CartItem[];
+  delivery: Delivery;
 }

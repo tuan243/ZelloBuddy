@@ -25,6 +25,8 @@
   --zaui-light-button-secondary-background-pressed: var(
     --zaui-light-button-secondary-background
   );
+  --zaui-light-tabbar-active-line: var(--primary);
+  --zaui-light-tabbar-label-active: var(--primary);
 
   --safe-top: var(--zaui-safe-area-inset-top, env(safe-area-inset-top, 30px));
   --safe-bottom: max(

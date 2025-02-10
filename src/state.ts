@@ -4,6 +4,8 @@ import {
   Cart,
   Category,
   Location,
+  Order,
+  OrderStatus,
   Product,
   ShippingAddress,
   Station,
@@ -159,3 +161,15 @@ export const selectedStationState = atom(async (get) => {
 export const shippingAddressState = atomWithStorage<
   ShippingAddress | undefined
 >("shippingAddress", undefined);
+
+export const ordersState = atomFamily((status: OrderStatus) =>
+  atom(async () => {
+    // Phía tích hợp thay đổi logic filter server-side nếu cần:
+    // const serverSideFilteredData = await requestWithFallback<Order[]>(`/orders?status=${status}`, []);
+    const allMockOrders = await requestWithFallback<Order[]>("/orders", []);
+    const clientSideFilteredData = allMockOrders.filter(
+      (order) => order.status === status
+    );
+    return clientSideFilteredData;
+  })
+);

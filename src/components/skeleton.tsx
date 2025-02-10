@@ -1,4 +1,3 @@
-import Tabs from "./tabs";
 import Section from "./section";
 import HorizontalDivider from "./horizontal-divider";
 import Carousel from "./carousel";
@@ -20,18 +19,6 @@ export function PageSkeleton() {
         />
       </div>
       <div className="bg-section space-y-2 mt-2">
-        <Tabs
-          items={[1, 2, 3, 4]}
-          value={undefined}
-          onChange={() => {}}
-          renderLabel={(key) => (
-            <div
-              key={key}
-              className="h-6 w-10 rounded-lg bg-skeleton animate-pulse"
-            />
-          )}
-        />
-
         <Section
           title={
             <div className="h-[18px] w-36 rounded-lg bg-skeleton animate-pulse" />
