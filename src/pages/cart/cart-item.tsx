@@ -49,8 +49,8 @@ export default function CartItem(props: CartItemProps) {
   );
 
   return (
-    <div className="relative">
-      <div className="absolute right-0 top-0 bottom-0 w-20 border-t-[0.5px] border-b-[0.5px] border-black/10">
+    <div className="relative after:border-b-[0.5px] after:border-black/10 after:absolute after:left-[88px] after:right-0 after:bottom-0 last:after:hidden">
+      <div className="absolute right-0 top-0 bottom-0 w-20 py-px">
         <div
           className="bg-danger text-white/95 w-full h-full flex flex-col space-y-1 justify-center items-center cursor-pointer"
           onClick={() => addToCart(0)}
@@ -63,38 +63,23 @@ export default function CartItem(props: CartItemProps) {
       <animated.div
         {...bind()}
         style={{ x }}
-        className="bg-white pl-4 flex items-center space-x-4 relative"
+        className="bg-white p-4 flex items-center space-x-4 relative"
       >
         <img src={props.product.image} className="w-14 h-14 rounded-lg" />
-        <div className="py-4 pr-4 flex-1 border-b-[0.5px] border-black/10">
+        <div className="flex-1 space-y-1">
           <div className="text-sm">{props.product.name}</div>
-          <div className="flex items-center py-2 space-x-2">
-            <div className="flex-1 flex flex-wrap items-center space-x-0.5">
-              <div className="text-xs font-medium text-primary">
-                {formatPrice(props.product.price)}
-              </div>
-              {props.product.originalPrice && (
-                <div className="line-through text-subtitle text-3xs">
-                  {formatPrice(props.product.originalPrice)}
-                </div>
-              )}
+          <div className="flex flex-col">
+            <div className="text-sm font-bold">
+              {formatPrice(props.product.price)}
             </div>
-            <QuantityInput
-              value={quantity}
-              onChange={(value) => {
-                if (value <= 0) {
-                  setQuantity(1);
-                  api.start({ x: -SWIPE_TO_DELTE_OFFSET });
-                } else {
-                  setQuantity(value);
-                  if (value > quantity) {
-                    api.start({ x: 0 });
-                  }
-                }
-              }}
-            />
+            {props.product.originalPrice && (
+              <div className="line-through text-subtitle text-4xs">
+                {formatPrice(props.product.originalPrice)}
+              </div>
+            )}
           </div>
         </div>
+        <div className="text-sm font-medium">x{quantity}</div>
       </animated.div>
     </div>
   );

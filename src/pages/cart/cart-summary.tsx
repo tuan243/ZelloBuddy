@@ -1,26 +1,34 @@
-import { CustomerSupportIcon } from "@/components/vectors";
 import { useCheckout, useCustomerSupport } from "@/hooks";
 import { useAtomValue } from "jotai";
 import { cartTotalState } from "@/state";
 import { formatPrice } from "@/utils/format";
 import { Button } from "zmp-ui";
+import Section from "@/components/section";
+import HorizontalDivider from "@/components/horizontal-divider";
 
 export default function CartSummary() {
   const { totalItems, totalAmount } = useAtomValue(cartTotalState);
-  const contact = useCustomerSupport();
   const checkout = useCheckout();
 
   return (
-    <div className="flex-none flex items-center py-3 px-4 space-x-2 bg-section">
-      <div className="space-y-1 flex-1">
-        <div className="text-2xs text-subtitle">Tổng cộng ({totalItems})</div>
-        <div className="text-sm font-medium text-primary">
-          {formatPrice(totalAmount)}
+    <Section title="Thanh toán" className="rounded-lg">
+      <div className="px-4 py-2 space-y-4">
+        <table className="table w-full text-sm [&_th]:text-left [&_th]:text-xs [&_th]:text-inactive [&_th]:font-medium [&_td]:text-right">
+          <tr>
+            <th>Tạm tính</th>
+            <td>600.000 VND</td>
+          </tr>
+          <tr>
+            <th>Phí vận chuyển</th>
+            <td>0 VND</td>
+          </tr>
+        </table>
+        <HorizontalDivider />
+        <div className="flex justify-between font-medium text-sm">
+          <div>Tổng thanh toán</div>
+          <div>615.000 VND</div>
         </div>
       </div>
-      <Button onClick={checkout} disabled={totalItems === 0}>
-        Thanh toán
-      </Button>
-    </div>
+    </Section>
   );
 }

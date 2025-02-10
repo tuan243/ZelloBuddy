@@ -23,6 +23,7 @@ module.exports = {
         sb: "var(--safe-bottom)",
       },
       fontSize: {
+        "4xs": ["10px", "14px"],
         "3xs": ["11px", "16px"],
         "2xs": ["12px", "16px"],
         xs: ["13px", "18px"],
