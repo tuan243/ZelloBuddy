@@ -1,13 +1,13 @@
 import { useAtomValue } from "jotai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { categoriesStateUpwrapped, userState } from "@/state";
-import { BackIcon, ChevronRight } from "./vectors";
 import { useMemo } from "react";
 import { useRouteHandle } from "@/hooks";
 import { getConfig } from "@/utils/template";
 import headerIllus from "@/static/header-illus.svg";
 import SearchBar from "./search-bar";
 import TransitionLink from "./transition-link";
+import { Icon } from "zmp-ui";
 
 export default function Header() {
   const categories = useAtomValue(categoriesStateUpwrapped);
@@ -47,7 +47,7 @@ export default function Header() {
                 <h1 className="text-lg font-bold">
                   {getConfig((c) => c.template.shopName)}
                 </h1>
-                <ChevronRight />
+                <Icon icon="zi-chevron-right" />
               </div>
               <p className="overflow-x-auto whitespace-nowrap text-2xs">
                 {getConfig((c) => c.template.shopAddress)}
@@ -61,7 +61,7 @@ export default function Header() {
                 className="py-1 px-2 cursor-pointer"
                 onClick={() => navigate(-1)}
               >
-                <BackIcon />
+                <Icon icon="zi-arrow-left" />
               </div>
             )}
             <div className="text-xl font-medium truncate">{title}</div>

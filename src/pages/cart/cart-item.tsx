@@ -1,14 +1,12 @@
-import Checkbox from "@/components/checkbox";
-import QuantityInput from "@/components/quantity-input";
 import { useAddToCart } from "@/hooks";
 import { CartItem as CartItemProps } from "@/types";
 import { formatPrice } from "@/utils/format";
 import { animated, useSpring } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
-import { RemoveIcon } from "@/components/vectors";
 import { useAtom } from "jotai";
 import { selectedCartItemIdsState } from "@/state";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { Icon } from "zmp-ui";
 
 const SWIPE_TO_DELTE_OFFSET = 80;
 
@@ -55,7 +53,7 @@ export default function CartItem(props: CartItemProps) {
           className="bg-danger text-white/95 w-full h-full flex flex-col space-y-1 justify-center items-center cursor-pointer"
           onClick={() => addToCart(0)}
         >
-          <RemoveIcon />
+          <Icon icon="zi-delete" />
           <div className="text-2xs font-medium">Xoá</div>
         </div>
       </div>

@@ -1,6 +1,7 @@
-import { ChevronRight, ShareDecor } from "@/components/vectors";
+import { ShareDecor } from "@/components/vectors";
 import { Product } from "@/types";
 import { openShareSheet } from "zmp-sdk";
+import { Icon } from "zmp-ui";
 
 export default function ShareButton(props: { product: Product }) {
   const share = () => {
@@ -23,7 +24,7 @@ export default function ShareButton(props: { product: Product }) {
       <ShareDecor className="absolute inset-0" />
       <div className="relative flex space-x-1 text-primary text-sm font-medium p-2">
         <div>Chia sẻ ngay cho bạn bè</div>
-        <ChevronRight />
+        <Icon icon="zi-chevron-right" />
       </div>
     </button>
   );

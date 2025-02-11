@@ -1,6 +1,7 @@
 import Section from "@/components/section";
-import { VoucherIcon, ChevronRight } from "@/components/vectors";
+import { VoucherIcon } from "@/components/vectors";
 import { useToBeImplemented } from "@/hooks";
+import { Icon } from "zmp-ui";
 
 export default function ApplyVoucher() {
   const toBeImplemented = useToBeImplemented();
@@ -16,7 +17,7 @@ export default function ApplyVoucher() {
         </div>
         <div className="flex items-center space-x-1">
           <div className="text-sm font-medium">Chọn</div>
-          <ChevronRight />
+          <Icon icon="zi-chevron-right" />
         </div>
       </button>
     </Section>

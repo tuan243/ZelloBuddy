@@ -4,23 +4,30 @@ import { loadable } from "jotai/utils";
 import { useMemo } from "react";
 import { ProductGridSkeleton } from "../search";
 import { EmptyOrder } from "@/components/empty";
-import OrderItem from "./order-item";
+import OrderSummary from "./order-summary";
+import { OrderSummarySkeleton } from "@/components/skeleton";
 
 function OrderList(props: { ordersState: Atom<Promise<Order[]>> }) {
   const orderList = useAtomValue(
     useMemo(() => loadable(props.ordersState), [props.ordersState])
   );
 
+  if (orderList.state === "hasData" && orderList.data.length === 0) {
+    return <EmptyOrder />;
+  }
+
   return (
     <div className="space-y-2 p-4">
       {orderList.state !== "hasData" ? (
         <>
-          <ProductGridSkeleton />
+          <OrderSummarySkeleton />
+          <OrderSummarySkeleton />
+          <OrderSummarySkeleton />
         </>
-      ) : orderList.data.length === 0 ? (
-        <EmptyOrder />
       ) : (
-        orderList.data.map((order) => <OrderItem key={order.id} {...order} />)
+        orderList.data.map((order) => (
+          <OrderSummary key={order.id} order={order} />
+        ))
       )}
     </div>
   );

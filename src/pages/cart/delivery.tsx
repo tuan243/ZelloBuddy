@@ -3,42 +3,17 @@ import Section from "@/components/section";
 import { StationSkeleton } from "@/components/skeleton";
 import TransitionLink from "@/components/transition-link";
 import {
+  HomeIcon,
   LocationMarkerLineIcon,
   LocationMarkerPackageIcon,
   PackageDeliveryIcon,
   PlusIcon,
   ShipperIcon,
-  StoreLineIcon,
 } from "@/components/vectors";
 import { selectedStationState, shippingAddressState } from "@/state";
 import { useAtomValue } from "jotai";
-import { ReactNode, Suspense, useState } from "react";
-
-function DeliverySummary(props: {
-  icon: ReactNode;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  linkTo: string;
-}) {
-  return (
-    <div className="flex space-x-2 px-4 pt-3 pb-2">
-      <div className="flex-none">{props.icon}</div>
-      <div className="flex-1 flex flex-col space-y-0.5">
-        <div className="flex justify-between">
-          <span className="text-sm font-medium">{props.title}</span>
-          <TransitionLink to={props.linkTo} className="text-xs text-primary">
-            Thay đổi
-          </TransitionLink>
-        </div>
-        {props.subtitle && <span className="text-sm">{props.subtitle}</span>}
-        {props.description && (
-          <span className="text-xs text-inactive">{props.description}</span>
-        )}
-      </div>
-    </div>
-  );
-}
+import { Suspense, useState } from "react";
+import DeliverySummary from "./delivery-summary";
 
 function ShippingAddressSummary() {
   const shippingAddress = useAtomValue(shippingAddressState);
@@ -73,7 +48,7 @@ function SelectedStationSummary() {
   const selectedStation = useAtomValue(selectedStationState);
   return (
     <DeliverySummary
-      icon={<StoreLineIcon />}
+      icon={<HomeIcon />}
       title="Nhận hàng tại"
       subtitle={selectedStation.name}
       description={selectedStation.address}

@@ -11,6 +11,7 @@ import { getBasePath } from "@/utils/zma";
 import OrdersPage from "./pages/orders";
 import ShippingAddressPage from "./pages/cart/shipping-address";
 import StationsPage from "./pages/cart/stations";
+import OrderDetailPage from "./pages/orders/detail";
 
 const router = createBrowserRouter(
   [
@@ -39,6 +40,13 @@ const router = createBrowserRouter(
           element: <OrdersPage />,
           handle: {
             title: "Đơn hàng",
+          },
+        },
+        {
+          path: "/order/:id",
+          element: <OrderDetailPage />,
+          handle: {
+            title: "Thông tin đơn hàng",
           },
         },
         {

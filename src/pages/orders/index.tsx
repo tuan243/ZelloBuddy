@@ -1,22 +1,29 @@
 import { Tabs } from "zmp-ui";
 import OrderList from "./order-list";
 import { ordersState } from "@/state";
+import { atom, useAtom } from "jotai";
+
+const persistedActiveKeyState = atom("pending");
 
 function OrdersPage() {
+  const [activeKey, setActiveKey] = useAtom(persistedActiveKeyState);
+
   return (
-    <div className="w-full h-full flex flex-col">
-      <Tabs className="[&>.zaui-tabs-tabbar]:grid [&>.zaui-tabs-tabbar]:grid-cols-3 [&>.zaui-tabs-tabbar]:text-center">
-        <Tabs.Tab key="tab1" label="Đang xử lý">
-          <OrderList ordersState={ordersState("pending")} />
-        </Tabs.Tab>
-        <Tabs.Tab key="tab2" label="Nhận hôm nay">
-          <OrderList ordersState={ordersState("shipping")} />
-        </Tabs.Tab>
-        <Tabs.Tab key="tab3" label="Lịch sử">
-          <OrderList ordersState={ordersState("completed")} />
-        </Tabs.Tab>
-      </Tabs>
-    </div>
+    <Tabs
+      className="h-full flex flex-col"
+      activeKey={activeKey}
+      onChange={setActiveKey}
+    >
+      <Tabs.Tab key="pending" label="Đang xử lý">
+        <OrderList ordersState={ordersState("pending")} />
+      </Tabs.Tab>
+      <Tabs.Tab key="shipping" label="Nhận hôm nay">
+        <OrderList ordersState={ordersState("shipping")} />
+      </Tabs.Tab>
+      <Tabs.Tab key="completed" label="Lịch sử">
+        <OrderList ordersState={ordersState("completed")} />
+      </Tabs.Tab>
+    </Tabs>
   );
 }
 

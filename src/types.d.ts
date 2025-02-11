@@ -60,4 +60,6 @@ export interface Order {
   receivedAt: Date;
   items: CartItem[];
   delivery: Delivery;
+  total: number;
+  note: string;
 }

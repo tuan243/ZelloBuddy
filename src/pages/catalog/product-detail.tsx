@@ -11,9 +11,9 @@ import Section from "@/components/section";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const product = useAtomValue(productState(Number(id)))!;
 
+  const navigate = useNavigate();
   const { addToCart } = useAddToCart(product);
 
   return (

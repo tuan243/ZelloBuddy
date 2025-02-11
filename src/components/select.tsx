@@ -1,6 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";
-import { ChevronDown } from "./vectors";
-import { Picker } from "zmp-ui";
+import { ReactNode, useState } from "react";
+import { Icon, Picker } from "zmp-ui";
 
 export interface SelectProps<T> {
   renderTitle: (selectedItem?: T) => ReactNode;
@@ -60,7 +59,7 @@ export default function Select<T>(props: SelectProps<T>) {
             ? props.renderTitle(props.value)
             : String(props.value)}
         </div>
-        <ChevronDown />
+        <Icon icon="zi-chevron-down" />
       </div>
     </div>
   );

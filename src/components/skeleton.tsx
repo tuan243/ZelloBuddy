@@ -1,8 +1,7 @@
 import Section from "./section";
 import HorizontalDivider from "./horizontal-divider";
 import Carousel from "./carousel";
-import { ChevronDown } from "./vectors";
-import { Button } from "zmp-ui";
+import { Button, Icon, List } from "zmp-ui";
 
 export function PageSkeleton() {
   return (
@@ -81,7 +80,7 @@ export function SelectSkeleton(props: { width: number }) {
       className="h-8 rounded-full bg-skeleton animate-pulse px-3 flex items-center justify-end"
       style={{ width: props.width }}
     >
-      <ChevronDown />
+      <Icon icon="zi-chevron-down" />
     </div>
   );
 }
@@ -102,5 +101,55 @@ export function StationSkeleton() {
         </div>
       </div>
     </button>
+  );
+}
+
+export function OrderSummarySkeleton() {
+  return (
+    <Section
+      title={
+        <div className="w-full flex justify-between items-center space-x-2 font-normal">
+          <span className="text-xs truncate text-transparent bg-skeleton rounded-lg animate-pulse">
+            Lorem ipsum dolor sit amet
+          </span>
+          <span className="text-xs text-transparent bg-skeleton rounded-lg animate-pulse">
+            Lorem ipsum
+          </span>
+        </div>
+      }
+      className="flex-1 overflow-y-auto rounded-lg"
+    >
+      <div className="w-full">
+        <List.Item
+          prefix={
+            <div className="w-14 h-14 bg-skeleton rounded-lg animate-pulse" />
+          }
+          suffix={
+            <div className="text-sm font-medium flex items-center h-full bg-skeleton rounded-lg animate-pulse text-transparent">
+              xx
+            </div>
+          }
+        >
+          <div className="text-sm bg-skeleton rounded-lg animate-pulse text-transparent">
+            Lorem ipsum dolor sit
+          </div>
+          <div className="text-sm font-bold mt-1 bg-skeleton rounded-lg animate-pulse text-transparent">
+            Lorem ipsum
+          </div>
+          <div className="line-through text-4xs bg-skeleton rounded-lg animate-pulse text-transparent">
+            Lorem ipsum
+          </div>
+        </List.Item>
+      </div>
+      <HorizontalDivider />
+      <div className="flex justify-between items-center px-4 py-2 space-x-4">
+        <div className="text-xs bg-skeleton rounded-lg animate-pulse text-transparent">
+          Lorem ipsum dolor
+        </div>
+        <div className="text-sm bg-skeleton rounded-lg animate-pulse text-transparent">
+          Lorem ipsum
+        </div>
+      </div>
+    </Section>
   );
 }
