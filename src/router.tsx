@@ -12,6 +12,7 @@ import OrdersPage from "./pages/orders";
 import ShippingAddressPage from "./pages/cart/shipping-address";
 import StationsPage from "./pages/cart/stations";
 import OrderDetailPage from "./pages/orders/detail";
+import ProfileEditorPage from "./pages/profile/editor";
 
 const router = createBrowserRouter(
   [
@@ -81,10 +82,10 @@ const router = createBrowserRouter(
           },
         },
         {
-          path: "/flash-sales",
-          element: <ProductListPage />,
+          path: "/profile/edit",
+          element: <ProfileEditorPage />,
           handle: {
-            title: "Flash Sales",
+            title: "Thông tin tài khoản",
           },
         },
         {

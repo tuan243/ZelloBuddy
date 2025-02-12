@@ -6,7 +6,6 @@ import { Button, Icon, Input } from "zmp-ui";
 
 function ShippingAddressPage() {
   const [address, setAddress] = useAtom(shippingAddressState);
-  console.log(address);
   const navigate = useNavigate();
 
   return (

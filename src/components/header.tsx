@@ -1,6 +1,10 @@
 import { useAtomValue } from "jotai";
 import { useLocation, useNavigate } from "react-router-dom";
-import { categoriesStateUpwrapped, userState } from "@/state";
+import {
+  categoriesStateUpwrapped,
+  loadableUserInfoState,
+  userInfoState,
+} from "@/state";
 import { useMemo } from "react";
 import { useRouteHandle } from "@/hooks";
 import { getConfig } from "@/utils/template";
@@ -8,13 +12,14 @@ import headerIllus from "@/static/header-illus.svg";
 import SearchBar from "./search-bar";
 import TransitionLink from "./transition-link";
 import { Icon } from "zmp-ui";
+import { DefaultUserAvatar } from "./vectors";
 
 export default function Header() {
   const categories = useAtomValue(categoriesStateUpwrapped);
   const navigate = useNavigate();
   const location = useLocation();
   const [handle, match] = useRouteHandle();
-  const userInfo = useAtomValue(userState);
+  const userInfo = useAtomValue(loadableUserInfoState);
 
   const title = useMemo(() => {
     if (handle) {
@@ -77,9 +82,20 @@ export default function Header() {
               }
             }}
           />
-          {!!userInfo && (
-            <img className="w-8 h-8 rounded-full" src={userInfo.avatar} />
-          )}
+          <TransitionLink to="/profile">
+            {userInfo.state === "hasData" && userInfo.data ? (
+              <img
+                className="w-8 h-8 rounded-full"
+                src={userInfo.data.avatar}
+              />
+            ) : (
+              <DefaultUserAvatar
+                width={32}
+                height={32}
+                className={userInfo.state === "loading" ? "animate-pulse" : ""}
+              />
+            )}
+          </TransitionLink>
         </div>
       )}
     </div>

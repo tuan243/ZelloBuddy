@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { atomFamily, atomWithStorage, unwrap } from "jotai/utils";
+import { atomFamily, atomWithStorage, loadable, unwrap } from "jotai/utils";
 import {
   Cart,
   Category,
@@ -9,21 +9,76 @@ import {
   Product,
   ShippingAddress,
   Station,
+  UserInfo,
 } from "@/types";
 import { requestWithFallback } from "@/utils/request";
-import { getLocation, getSetting, getUserInfo } from "zmp-sdk";
+import { getLocation, getPhoneNumber, getSetting, getUserInfo } from "zmp-sdk";
 import toast from "react-hot-toast";
 import { calculateDistance } from "./utils/location";
 import { formatDistant } from "./utils/format";
+import CONFIG from "./config";
 
-export const userState = atom(async () => {
-  const { authSetting } = await getSetting({});
-  if (authSetting["scope.userInfo"]) {
-    const { userInfo } = await getUserInfo({});
-    return userInfo;
-  } else {
-    return false;
+export const userInfoKeyState = atom(0);
+
+export const userInfoState = atom<Promise<UserInfo>>(async (get) => {
+  get(userInfoKeyState);
+
+  // Nếu người dùng đã chỉnh sửa thông tin tài khoản trước đó, sử dụng thông tin đã lưu trữ
+  const savedUserInfo = localStorage.getItem(CONFIG.STORAGE_KEYS.USER_INFO);
+  // Phía tích hợp có thể thay đổi logic này thành fetch từ server
+  // const savedUserInfo = await fetchUserInfo({ token: await getAccessToken() });
+  if (savedUserInfo) {
+    return JSON.parse(savedUserInfo);
   }
+
+  const {
+    authSetting: {
+      "scope.userInfo": grantedUserInfo,
+      "scope.userPhonenumber": grantedPhoneNumber,
+    },
+  } = await getSetting({});
+  const isDev = !window.ZJSBridge;
+  if (grantedUserInfo || isDev) {
+    // Người dùng cho phép truy cập tên và ảnh đại diện
+    const { userInfo } = await getUserInfo({});
+    const phone =
+      grantedPhoneNumber || isDev // Người dùng cho phép truy cập số điện thoại
+        ? await get(phoneState)
+        : "";
+    return {
+      name: userInfo.name,
+      avatar: userInfo.avatar,
+      phone,
+      email: "",
+      address: "",
+    };
+  }
+});
+
+export const loadableUserInfoState = loadable(userInfoState);
+
+export const phoneState = atom(async () => {
+  let phone = "";
+  try {
+    const { token } = await getPhoneNumber({});
+    // Phía tích hợp làm theo hướng dẫn tại https://mini.zalo.me/documents/api/getPhoneNumber/ để chuyển đổi token thành số điện thoại người dùng ở server.
+    // phone = await decodeToken(token);
+
+    // Các bước bên dưới để demo chức năng, phía tích hợp có thể bỏ đi sau.
+    toast(
+      "Đã lấy được token chứa số điện thoại người dùng. Phía tích hợp cần decode token này ở server. Giả lập số điện thoại 0912345678...",
+      {
+        icon: "ℹ",
+        duration: 10000,
+      }
+    );
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    phone = "0912345678";
+    // End demo
+  } catch (error) {
+    console.warn(error);
+  }
+  return phone;
 });
 
 export const bannersState = atom(() =>
@@ -116,13 +171,14 @@ export const stationsState = atom(async () => {
     // location = await decodeToken(token);
 
     // Các bước bên dưới để demo chức năng, phía tích hợp có thể bỏ đi sau.
-    toast(`Token lấy được: ${token}`);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     toast(
-      "Phía tích hợp cần decode token thành thông tin vị trí người dùng ở server."
+      "Đã lấy được token chứa thông tin vị trí người dùng. Phía tích hợp cần decode token này ở server. Giả lập vị trí tại VNG Campus...",
+      {
+        icon: "ℹ",
+        duration: 10000,
+      }
     );
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    toast("Giả lập vị trí tại VNG Campus...");
     location = {
       lat: 10.773756,
       lng: 106.689247,
@@ -160,7 +216,7 @@ export const selectedStationState = atom(async (get) => {
 
 export const shippingAddressState = atomWithStorage<
   ShippingAddress | undefined
->("shippingAddress", undefined);
+>(CONFIG.STORAGE_KEYS.SHIPPING_ADDRESS, undefined);
 
 export const ordersState = atomFamily((status: OrderStatus) =>
   atom(async () => {

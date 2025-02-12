@@ -153,3 +153,19 @@ export function OrderSummarySkeleton() {
     </Section>
   );
 }
+
+export function UserInfoSkeleton() {
+  return (
+    <div className="bg-section rounded-lg p-4 flex items-center space-x-4 border-[0.5px] border-black/15">
+      <div className="rounded-full h-10 w-10 bg-skeleton animate-pulse" />
+      <div className="space-y-0.5 flex-1 overflow-hidden">
+        <div className="text-lg truncate bg-skeleton text-transparent animate-pulse">
+          Lorem ipsum dolor
+        </div>
+        <div className="text-sm truncate bg-skeleton text-transparent animate-pulse">
+          0912345678
+        </div>
+      </div>
+    </div>
+  );
+}
