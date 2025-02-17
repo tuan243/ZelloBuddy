@@ -1,4 +1,4 @@
-# ZaUI F&B
+# ZaUI Farmer Market
 
 <p style="display: flex; flex-wrap: wrap; gap: 4px">
   <img alt="vite" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/dev/vite" />
@@ -9,7 +9,7 @@
   <img alt="tailwindcss" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/dev/tailwindcss" />
 </p>
 
-A template for online sales applications. It provides full features such as product viewing, shopping cart, payment, etc. Can be used for various industries.
+A template for farmer to sale their products on the online market. It provides full features such as product viewing, shopping cart, payment, order management, profile management, etc.
 
 |                      Demo                       |                  Entrypoint                  |
 | :---------------------------------------------: | :------------------------------------------: |
@@ -24,8 +24,6 @@ A template for online sales applications. It provides full features such as prod
 1. **Configure App ID** and **Install Dependencies**, then navigate to the **Run** panel > **Start** to develop your Mini App 🚀
 
 ### Using Zalo Mini App CLI
-
-> **Note:** Vite 5 compatibility in CLI is under development. Until then, please use the Zalo Mini App Extension.
 
 1. [Install Node JS](https://nodejs.org/en/download/).
 1. [Install Zalo Mini App CLI](https://mini.zalo.me/docs/dev-tools/cli/intro/).
@@ -107,17 +105,22 @@ The other files (such as `tailwind.config.js`, `vite.config.mts`, `tsconfig.json
 
 ### Link Official Account
 
-The template contains 2 OA-related features:
+The template contains a follow OA widget:
 
 | Feature             | Demo                                        | Configuration                                                                                                                                                                                                                                                               |
 | ------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Chat with OA button | ![Chat with OA Button](./docs/chat-oa.webp) | In `app-config.json`, set `template.oaIDtoOpenChat` to your OA ID.                                                                                                                                                                                                          |
 | Follow OA widget    | ![Follow OA Block](./docs/follow-oa.webp)   | Follow the instructions to [authenticate your Mini App via Zalo OA](https://mini.zalo.me/documents/pages/thong-bao-huong-dan-xac-thuc-mini-app/). For more information, please refer to the [showOAWidget](https://mini.zalo.me/documents/api/showOAWidget/) documentation. |
 
 ### Customize theme
 
+<img src="./docs/customize-theme.webp" alt="Customize theme" width="250" align="right">
+
 Adjust CSS variables in `src/css/tailwind.scss` as needed to fit your desired branding.
 
-| `--primary: red;`                     | `--primary: #008000;`                     |
-| ------------------------------------- | ----------------------------------------- |
-| ![Red](./docs/primary-color-red.webp) | ![Green](./docs/primary-color-green.webp) |
+```css
+:root {
+  --primary: #8420ff;
+  --zaui-light-button-secondary-background: #e3b2f1;
+  --zaui-light-button-secondary-text: #590872;
+}
+```
