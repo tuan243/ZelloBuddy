@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
 import CartPage from "@/pages/cart";
-import ProductListPage from "@/pages/catalog/product-list";
+import CategoryDetailPage from "@/pages/catalog/category-detail";
 import CategoryListPage from "@/pages/catalog/category-list";
 import ProductDetailPage from "@/pages/catalog/product-detail";
 import HomePage from "@/pages/home";
@@ -37,7 +37,7 @@ const router = createBrowserRouter(
           },
         },
         {
-          path: "/orders",
+          path: "/orders/:status?",
           element: <OrdersPage />,
           handle: {
             title: "Đơn hàng",
@@ -90,11 +90,11 @@ const router = createBrowserRouter(
         },
         {
           path: "/category/:id",
-          element: <ProductListPage />,
+          element: <CategoryDetailPage />,
           handle: {
             search: true,
             title: ({ categories, params }) =>
-              categories.find((c) => c.id === Number(params.id))?.name,
+              categories.find((c) => String(c.id) === params.id)?.name,
           },
         },
         {

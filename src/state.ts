@@ -3,6 +3,7 @@ import { atomFamily, atomWithStorage, loadable, unwrap } from "jotai/utils";
 import {
   Cart,
   Category,
+  Delivery,
   Location,
   Order,
   OrderStatus,
@@ -148,20 +149,13 @@ export const searchResultState = atom(async (get) => {
   );
 });
 
-export const selectedCategoryIndexState = atom(0);
-
-export const productsBySelectedCategoryState = atom(async (get) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const index = get(selectedCategoryIndexState);
-  const categories = await get(categoriesState);
-  const products = await get(productsState);
-  const category = categories[index];
-  if (category) {
-    return products.filter((product) => product.categoryId === category.id);
-  } else {
-    return [];
-  }
-});
+export const productsByCategoryState = atomFamily((id: String) =>
+  atom(async (get) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const products = await get(productsState);
+    return products.filter((product) => String(product.categoryId) === id);
+  })
+);
 
 export const stationsState = atom(async () => {
   let location: Location | undefined;
@@ -228,4 +222,9 @@ export const ordersState = atomFamily((status: OrderStatus) =>
     );
     return clientSideFilteredData;
   })
+);
+
+export const deliveryModeState = atomWithStorage<Delivery["type"]>(
+  CONFIG.STORAGE_KEYS.DELIVERY,
+  "shipping"
 );

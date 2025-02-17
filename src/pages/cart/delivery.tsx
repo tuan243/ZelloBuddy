@@ -10,9 +10,13 @@ import {
   PlusIcon,
   ShipperIcon,
 } from "@/components/vectors";
-import { selectedStationState, shippingAddressState } from "@/state";
-import { useAtomValue } from "jotai";
-import { Suspense, useState } from "react";
+import {
+  deliveryModeState,
+  selectedStationState,
+  shippingAddressState,
+} from "@/state";
+import { useAtom, useAtomValue } from "jotai";
+import { Suspense } from "react";
 import DeliverySummary from "./delivery-summary";
 
 function ShippingAddressSummary() {
@@ -58,49 +62,47 @@ function SelectedStationSummary() {
 }
 
 function Delivery() {
-  const modes = [
-    {
-      id: 1,
-      name: "Giao tận nơi",
-      icon: <ShipperIcon />,
-      detail: <ShippingAddressSummary />,
-    },
-    {
-      id: 2,
-      name: "Tự đến lấy",
-      icon: <PackageDeliveryIcon />,
-      detail: (
-        <Suspense fallback={<StationSkeleton />}>
-          <SelectedStationSummary />
-        </Suspense>
-      ),
-    },
-  ];
-  const [selectedDeliveryMode, setSelectedDeliveryMode] = useState(modes[0]);
+  const [selectedDeliveryMode, setSelectedDeliveryMode] =
+    useAtom(deliveryModeState);
 
   return (
     <Section title="Hình thức giao hàng" className="rounded-lg">
       <div className="grid grid-cols-2 gap-4 p-4 pt-2">
-        {modes.map((option) => (
+        {(
+          [
+            {
+              type: "shipping",
+              name: "Giao tận nơi",
+              icon: <ShipperIcon />,
+            },
+            {
+              type: "pickup",
+              name: "Tự đến lấy",
+              icon: <PackageDeliveryIcon />,
+            },
+          ] as const
+        ).map((option) => (
           <button
-            key={option.id}
+            key={option.type}
             className={"flex justify-center items-center space-x-2 text-base font-medium bg-background rounded-full h-12 px-3.5 ".concat(
-              option.id === selectedDeliveryMode.id
+              selectedDeliveryMode === option.type
                 ? "border border-primary text-primary"
                 : ""
             )}
-            onClick={() => setSelectedDeliveryMode(option)}
+            onClick={() => setSelectedDeliveryMode(option.type)}
           >
             {option.icon}
             <span>{option.name}</span>
           </button>
         ))}
       </div>
-      {selectedDeliveryMode.detail && (
-        <>
-          <HorizontalDivider />
-          {selectedDeliveryMode.detail}
-        </>
+      <HorizontalDivider />
+      {selectedDeliveryMode === "shipping" ? (
+        <ShippingAddressSummary />
+      ) : (
+        <Suspense fallback={<StationSkeleton />}>
+          <SelectedStationSummary />
+        </Suspense>
       )}
     </Section>
   );

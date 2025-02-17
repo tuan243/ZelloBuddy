@@ -50,7 +50,7 @@ function Stations() {
 
 function StationsPage() {
   return (
-    <div className="p-4 space-y-2">
+    <div className="p-4 space-y-2 flex flex-col">
       <Suspense
         fallback={
           <>

@@ -3,10 +3,12 @@ import { useAtomValue } from "jotai";
 import { cartTotalState } from "@/state";
 import { formatPrice } from "@/utils/format";
 import { Button } from "zmp-ui";
+import { useState } from "react";
 
 export default function Pay() {
-  const { totalItems, totalAmount } = useAtomValue(cartTotalState);
+  const { totalAmount } = useAtomValue(cartTotalState);
   const checkout = useCheckout();
+  const [paying, setPaying] = useState(false);
 
   return (
     <div className="flex-none flex items-center py-3 px-4 space-x-2 bg-section">
@@ -16,7 +18,14 @@ export default function Pay() {
           {formatPrice(totalAmount)}
         </div>
       </div>
-      <Button onClick={checkout} disabled={totalItems === 0}>
+      <Button
+        onClick={async () => {
+          setPaying(true);
+          await checkout();
+          setPaying(false);
+        }}
+        disabled={paying}
+      >
         Thanh toán
       </Button>
     </div>

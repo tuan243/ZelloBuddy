@@ -1,18 +1,17 @@
 import { Tabs } from "zmp-ui";
 import OrderList from "./order-list";
 import { ordersState } from "@/state";
-import { atom, useAtom } from "jotai";
-
-const persistedActiveKeyState = atom("pending");
+import { useNavigate, useParams } from "react-router-dom";
 
 function OrdersPage() {
-  const [activeKey, setActiveKey] = useAtom(persistedActiveKeyState);
+  const { status } = useParams();
+  const navigate = useNavigate();
 
   return (
     <Tabs
       className="h-full flex flex-col"
-      activeKey={activeKey}
-      onChange={setActiveKey}
+      activeKey={status}
+      onChange={(status) => navigate(`/orders/${status}`)}
     >
       <Tabs.Tab key="pending" label="Đang xử lý">
         <OrderList ordersState={ordersState("pending")} />

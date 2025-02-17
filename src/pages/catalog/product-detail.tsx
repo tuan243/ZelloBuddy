@@ -81,7 +81,9 @@ export default function ProductDetailPage() {
         <Button
           onClick={() => {
             addToCart(1);
-            navigate("/cart");
+            navigate("/cart", {
+              unstable_viewTransition: true,
+            });
           }}
         >
           Mua ngay

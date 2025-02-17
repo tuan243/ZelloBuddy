@@ -1,11 +1,13 @@
 import { shippingAddressState } from "@/state";
 import { useAtom } from "jotai";
+import { useResetAtom } from "jotai/utils";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Button, Icon, Input } from "zmp-ui";
 
 function ShippingAddressPage() {
   const [address, setAddress] = useAtom(shippingAddressState);
+  const resetAddress = useResetAtom(shippingAddressState);
   const navigate = useNavigate();
 
   return (
@@ -70,7 +72,7 @@ function ShippingAddressPage() {
           type="danger"
           prefixIcon={<Icon icon="zi-delete" />}
           onClick={() => {
-            setAddress(undefined);
+            resetAddress();
             toast.success("Đã xóa địa chỉ");
             navigate(-1);
           }}

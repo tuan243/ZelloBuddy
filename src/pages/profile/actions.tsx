@@ -4,27 +4,32 @@ import {
   VoucherIcon,
 } from "@/components/vectors";
 import { useToBeImplemented } from "@/hooks";
+import { OrderStatus } from "@/types";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileActions() {
-  const toBeImplemented = useToBeImplemented();
+  const navigate = useNavigate();
+  const goToOrders = (status: OrderStatus) => {
+    navigate(`/orders/${status}`);
+  };
 
   return (
     <div className="bg-white rounded-lg p-4 grid grid-cols-3 gap-4 border-[0.5px] border-black/15">
       {[
         {
-          label: "Đổi voucher",
+          label: "Đang xử lý",
           icon: VoucherIcon,
-          onClick: toBeImplemented,
+          onClick: () => goToOrders("pending"),
         },
         {
-          label: "Theo dõi đơn hàng",
+          label: "Nhận hôm nay",
           icon: PackageIcon,
-          onClick: toBeImplemented,
+          onClick: () => goToOrders("shipping"),
         },
         {
-          label: "Lịch sử mua hàng",
+          label: "Lịch sử",
           icon: OrderHistoryIcon,
-          onClick: toBeImplemented,
+          onClick: () => goToOrders("completed"),
         },
       ].map((action) => (
         <div
