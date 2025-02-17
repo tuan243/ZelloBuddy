@@ -5,7 +5,7 @@
     "name": "Táo giòn nhập khẩu - 1kg",
     "price": 67900,
     "originalPrice": 69900,
-    "image": "/product/apples.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/apples.png",
     "detail": "- Xuất xứ: Mỹ\n- Quy cách đóng túi: 400 - 500g(+/-100g), 2-3 trái\n- Lưu ý: Trong quá trình vận chuyển có thể xảy ra tình trạng trái bị va chạm cấn trái nhẹ\n- Hướng dẫn bảo quản: Bảo quản ngăn mát tủ lạnh để đảm bảo độ tươi ngon."
   },
   {
@@ -14,7 +14,7 @@
     "name": "Cải ngọt thủy canh 300g",
     "price": 27900,
     "originalPrice": 30000,
-    "image": "/product/cabbage.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/cabbage.png",
     "detail": "Cải ngọt thủy canh, tươi ngon và giàu dinh dưỡng."
   },
   {
@@ -23,7 +23,7 @@
     "name": "Kem hộp Socola",
     "price": 313000,
     "originalPrice": 500000,
-    "image": "/product/creamy.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/creamy.png",
     "detail": "Kem hộp Socola, thơm ngon và mát lạnh."
   },
   {
@@ -32,7 +32,7 @@
     "name": "Bánh quy hộp thiếc",
     "price": 150000,
     "originalPrice": 300000,
-    "image": "/product/danisa.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/danisa.png",
     "detail": "Bánh quy hộp thiếc, giòn tan và thơm ngon."
   },
   {
@@ -41,7 +41,7 @@
     "name": "Bội nồi 4 món",
     "price": 150000,
     "originalPrice": 300000,
-    "image": "/product/pans.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/pans.png",
     "detail": "Bội nồi 4 món, tiện lợi và bền bỉ."
   },
   {
@@ -50,7 +50,7 @@
     "name": "Bột giặt có nước xả",
     "price": 150000,
     "originalPrice": 300000,
-    "image": "/product/tide.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/tide.png",
     "detail": "Bột giặt có nước xả, sạch sẽ và thơm mát."
   },
   {
@@ -59,7 +59,7 @@
     "name": "Nồi cơm điện xanh dương",
     "price": 150000,
     "originalPrice": 300000,
-    "image": "/product/sunhouse.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/sunhouse.png",
     "detail": "Nồi cơm điện xanh dương, tiện lợi và bền bỉ."
   },
   {
@@ -68,7 +68,7 @@
     "name": "Sữa tiệt trùng ít đường - 1 thùng",
     "price": 409000,
     "originalPrice": 420000,
-    "image": "/product/milk.png",
+    "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/milk.png",
     "detail": "Sữa tiệt trùng ít đường, thơm ngon và bổ dưỡng."
   }
 ]
