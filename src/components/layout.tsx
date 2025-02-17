@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { PageSkeleton } from "./skeleton";
 import { Toaster } from "react-hot-toast";
 import { ScrollRestoration } from "./scroll-restoration";
+import FloatingCartPreview from "./floating-cart-preview";
 
 export default function Layout() {
   return (
@@ -22,6 +23,7 @@ export default function Layout() {
           top: "calc(50% - 24px)",
         }}
       />
+      <FloatingCartPreview />
       <ScrollRestoration />
     </div>
   );

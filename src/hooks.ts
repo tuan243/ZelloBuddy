@@ -116,6 +116,7 @@ export function useRouteHandle() {
         search?: boolean;
         noFooter?: boolean;
         noBack?: boolean;
+        noFloatingCart?: boolean;
         scrollRestoration?: number;
       }
     | undefined

@@ -4,6 +4,7 @@ import { useAtomValue } from "jotai";
 import { cartState } from "@/state";
 import TransitionLink from "./transition-link";
 import { useRouteHandle } from "@/hooks";
+import Badge from "./badge";
 
 const NAV_ITEMS = [
   {
@@ -28,14 +29,9 @@ const NAV_ITEMS = [
       const cart = useAtomValue(cartState);
 
       return (
-        <div className="relative">
-          {cart.length > 0 && (
-            <div className="absolute top-0 left-[18px] h-4 px-1.5 pt-[1.5px] pb-[0.5px] rounded-full bg-[#FF3333] text-white text-[10px] leading-[14px] font-medium shadow-[0_0_0_2px_white]">
-              {cart.length > 9 ? "9+" : cart.length}
-            </div>
-          )}
+        <Badge value={cart.length}>
           <CartIcon {...props} />
-        </div>
+        </Badge>
       );
     },
   },

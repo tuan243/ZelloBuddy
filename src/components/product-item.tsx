@@ -43,12 +43,16 @@ export default function ProductItem(props: ProductItemProps) {
               alt={props.product.name}
             />
             <div className="pt-2 pb-1.5">
-              <div className="text-xs pt-1 pb-0.5">{props.product.name}</div>
-              <div className="mt-0.5 text-sm font-bold text-primary">
+              <div className="pt-1 pb-0.5">
+                <div className="text-xs h-9 line-clamp-2">
+                  {props.product.name}
+                </div>
+              </div>
+              <div className="mt-0.5 text-sm font-bold text-primary truncate">
                 {formatPrice(props.product.price)}
               </div>
               {props.product.originalPrice && (
-                <div className="text-3xs space-x-0.5">
+                <div className="text-3xs space-x-0.5 truncate">
                   <span className="text-subtitle line-through">
                     {formatPrice(props.product.originalPrice)}
                   </span>

@@ -56,6 +56,7 @@ const router = createBrowserRouter(
           handle: {
             title: "Giỏ hàng",
             noBack: true,
+            noFloatingCart: true,
           },
         },
         {
@@ -64,6 +65,7 @@ const router = createBrowserRouter(
           handle: {
             title: "Địa chỉ nhận hàng",
             noFooter: true,
+            noFloatingCart: true,
           },
         },
         {
@@ -86,6 +88,8 @@ const router = createBrowserRouter(
           element: <ProfileEditorPage />,
           handle: {
             title: "Thông tin tài khoản",
+            noFooter: true,
+            noFloatingCart: true,
           },
         },
         {
@@ -102,6 +106,7 @@ const router = createBrowserRouter(
           element: <ProductDetailPage />,
           handle: {
             scrollRestoration: 0, // when user selects another product in related products, scroll to the top of the page
+            noFloatingCart: true,
           },
         },
         {
@@ -109,8 +114,8 @@ const router = createBrowserRouter(
           element: <SearchPage />,
           handle: {
             search: true,
-
             title: "Tìm kiếm",
+            noFooter: true,
           },
         },
       ],

@@ -18,7 +18,7 @@ export function SearchResult() {
     <div className="w-full h-full space-y-2 bg-background">
       <Section
         title={`Kết quả (${searchResult.length})`}
-        className="h-full flex flex-col overflow-y-auto"
+        className="h-full flex flex-col overflow-y-auto pb-16"
       >
         {searchResult.length ? (
           <ProductGrid products={searchResult} />
@@ -62,7 +62,7 @@ export function RecommendedProducts() {
 
   return (
     <Section title="Gợi ý sản phẩm">
-      <div className="py-2 px-4 flex space-x-2 overflow-x-auto">
+      <div className="py-2 px-4 pb-6 flex space-x-2 overflow-x-auto">
         {recommendedProducts.map((product) => (
           <div
             className="flex-none"
