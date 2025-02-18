@@ -1,12 +1,12 @@
 # ZaUI Farmer Market
 
 <p style="display: flex; flex-wrap: wrap; gap: 4px">
-  <img alt="vite" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/dev/vite" />
-  <img alt="react" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/react" />
-  <img alt="zmp-ui" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/zmp-ui" />
-  <img alt="zmp-sdk" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/zmp-sdk" />
-  <img alt="jotai" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/jotai" />
-  <img alt="tailwindcss" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-fashion/dev/tailwindcss" />
+  <img alt="vite" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/dev/vite" />
+  <img alt="react" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/react" />
+  <img alt="zmp-ui" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/zmp-ui" />
+  <img alt="zmp-sdk" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/zmp-sdk" />
+  <img alt="jotai" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/jotai" />
+  <img alt="tailwindcss" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/dev/tailwindcss" />
 </p>
 
 A template for farmer to sale their products on the online market. It provides full features such as product viewing, shopping cart, payment, order management, profile management, etc.
@@ -20,7 +20,7 @@ A template for farmer to sale their products on the online market. It provides f
 ### Using Zalo Mini App Extension
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) and [Zalo Mini App Extension](https://mini.zalo.me/docs/dev-tools).
-1. Click on **Create Project** > Choose **ZaUI F&B** template > Wait until the generated project is ready.
+1. Click on **Create Project** > Choose **ZaUI Farmer Market** template > Wait until the generated project is ready.
 1. **Configure App ID** and **Install Dependencies**, then navigate to the **Run** panel > **Start** to develop your Mini App 🚀
 
 ### Using Zalo Mini App CLI
@@ -73,7 +73,7 @@ Folder structure:
   - **`pages`**: A Page is a React component registered in the router that represents a full view. Smaller sections within the page can be components for better maintainability, though they don’t necessarily need to be reusable.
   - **`static`**: Static assets to be deployed along with your Mini App. Notice: large static assets should be served from a CDN.
   - **`utils`**: Reusable utility functions, such as API integration, client-side cart management, formatting, etc.
-  - **`app.tsx`**: Root component of your entire Mini App. React DOM will mount this component to the element `#app`.
+  - **`app.ts`**: Root component of your entire Mini App. React DOM will mount this component to the element `#app`.
   - **`global.d.ts`**: Contains TypeScript declarations for third-party modules and global objects.
   - **`hooks.ts`**: Custom utility hooks.
   - **`router.ts`**: Router configuration. New pages should be registered here.
@@ -98,6 +98,8 @@ The other files (such as `tailwind.config.js`, `vite.config.mts`, `tsconfig.json
    - `GET  /categories`: Retrieve a list of categories.
    - `GET  /products`: Retrieve a list of products.
    - `GET  /banners`: Retrieve a list of banner images to display on the home page.
+   - `GET  /stations`: Retrieve a list of pickup stations.
+   - `GET  /orders`: Retrieve a list of orders the user has placed.
 
 > Refer to the `src/mock/*.json` files for sample data and structure.
 
