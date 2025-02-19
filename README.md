@@ -1,15 +1,15 @@
-# ZaUI Farmer Market
+# ZaUI Market
 
 <p style="display: flex; flex-wrap: wrap; gap: 4px">
-  <img alt="vite" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/dev/vite" />
-  <img alt="react" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/react" />
-  <img alt="zmp-ui" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/zmp-ui" />
-  <img alt="zmp-sdk" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/zmp-sdk" />
-  <img alt="jotai" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/jotai" />
-  <img alt="tailwindcss" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-farmer-market/dev/tailwindcss" />
+  <img alt="vite" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/dev/vite" />
+  <img alt="react" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/react" />
+  <img alt="zmp-ui" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/zmp-ui" />
+  <img alt="zmp-sdk" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/zmp-sdk" />
+  <img alt="jotai" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/jotai" />
+  <img alt="tailwindcss" src="https://img.shields.io/github/package-json/dependency-version/Zalo-MiniApp/zaui-market/dev/tailwindcss" />
 </p>
 
-A template for farmer to sale their products on the online market. It provides full features such as product viewing, shopping cart, payment, order management, profile management, etc.
+A template for vendors to sale their products on the online market. It provides full features such as product viewing, shopping cart, payment, order management, profile management, etc.
 
 |                      Demo                       |                  Entrypoint                  |
 | :---------------------------------------------: | :------------------------------------------: |
@@ -20,7 +20,7 @@ A template for farmer to sale their products on the online market. It provides f
 ### Using Zalo Mini App Extension
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) and [Zalo Mini App Extension](https://mini.zalo.me/docs/dev-tools).
-1. Click on **Create Project** > Choose **ZaUI Farmer Market** template > Wait until the generated project is ready.
+1. Click on **Create Project** > Choose **ZaUI Market** template > Wait until the generated project is ready.
 1. **Configure App ID** and **Install Dependencies**, then navigate to the **Run** panel > **Start** to develop your Mini App 🚀
 
 ### Using Zalo Mini App CLI

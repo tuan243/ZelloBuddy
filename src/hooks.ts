@@ -1,11 +1,11 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { MutableRefObject, useLayoutEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { UIMatch, useMatches } from "react-router-dom";
+import { UIMatch, useMatches, useNavigate } from "react-router-dom";
 import { cartState, cartTotalState } from "@/state";
 import { Product } from "@/types";
 import { getConfig } from "@/utils/template";
-import { openChat, purchase } from "zmp-sdk";
+import { createOrder, openChat, purchase } from "zmp-sdk";
 
 export function useRealHeight(
   element: MutableRefObject<HTMLDivElement | null>,
@@ -86,23 +86,34 @@ export function useToBeImplemented() {
 
 export function useCheckout() {
   const { totalAmount } = useAtomValue(cartTotalState);
-  const setCart = useSetAtom(cartState);
+  const [cart, setCart] = useAtom(cartState);
+  const navigate = useNavigate();
+
   return async () => {
     try {
-      await purchase({
+      await createOrder({
         amount: totalAmount,
         desc: "Thanh toán đơn hàng",
-        method: "",
+        item: cart.map((item) => ({
+          id: item.product.id,
+          name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+        })),
+      });
+      setCart([]);
+      navigate("/orders", {
+        unstable_viewTransition: true,
       });
       toast.success("Thanh toán thành công. Cảm ơn bạn đã mua hàng!", {
         icon: "🎉",
+        duration: 5000,
       });
-      setCart([]);
     } catch (error) {
+      console.warn(error);
       toast.error(
         "Thanh toán thất bại. Vui lòng kiểm tra nội dung lỗi bên trong Console."
       );
-      console.warn(error);
     }
   };
 }

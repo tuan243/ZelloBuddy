@@ -16,7 +16,7 @@ function OrdersPage() {
       <Tabs.Tab key="pending" label="Đang xử lý">
         <OrderList ordersState={ordersState("pending")} />
       </Tabs.Tab>
-      <Tabs.Tab key="shipping" label="Nhận hôm nay">
+      <Tabs.Tab key="shipping" label="Đang giao">
         <OrderList ordersState={ordersState("shipping")} />
       </Tabs.Tab>
       <Tabs.Tab key="completed" label="Lịch sử">

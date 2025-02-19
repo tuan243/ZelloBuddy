@@ -11,11 +11,11 @@
           "name": "Táo giòn nhập khẩu - 1kg",
           "price": 67900,
           "originalPrice": 69900,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/apples.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
           "category": {
             "id": 1,
             "name": "Fruits",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/fruits.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/fruits.png"
           },
           "detail": "- Xuất xứ: Mỹ\n- Quy cách đóng túi: 400 - 500g(+/-100g), 2-3 trái\n- Lưu ý: Trong quá trình vận chuyển có thể xảy ra tình trạng trái bị va chạm cấn trái nhẹ\n- Hướng dẫn bảo quản: Bảo quản ngăn mát tủ lạnh để đảm bảo độ tươi ngon."
         },
@@ -27,11 +27,11 @@
           "name": "Cải ngọt thủy canh 300g",
           "price": 27900,
           "originalPrice": 30000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/cabbage.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/cabbage.png",
           "category": {
             "id": 1,
             "name": "Vegetables",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/vegetables.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/vegetables.png"
           },
           "detail": "Cải ngọt thủy canh, tươi ngon và giàu dinh dưỡng."
         },
@@ -43,11 +43,11 @@
           "name": "Kem hộp Socola",
           "price": 313000,
           "originalPrice": 500000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/creamy.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/creamy.png",
           "category": {
             "id": 1,
             "name": "Desserts",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/desserts.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/desserts.png"
           },
           "detail": "Kem hộp Socola, thơm ngon và mát lạnh."
         },
@@ -76,11 +76,11 @@
           "name": "Cải ngọt thủy canh 300g",
           "price": 27900,
           "originalPrice": 30000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/cabbage.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/cabbage.png",
           "category": {
             "id": 1,
             "name": "Vegetables",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/vegetables.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/vegetables.png"
           },
           "detail": "Cải ngọt thủy canh, tươi ngon và giàu dinh dưỡng."
         },
@@ -92,11 +92,11 @@
           "name": "Kem hộp Socola",
           "price": 313000,
           "originalPrice": 500000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/creamy.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/creamy.png",
           "category": {
             "id": 1,
             "name": "Desserts",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/desserts.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/desserts.png"
           },
           "detail": "Kem hộp Socola, thơm ngon và mát lạnh."
         },
@@ -108,11 +108,11 @@
           "name": "Bánh quy hộp thiếc",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/danisa.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/danisa.png",
           "category": {
             "id": 1,
             "name": "Snacks",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/snacks.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/snacks.png"
           },
           "detail": "Bánh quy hộp thiếc, giòn tan và thơm ngon."
         },
@@ -123,7 +123,7 @@
       "type": "pickup",
       "id": 1,
       "name": "Station 1",
-      "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/station/station1.png",
+      "image": "https://zalo-miniapp.github.io/zaui-market/dummy/station/station1.png",
       "address": "456 Another St, City, Country",
       "location": {
         "lat": 10.762622,
@@ -145,11 +145,11 @@
           "name": "Bánh quy hộp thiếc",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/danisa.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/danisa.png",
           "category": {
             "id": 1,
             "name": "Snacks",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/snacks.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/snacks.png"
           },
           "detail": "Bánh quy hộp thiếc, giòn tan và thơm ngon."
         },
@@ -161,11 +161,11 @@
           "name": "Bội nồi 4 món",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/pans.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/pans.png",
           "category": {
             "id": 1,
             "name": "Kitchenware",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/kitchenware.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/kitchenware.png"
           },
           "detail": "Bội nồi 4 món, tiện lợi và bền bỉ."
         },
@@ -177,11 +177,11 @@
           "name": "Bột giặt có nước xả",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/tide.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/tide.png",
           "category": {
             "id": 1,
             "name": "Household",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/household.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/household.png"
           },
           "detail": "Bột giặt có nước xả, sạch sẽ và thơm mát."
         },
@@ -210,11 +210,11 @@
           "name": "Bội nồi 4 món",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/pans.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/pans.png",
           "category": {
             "id": 1,
             "name": "Kitchenware",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/kitchenware.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/kitchenware.png"
           },
           "detail": "Bội nồi 4 món, tiện lợi và bền bỉ."
         },
@@ -226,11 +226,11 @@
           "name": "Bột giặt có nước xả",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/tide.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/tide.png",
           "category": {
             "id": 1,
             "name": "Household",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/household.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/household.png"
           },
           "detail": "Bột giặt có nước xả, sạch sẽ và thơm mát."
         },
@@ -242,11 +242,11 @@
           "name": "Nồi cơm điện xanh dương",
           "price": 150000,
           "originalPrice": 300000,
-          "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/sunhouse.png",
+          "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/sunhouse.png",
           "category": {
             "id": 1,
             "name": "Electronics",
-            "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/category/electronics.png"
+            "image": "https://zalo-miniapp.github.io/zaui-market/dummy/category/electronics.png"
           },
           "detail": "Nồi cơm điện xanh dương, tiện lợi và bền bỉ."
         },
@@ -257,7 +257,7 @@
       "type": "pickup",
       "id": 2,
       "name": "Tiệm Tí Hon - Chi nhánh 2",
-      "image": "https://zalo-miniapp.github.io/zaui-farmer-market/dummy/product/apples.png",
+      "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
       "address": "Z06, Số 13, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam",
       "location": {
         "lat": 10.768746,

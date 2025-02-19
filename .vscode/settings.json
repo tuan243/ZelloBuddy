@@ -11,8 +11,8 @@
             "properties": {
               "name": {
                 "type": "string",
-                "enum": ["zaui-fnb"],
-                "description": "Tên template. Bắt buộc phải mang giá trị zaui-fnb"
+                "enum": ["zaui-market"],
+                "description": "Tên template. Bắt buộc phải mang giá trị zaui-market"
               },
               "apiUrl": {
                 "type": "string",

@@ -22,7 +22,7 @@ export default function ProfileActions() {
           onClick: () => goToOrders("pending"),
         },
         {
-          label: "Nhận hôm nay",
+          label: "Đang giao",
           icon: PackageIcon,
           onClick: () => goToOrders("shipping"),
         },
