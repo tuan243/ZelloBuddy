@@ -11,14 +11,16 @@ export default function CartSummary() {
     <Section title="Thanh toán" className="rounded-lg">
       <div className="px-4 py-2 space-y-4">
         <table className="table w-full text-sm [&_th]:text-left [&_th]:text-xs [&_th]:text-inactive [&_th]:font-medium [&_td]:text-right">
-          <tr>
-            <th>Tạm tính</th>
-            <td>{formatPrice(totalAmount)}</td>
-          </tr>
-          <tr>
-            <th>Phí vận chuyển</th>
-            <td>0 VND</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Tạm tính</th>
+              <td>{formatPrice(totalAmount)}</td>
+            </tr>
+            <tr>
+              <th>Phí vận chuyển</th>
+              <td>0 VND</td>
+            </tr>
+          </tbody>
         </table>
         <HorizontalDivider />
         <div className="flex justify-between font-medium text-sm">

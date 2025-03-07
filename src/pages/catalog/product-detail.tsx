@@ -82,7 +82,7 @@ export default function ProductDetailPage() {
           onClick={() => {
             addToCart(1);
             navigate("/cart", {
-              unstable_viewTransition: true,
+              viewTransition: true,
             });
           }}
         >

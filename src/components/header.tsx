@@ -78,7 +78,7 @@ export default function Header() {
           <SearchBar
             onFocus={() => {
               if (location.pathname !== "/search") {
-                navigate("/search", { unstable_viewTransition: true });
+                navigate("/search", { viewTransition: true });
               }
             }}
           />
