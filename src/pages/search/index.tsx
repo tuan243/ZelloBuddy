@@ -65,6 +65,7 @@ export function RecommendedProducts() {
       <div className="py-2 px-4 pb-6 flex space-x-2 overflow-x-auto">
         {recommendedProducts.map((product) => (
           <div
+            key={product.id}
             className="flex-none"
             style={{ flexBasis: "calc((100vw - 48px) / 2)" }}
           >

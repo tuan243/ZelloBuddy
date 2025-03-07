@@ -22,7 +22,7 @@ function OrderSummary(props: { order: Order; full?: boolean }) {
         if (!props.full) {
           navigate(`/order/${props.order.id}`, {
             state: props.order,
-            unstable_viewTransition: true,
+            viewTransition: true,
           });
         }
       }}

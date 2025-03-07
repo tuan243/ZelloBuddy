@@ -103,7 +103,7 @@ export function useCheckout() {
       });
       setCart([]);
       navigate("/orders", {
-        unstable_viewTransition: true,
+        viewTransition: true,
       });
       toast.success("Thanh toán thành công. Cảm ơn bạn đã mua hàng!", {
         icon: "🎉",
