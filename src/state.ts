@@ -47,6 +47,7 @@ export const userInfoState = atom<Promise<UserInfo>>(async (get) => {
         ? await get(phoneState)
         : "";
     return {
+      id: userInfo.id,
       name: userInfo.name,
       avatar: userInfo.avatar,
       phone,

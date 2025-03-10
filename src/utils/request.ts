@@ -24,11 +24,10 @@ export async function request<T>(
 
 export async function requestWithFallback<T>(
   path: string,
-  fallbackValue: T,
-  options?: RequestInit
+  fallbackValue: T
 ): Promise<T> {
   try {
-    return await request<T>(path, options);
+    return await request<T>(path);
   } catch (error) {
     console.warn(
       "An error occurred while fetching data. Falling back to default value!"
@@ -36,4 +35,17 @@ export async function requestWithFallback<T>(
     console.warn({ path, error, fallbackValue });
     return fallbackValue;
   }
+}
+
+export async function requestWithPost<P, T>(
+  path: string,
+  payload: P
+): Promise<T> {
+  return await request<T>(path, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
 }
