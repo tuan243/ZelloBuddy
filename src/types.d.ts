@@ -62,10 +62,12 @@ export type Delivery =
     };
 
 export type OrderStatus = "pending" | "shipping" | "completed";
+export type PaymentStatus = "pending" | "success" | "failed";
 
 export interface Order {
   id: number;
   status: OrderStatus;
+  paymentStatus: PaymentStatus;
   createdAt: Date;
   receivedAt: Date;
   items: CartItem[];
