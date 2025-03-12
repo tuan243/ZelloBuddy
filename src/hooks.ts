@@ -1,12 +1,17 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { MutableRefObject, useLayoutEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { UIMatch, useMatches } from "react-router-dom";
-import { cartState, cartTotalState } from "@/state";
+import { UIMatch, useMatches, useNavigate } from "react-router-dom";
+import {
+  cartState,
+  cartTotalState,
+  userInfoKeyState,
+  userInfoState,
+} from "@/state";
 import { Product } from "@/types";
 import { getConfig } from "@/utils/template";
-import { createOrder, openChat } from "zmp-sdk";
-import { useNavigate } from "zmp-ui";
+import { authorize, createOrder, openChat } from "zmp-sdk";
+import { useAtomCallback } from "jotai/utils";
 
 export function useRealHeight(
   element: MutableRefObject<HTMLDivElement | null>,
@@ -29,6 +34,24 @@ export function useRealHeight(
     return -1;
   }
   return height;
+}
+
+export function useRequestInformation() {
+  const hasUserInfo = useAtomCallback(async (get) => {
+    const userInfo = await get(userInfoState);
+    return !!userInfo;
+  });
+  const setInfoKey = useSetAtom(userInfoKeyState);
+  const refreshPermissions = () => setInfoKey((key) => key + 1);
+
+  return async () => {
+    const hadUserInfo = await hasUserInfo();
+    if (!hadUserInfo) {
+      await authorize({
+        scopes: ["scope.userInfo", "scope.userPhonenumber"],
+      }).then(refreshPermissions);
+    }
+  };
 }
 
 export function useAddToCart(product: Product) {
@@ -86,12 +109,14 @@ export function useToBeImplemented() {
 }
 
 export function useCheckout() {
+  const requestInfo = useRequestInformation();
   const { totalAmount } = useAtomValue(cartTotalState);
   const [cart, setCart] = useAtom(cartState);
   const navigate = useNavigate();
 
   return async () => {
     try {
+      await requestInfo();
       await createOrder({
         amount: totalAmount,
         desc: "Thanh toán đơn hàng",

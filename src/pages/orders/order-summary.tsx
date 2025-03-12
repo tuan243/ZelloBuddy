@@ -14,7 +14,21 @@ function OrderSummary(props: { order: Order; full?: boolean }) {
           <span className="text-xs truncate">
             Thời gian nhận: Từ 16h, 20/1/2025
           </span>
-          <span className="text-primary text-xs">Đang xử lý</span>
+          <span
+            className={`text-xs ${
+              props.order.paymentStatus === "failed"
+                ? "text-danger"
+                : "text-primary"
+            }`}
+          >
+            {
+              {
+                pending: "Chờ xác nhận",
+                success: "Đã thanh toán",
+                failed: "Thanh toán thất bại",
+              }[props.order.paymentStatus]
+            }
+          </span>
         </div>
       }
       className="flex-1 overflow-y-auto rounded-lg"
