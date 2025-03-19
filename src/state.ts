@@ -1,5 +1,11 @@
 import { atom } from "jotai";
-import { atomFamily, atomWithStorage, loadable, unwrap } from "jotai/utils";
+import {
+  atomFamily,
+  atomWithRefresh,
+  atomWithStorage,
+  loadable,
+  unwrap,
+} from "jotai/utils";
 import {
   Cart,
   Category,
@@ -214,7 +220,7 @@ export const shippingAddressState = atomWithStorage<
 >(CONFIG.STORAGE_KEYS.SHIPPING_ADDRESS, undefined);
 
 export const ordersState = atomFamily((status: OrderStatus) =>
-  atom(async () => {
+  atomWithRefresh(async () => {
     // Phía tích hợp thay đổi logic filter server-side nếu cần:
     // const serverSideFilteredData = await requestWithFallback<Order[]>(`/orders?status=${status}`, []);
     const allMockOrders = await requestWithFallback<Order[]>("/orders", []);

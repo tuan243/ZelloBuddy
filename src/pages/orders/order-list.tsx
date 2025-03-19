@@ -2,7 +2,6 @@ import { Order } from "@/types";
 import { Atom, useAtomValue } from "jotai";
 import { loadable } from "jotai/utils";
 import { useMemo } from "react";
-import { ProductGridSkeleton } from "../search";
 import { EmptyOrder } from "@/components/empty";
 import OrderSummary from "./order-summary";
 import { OrderSummarySkeleton } from "@/components/skeleton";
