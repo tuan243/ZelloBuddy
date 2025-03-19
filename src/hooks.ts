@@ -37,20 +37,22 @@ export function useRealHeight(
 }
 
 export function useRequestInformation() {
-  const hasUserInfo = useAtomCallback(async (get) => {
+  const getStoredUserInfo = useAtomCallback(async (get) => {
     const userInfo = await get(userInfoState);
-    return !!userInfo;
+    return userInfo;
   });
   const setInfoKey = useSetAtom(userInfoKeyState);
   const refreshPermissions = () => setInfoKey((key) => key + 1);
 
   return async () => {
-    const hadUserInfo = await hasUserInfo();
-    if (!hadUserInfo) {
+    const userInfo = await getStoredUserInfo();
+    if (!userInfo) {
       await authorize({
         scopes: ["scope.userInfo", "scope.userPhonenumber"],
       }).then(refreshPermissions);
+      return await getStoredUserInfo();
     }
+    return userInfo;
   };
 }
 
@@ -109,9 +111,9 @@ export function useToBeImplemented() {
 }
 
 export function useCheckout() {
-  const requestInfo = useRequestInformation();
   const { totalAmount } = useAtomValue(cartTotalState);
   const [cart, setCart] = useAtom(cartState);
+  const requestInfo = useRequestInformation();
   const navigate = useNavigate();
 
   return async () => {
