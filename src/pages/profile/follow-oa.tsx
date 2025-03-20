@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { showOAWidget } from "zmp-sdk";
+import { showOAWidget } from "zmp-sdk/apis";
 
 export default function FollowOAWidget() {
   useEffect(() => {
