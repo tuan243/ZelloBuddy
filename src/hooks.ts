@@ -10,7 +10,7 @@ import {
 } from "@/state";
 import { Product } from "@/types";
 import { getConfig } from "@/utils/template";
-import { authorize, createOrder, openChat } from "zmp-sdk";
+import { authorize, createOrder, openChat } from "zmp-sdk/apis";
 import { useAtomCallback } from "jotai/utils";
 
 export function useRealHeight(

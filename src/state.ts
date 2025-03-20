@@ -19,7 +19,12 @@ import {
   UserInfo,
 } from "@/types";
 import { requestWithFallback } from "@/utils/request";
-import { getLocation, getPhoneNumber, getSetting, getUserInfo } from "zmp-sdk";
+import {
+  getLocation,
+  getPhoneNumber,
+  getSetting,
+  getUserInfo,
+} from "zmp-sdk/apis";
 import toast from "react-hot-toast";
 import { calculateDistance } from "./utils/location";
 import { formatDistant } from "./utils/format";

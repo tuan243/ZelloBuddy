@@ -1,6 +1,6 @@
 import { ShareDecor } from "@/components/vectors";
 import { Product } from "@/types";
-import { openShareSheet } from "zmp-sdk";
+import { openShareSheet } from "zmp-sdk/apis";
 import { Icon } from "zmp-ui";
 
 export default function ShareButton(props: { product: Product }) {
