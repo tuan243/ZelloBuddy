@@ -3,16 +3,17 @@ import CartPage from "@/pages/cart";
 import CategoryDetailPage from "@/pages/catalog/category-detail";
 import CategoryListPage from "@/pages/catalog/category-list";
 import ProductDetailPage from "@/pages/catalog/product-detail";
-import HomePage from "@/pages/home";
 import ProfilePage from "@/pages/profile";
 import SearchPage from "@/pages/search";
-import { createBrowserRouter } from "react-router-dom";
 import { getBasePath } from "@/utils/zma";
-import OrdersPage from "./pages/orders";
+import { createBrowserRouter } from "react-router-dom";
 import ShippingAddressPage from "./pages/cart/shipping-address";
 import StationsPage from "./pages/cart/stations";
+import OrdersPage from "./pages/orders";
 import OrderDetailPage from "./pages/orders/detail";
+import PreOnboardPage from "./pages/pre-onboard";
 import ProfileEditorPage from "./pages/profile/editor";
+import WelcomePage from "./pages/welcome";
 
 const router = createBrowserRouter(
   [
@@ -22,11 +23,15 @@ const router = createBrowserRouter(
       children: [
         {
           path: "/",
-          element: <HomePage />,
+          element: <WelcomePage />,
           handle: {
             logo: true,
             search: true,
           },
+        },
+        {
+          path: "/preonboard",
+          element: <PreOnboardPage />
         },
         {
           path: "/categories",

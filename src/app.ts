@@ -23,3 +23,5 @@ if (!window.APP_CONFIG) {
 // Mount the app
 const root = createRoot(document.getElementById("app")!);
 root.render(createElement(RouterProvider, { router }));
+
+console.log('hello world');

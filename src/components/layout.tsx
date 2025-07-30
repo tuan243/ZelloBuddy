@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom";
-import Header from "./header";
-import Footer from "./footer";
 import { Suspense } from "react";
-import { PageSkeleton } from "./skeleton";
 import { Toaster } from "react-hot-toast";
-import { ScrollRestoration } from "./scroll-restoration";
+import { Outlet } from "react-router-dom";
 import FloatingCartPreview from "./floating-cart-preview";
+import Footer from "./footer";
+// import Header from "./header";
+import { ScrollRestoration } from "./scroll-restoration";
+import { PageSkeleton } from "./skeleton";
 
 export default function Layout() {
   return (
     <div className="w-screen h-screen flex flex-col bg-section text-foreground">
-      <Header />
-      <div className="flex-1 overflow-y-auto bg-background">
+      {/* <Header /> */}
+      <div className="flex-1 overflow-y-auto">
         <Suspense fallback={<PageSkeleton />}>
           <Outlet />
         </Suspense>
