@@ -1,10 +1,10 @@
-import { CartIcon, CategoryIcon, HomeIcon, PackageIcon } from "./vectors";
-import HorizontalDivider from "./horizontal-divider";
-import { useAtomValue } from "jotai";
-import { cartState } from "@/state";
-import TransitionLink from "./transition-link";
 import { useRouteHandle } from "@/hooks";
+import { cartState } from "@/state";
+import { useAtomValue } from "jotai";
 import Badge from "./badge";
+import HorizontalDivider from "./horizontal-divider";
+import TransitionLink from "./transition-link";
+import { CartIcon, CategoryIcon, HomeIcon, PackageIcon } from "./vectors";
 
 const NAV_ITEMS = [
   {
@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   },
   {
     name: "Danh mục",
-    path: "/categories",
+    path: "/preonboard",
     icon: CategoryIcon,
   },
   {
