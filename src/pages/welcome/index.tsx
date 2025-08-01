@@ -4,6 +4,7 @@ import calendar from "../../static/calendar.svg";
 import checklist from "../../static/checklist.svg";
 import findRoom from "../../static/find-room.svg";
 import mascot from "../../static/mascot.svg";
+import TransitionLink from "@/components/transition-link";
 
 const WelcomePage: React.FunctionComponent = () => {
   const schedule = [
@@ -78,12 +79,13 @@ const WelcomePage: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-        <button
+        <TransitionLink
+          to="/chat"
           style={{ backgroundColor: "#DBEBFF" }}
           className="text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
         >
           Chat với AI Buddy
-        </button>
+        </TransitionLink>
       </div>
 
       {/* Schedule */}

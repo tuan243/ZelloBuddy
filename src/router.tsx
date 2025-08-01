@@ -14,6 +14,7 @@ import OrderDetailPage from "./pages/orders/detail";
 import PreOnboardPage from "./pages/pre-onboard";
 import ProfileEditorPage from "./pages/profile/editor";
 import WelcomePage from "./pages/welcome";
+import ChatPage from "./pages/chat";
 
 const router = createBrowserRouter(
   [
@@ -32,6 +33,10 @@ const router = createBrowserRouter(
         {
           path: "/preonboard",
           element: <PreOnboardPage />
+        },
+        {
+          path: "/chat",
+          element: <ChatPage />
         },
         {
           path: "/categories",

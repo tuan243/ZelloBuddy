@@ -19,7 +19,7 @@ const NAV_ITEMS = [
   },
   {
     name: "Đơn hàng",
-    path: "/orders",
+    path: "/chat",
     icon: PackageIcon,
   },
   {

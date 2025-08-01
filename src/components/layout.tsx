@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import FloatingCartPreview from "./floating-cart-preview";
-import Footer from "./footer";
+// import Footer from "./footer";
 // import Header from "./header";
 import { ScrollRestoration } from "./scroll-restoration";
 import { PageSkeleton } from "./skeleton";
@@ -16,7 +16,7 @@ export default function Layout() {
           <Outlet />
         </Suspense>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster
         containerClassName="toast-container"
         containerStyle={{
