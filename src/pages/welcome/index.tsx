@@ -13,64 +13,46 @@ const WelcomePage: React.FunctionComponent = () => {
     {
       time: "9:00",
       task: "Có mặt tại sảnh lễ tân",
-      status: "Hoàn thành",
-      color: "text-green-600",
       checked: false,
     },
     {
       time: "9:00 - 10:00",
-      task: "Giấy tờ",
-      status: "Đang thực hiện",
-      color: "text-blue-600",
+      task: "Ký các giấy tờ cần thiết",
       checked: false,
     },
     {
       time: "9:10 - 9:45",
       task: "Onboarding với HR",
-      status: "Sắp tới",
-      color: "text-orange-500",
       checked: false,
     },
     {
       time: "9:45 - 10:00",
       task: "Nhận thiết bị",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
     {
       time: "10:00 - 10:20",
       task: "Tham quan, về team",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
     {
       time: "12:00",
       task: "Team lunch",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
     {
       time: "13:30",
       task: "Meeting line manager",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
     {
       time: "15:00",
       task: "Training",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
     {
       time: "17:30",
       task: "Finish",
-      status: "Chờ",
-      color: "text-gray-400",
       checked: false,
     },
   ];
@@ -151,44 +133,67 @@ const WelcomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <ul className="pl-4">
-          {checkList.map((item, idx) => (
-            <li key={idx}>
-              <button
-                className="w-full justify-between items-center text-gray-700"
-                onClick={() => toggleCheck(idx)}
-              >
-                <div className="flex gap-4">
-                  <Checkbox value={""} checked={item.checked} />
-                  <div className={`flex-1 py-4 flex justify-between items-center ${idx !== checkList.length - 1 ? "border-b border-black/10" : "" }`}>
-                    <div className="flex flex-col gap-1">
-                      <div style={{ color: "#0D0D0D" }} className="text-start">{item.time}</div>
-                      <div className="text-sm text-gray-600 text-start">{item.task}</div>
-                    </div>
-                    <div className={`text-sm font-medium pr-4 ${item.color}`}>
-                      {item.status}
+          {checkList.map((item, idx) => {
+            const isChecked = item.checked;
+            const firstIncompleteIndex = checkList.findIndex((i) => !i.checked);
+            const isNextAfterCurrent = idx === firstIncompleteIndex + 1;
+
+            let status = "";
+            let color = "";
+            if (isChecked) {
+              status = "Hoàn thành";
+              color = "text-green-600";
+            } else if (idx === firstIncompleteIndex) {
+              status = "Đang thực hiện";
+              color = "text-blue-600";
+            } else if (isNextAfterCurrent) {
+              status = "Sắp tới";
+              color = "text-orange-400";
+            } else {
+              status = "Chờ";
+              color = "text-gray-400";
+            }
+
+            const canInteract = idx === firstIncompleteIndex;
+
+            return (
+              <li key={idx}>
+                <button
+                  className={`w-full justify-between items-center text-gray-700`}
+                  onClick={() => {
+                    if (canInteract) toggleCheck(idx);
+                  }}
+                  disabled={!canInteract}
+                >
+                  <div className="flex gap-4">
+                    <Checkbox value={""} checked={item.checked} disabled={!canInteract && !isChecked} />
+                    <div
+                      className={`flex-1 py-4 flex justify-between items-center ${
+                        idx !== checkList.length - 1
+                          ? "border-b border-black/10"
+                          : ""
+                      }`}
+                    >
+                      <div className="flex flex-col gap-1">
+                        <div
+                          style={{ color: "#0D0D0D" }}
+                          className="text-start"
+                        >
+                          {item.time}
+                        </div>
+                        <div className="text-sm text-gray-600 text-start">
+                          {item.task}
+                        </div>
+                      </div>
+                      <div className={`text-sm font-medium pr-4 ${color}`}>
+                        {status}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </button>
-              {/* <button
-                className="flex justify-between items-start text-gray-700 w-full"
-                onClick={() => toggleCheck(idx)}
-              >
-                <div className="w-full flex gap-4 items-center pl-3">
-                  <Checkbox value="" checked={item.checked} />
-                  <div
-                    className={`flex-1 py-4 ${
-                      idx !== checkList.length - 1
-                        ? "border-b border-black/10"
-                        : ""
-                    }`}
-                  >
-                    <div className="text-[#0D0D0D] text-start">{item.text}</div>
-                  </div>
-                </div>
-              </button> */}
-            </li>
-          ))}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
