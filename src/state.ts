@@ -32,8 +32,13 @@ import { calculateDistance } from "./utils/location";
 
 export const showBackIconState = atom(false);
 
-export const userInfoKeyState = atom(0);
+export const preOnboardCheckList = atom([
+  { text: "Chuẩn bị bản sao CCCD", checked: false },
+  { text: "Chụp ảnh 3x4, 4x6", checked: false },
+  { text: "Khám sức khỏe định kỳ", checked: false },
+]);
 
+export const userInfoKeyState = atom(0);
 
 export const userInfoState = atom<Promise<UserInfo>>(async (get) => {
   get(userInfoKeyState);

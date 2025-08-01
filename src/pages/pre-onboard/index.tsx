@@ -10,8 +10,8 @@ import people from "../../static/people.svg";
 import sign from "../../static/sign.svg";
 
 import TransitionLink from "@/components/transition-link";
-import { showBackIconState } from "@/state";
-import { useAtomValue } from "jotai";
+import { preOnboardCheckList, showBackIconState } from "@/state";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -22,7 +22,9 @@ const PreOnboardPage: React.FunctionComponent = () => {
     { text: "Khám sức khỏe định kỳ", checked: false },
   ];
 
-  const [checkList, setCheckList] = useState(initialChecklist);
+  const setCheckList = useSetAtom(preOnboardCheckList);
+  const checkList = useAtomValue(preOnboardCheckList);
+  // const [checkList, setCheckList] = useState(initialChecklist);
 
   // Compute progress (in percent)
   const completedCount = checkList.filter((item) => item.checked).length;
@@ -40,13 +42,13 @@ const PreOnboardPage: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (completedCount === checkList.length) {
+    if (completedCount === checkList.length && !showBackIcon) {
       toast.success("Đã đến ngày onboard!");
       setTimeout(() => {
         navigate("/onboard");
       }, 1200);
     }
-  }, [completedCount, checkList.length, navigate]);
+  }, [completedCount, checkList.length, navigate, showBackIcon]);
 
   return (
     <div
