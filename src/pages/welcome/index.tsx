@@ -71,7 +71,7 @@ const WelcomePage: React.FunctionComponent = () => {
 
   return (
     <>
-      <Header title="Welcome" />
+      <Header title="Zello - ZHackathon" showBackIcon={false}/>
       <div
         className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto"
       >

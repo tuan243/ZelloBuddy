@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { Header, Icon } from "zmp-ui";
 import base from "../../static/base.png";
+import chevronRight from "../../static/chevron-right.svg";
 import star from "../../static/star.svg";
+const SuggestPrompts = [
+  "💡 Đứng thẳng → tự tin 200%.",
+  "💡 7 giây: thời gian tạo ấn tượng đầu.",
+  "💡 Hỏi mở → Dễ bắt chuyện hơn 80%",
+];
 
 type Message = {
   id: number;
@@ -30,6 +36,15 @@ export default function ChatPage() {
     };
   }, []);
 
+  const getWelcomeMoment = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    if (hours < 11) return "Chào buổi sáng";
+    if (hours < 13) return "Chào buổi trưa";
+    if (hours < 18) return "Chào buổi chiều";
+    return "Chào buổi tối";
+  };
+
   const sendMessage = () => {
     const trimmed = input.trim();
     if (!trimmed) return;
@@ -57,7 +72,7 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="w-full h-screen bg-[#EFF6FF] flex flex-col justify-between max-w-md mx-auto text-sm font-sans">
+    <div className="w-full h-full overflow-hidden bg-[#EFF6FF] flex flex-col justify-between max-w-md mx-auto text-sm font-sans overscroll-none">
       {/* Header */}
       {/* <div className="flex items-center justify-between px-4 py-3 shadow-sm border-b">
         <div className="text-gray-900 font-semibold">Trợ thủ AI - Zello</div>
@@ -106,6 +121,34 @@ export default function ChatPage() {
             </div>
           );
         })}
+        <div className={`flex items-start`}>
+          <div className="w-8 mr-2 flex justify-center">
+            <img src={base} alt="Smiley" className="" />
+          </div>
+          <div
+            className={`p-3 rounded-xl shadow-sm max-w-[80%] bg-white text-gray-800"
+        `}
+          >
+            <p className="m-0 font-medium text-base mb-1">
+              👋 {getWelcomeMoment()},Nguyễn Văn A2
+            </p>
+            <p>
+              “Mách nhỏ bạn: Hãy là chính mình. Chỉ cần lịch sự, lắng nghe và tò
+              mò – là ổn rồi.”
+            </p>
+            <div className="flex flex-col items-start gap-2 mt-3">
+              {SuggestPrompts.map((prompt, idx) => (
+                <div
+                  className="bg-[#F0F7FF] text-[#0068FF] px-3 py-2 gap-1.5 rounded-xl text-sm font-normal flex w-full active:brightness-95 transition-all cursor-pointer"
+                  key={idx}
+                >
+                  <p className="m-0">{prompt}</p>
+                  <img src={chevronRight} alt="" className="ml-auto" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Suggestion row */}
@@ -139,14 +182,18 @@ export default function ChatPage() {
         style={{
           paddingBottom: isInputFocused
             ? "16px"
-            : "var(--zaui-safe-area-inset-bottom, 16px)",
+            : "calc(16px + var(--zaui-safe-area-inset-bottom, 0px))",
         }}
       >
         <input
           id="input-text"
           type="text"
           onFocus={() => setIsInputFocused(true)}
-          onBlurCapture={() => setIsInputFocused(false)}
+          onBlurCapture={() => {
+            setTimeout(() => {
+              setIsInputFocused(false);
+            }, 100)
+          }}
           // onBlur={(e) => {
           //   setIsInputFocused(false);
           //   e.preventDefault();
@@ -157,7 +204,7 @@ export default function ChatPage() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
-        <button onClick={sendMessage} className="text-blue-500 pl-2 ">
+        <button onClick={sendMessage} className="text-blue-500 pl-2">
           <Icon icon="zi-send-solid" />
         </button>
       </div>
