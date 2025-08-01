@@ -1,5 +1,8 @@
 import TransitionLink from "@/components/transition-link";
+import { showBackIconState } from "@/state";
+import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
 import calendar from "../../static/calendar.svg";
@@ -7,7 +10,6 @@ import chat from "../../static/chat.svg";
 import checklist from "../../static/checklist.svg";
 import findRoom from "../../static/find-room.svg";
 import mascot from "../../static/mascot.svg";
-import { useNavigate } from "react-router";
 
 const WelcomePage: React.FunctionComponent = () => {
   const schedule = [
@@ -62,6 +64,7 @@ const WelcomePage: React.FunctionComponent = () => {
   const completedCount = checkList.filter((item) => item.checked).length;
   const progressPercent = Math.round((completedCount / checkList.length) * 100);
   const navigate = useNavigate();
+  const setShowBackIcon = useSetAtom(showBackIconState);
 
   const toggleCheck = (index: number) => {
     setCheckList((prev) =>
@@ -77,7 +80,6 @@ const WelcomePage: React.FunctionComponent = () => {
       setTimeout(() => {
         navigate("/finish-onboard");
         setTimeout(() => {
-          
           window.scrollTo(0, 0);
         }, 0);
       }, 500);
@@ -222,7 +224,13 @@ const WelcomePage: React.FunctionComponent = () => {
 
         {/* Bottom buttons */}
         <div className="grid grid-cols-2 gap-3 mt-6">
-          <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
+          <div
+            className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center"
+            onClick={() => {
+              setShowBackIcon(true);
+              navigate("/");
+            }}
+          >
             <img src={checklist} alt="" />
             <button className="font-medium text-blue-600">
               Xem lại checklist <br /> pre-onboard

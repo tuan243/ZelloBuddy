@@ -10,6 +10,8 @@ import people from "../../static/people.svg";
 import sign from "../../static/sign.svg";
 
 import TransitionLink from "@/components/transition-link";
+import { showBackIconState } from "@/state";
+import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -27,6 +29,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
   const progressPercent = Math.round((completedCount / checkList.length) * 100);
   const dayLeft = completedCount === checkList.length ? 0 : 5;
   const navigate = useNavigate();
+  const showBackIcon = useAtomValue(showBackIconState);
 
   const toggleCheck = (index: number) => {
     setCheckList((prev) =>
@@ -56,7 +59,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
         title={
           <div className="h-[48px] flex items-center">Zello - ZHackathon</div>
         }
-        showBackIcon={false}
+        showBackIcon={showBackIcon}
       />
       {/* Onboarding Message */}
       <div className="bg-white rounded-2xl">

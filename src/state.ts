@@ -1,11 +1,3 @@
-import { atom } from "jotai";
-import {
-  atomFamily,
-  atomWithRefresh,
-  atomWithStorage,
-  loadable,
-  unwrap,
-} from "jotai/utils";
 import {
   Cart,
   Category,
@@ -19,18 +11,29 @@ import {
   UserInfo,
 } from "@/types";
 import { requestWithFallback } from "@/utils/request";
+import { atom } from "jotai";
+import {
+  atomFamily,
+  atomWithRefresh,
+  atomWithStorage,
+  loadable,
+  unwrap,
+} from "jotai/utils";
+import toast from "react-hot-toast";
 import {
   getLocation,
   getPhoneNumber,
   getSetting,
   getUserInfo,
 } from "zmp-sdk/apis";
-import toast from "react-hot-toast";
-import { calculateDistance } from "./utils/location";
-import { formatDistant } from "./utils/format";
 import CONFIG from "./config";
+import { formatDistant } from "./utils/format";
+import { calculateDistance } from "./utils/location";
+
+export const showBackIconState = atom(false);
 
 export const userInfoKeyState = atom(0);
+
 
 export const userInfoState = atom<Promise<UserInfo>>(async (get) => {
   get(userInfoKeyState);
