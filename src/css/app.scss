@@ -57,3 +57,12 @@
   background-repeat: repeat-y;
   background-size: cover;
 }
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* prevents double scrollbars */
+}
+
+#root {
+  height: 100%;
+}
