@@ -1,16 +1,48 @@
 import { Checkbox } from "zmp-ui";
+import { useNavigate } from "react-router-dom";
 import base from "../../static/base.png";
 import calendar from "../../static/calendar.svg";
-import checklist from "../../static/checklist.svg";
-import findRoom from "../../static/find-room.svg";
-import mascot from "../../static/mascot.svg";
+import mascot from "../../static/mascot2EyeClosed.svg";
+import company from "../../static/company.svg";
+import sign from "../../static/sign.svg";
+import people from "../../static/people.svg";
+import lineManager from "../../static/line-manager.svg";
+import chat from "../../static/chat.svg";
+
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import TransitionLink from "@/components/transition-link";
 
 const PreOnboardPage: React.FunctionComponent = () => {
-  const checkList = [
-    'Chuẩn bị bản sao CCCD',
-    'Chụp ảnh 3x4, 4x6',
-    'Khám sức khỏe định kỳ'
+  const initialChecklist = [
+    { text: "Chuẩn bị bản sao CCCD", checked: false },
+    { text: "Chụp ảnh 3x4, 4x6", checked: false },
+    { text: "Khám sức khỏe định kỳ", checked: false },
   ];
+
+  const [checkList, setCheckList] = useState(initialChecklist);
+
+  // Compute progress (in percent)
+  const completedCount = checkList.filter((item) => item.checked).length;
+  const progressPercent = Math.round((completedCount / checkList.length) * 100);
+  const navigate = useNavigate();
+
+  const toggleCheck = (index: number) => {
+    setCheckList((prev) =>
+      prev.map((item, i) =>
+        i === index ? { ...item, checked: !item.checked } : item
+      )
+    );
+  };
+
+  useEffect(() => {
+    if (completedCount === checkList.length) {
+      toast.success("Đã đến ngày onboard!");
+      setTimeout(() => {
+        navigate("/");
+      }, 1200);
+    }
+  }, [completedCount, checkList.length, navigate]);
 
   return (
     <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
@@ -35,15 +67,27 @@ const PreOnboardPage: React.FunctionComponent = () => {
         </div>
 
         <div className="flex flex-col items-center pb-[1rem]">
-          <div style={{ color: "#0068FF" }} className="font-black text-5xl">
+          <div
+            style={{ color: "#0068FF" }}
+            className="font-black text-5xl mt-2"
+          >
             5
           </div>
-          <div style={{ color: "#3D3D3D" }} className="text-[15px]">
+          <div style={{ color: "#3D3D3D" }} className="text-[15px] mt-2">
             ngày nữa đến ngày onboard
           </div>
 
-          <div style={{ color: "#3D3D3D" }} className="text-xs">
-            Tiến độ chuẩn bị: <span className="text-[15px] font-medium">60%</span>
+          <div className="flex flex-col items-center w-full px-4 mt-2">
+            <div className="text-xs text-[#3D3D3D] text-center mb-1">
+              Tiến độ chuẩn bị:{" "}
+              <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
+            </div>
+            <div className="w-full h-2 bg-gray-200 rounded-full">
+              <div
+                className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -59,12 +103,14 @@ const PreOnboardPage: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-        <button
+        <TransitionLink
+          to="/chat"
           style={{ backgroundColor: "#DBEBFF" }}
-          className="text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
+          className="flex gap-2 items-center text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
         >
-          Chat với AI Buddy
-        </button>
+          <img src={chat} alt="" />
+          <div className="">Chat với AI Buddy</div>
+        </TransitionLink>
       </div>
 
       {/* Schedule */}
@@ -74,18 +120,18 @@ const PreOnboardPage: React.FunctionComponent = () => {
         </div>
         <ul className="space-y-3">
           {checkList.map((item, idx) => (
-            <li
-              key={idx}
-              className="flex justify-between items-start text-gray-700"
-            >
-              <div className="flex gap-4 items-center">
-                {/* <input type="checkbox" className="mt-1" /> */}
-                <Checkbox value={""} />
-                <div>
-                  <div style={{ color: "#0D0D0D" }}>{item}</div>
-                  {/* <div className="text-sm text-gray-600">{item.task}</div> */}
+            <li key={idx}>
+              <button
+                className="flex justify-between items-start text-gray-700"
+                onClick={() => toggleCheck(idx)}
+              >
+                <div className="flex gap-4 items-center">
+                  <Checkbox value="" checked={item.checked} />
+                  <div>
+                    <div style={{ color: "#0D0D0D" }}>{item.text}</div>
+                  </div>
                 </div>
-              </div>
+              </button>
             </li>
           ))}
         </ul>
@@ -94,14 +140,24 @@ const PreOnboardPage: React.FunctionComponent = () => {
       {/* Bottom buttons */}
       <div className="grid grid-cols-2 gap-3 mt-6">
         <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-          <img src={checklist} alt="" />
-          <button className="font-medium text-blue-600">
-            Xem lại checklist <br /> pre-onboard
+          <img src={company} alt="" />
+          <button className="font-medium text-[#0068FF]">
+            Tìm hiểu công ty
           </button>
         </div>
         <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-          <img src={findRoom} alt="" />
-          <button className="font-medium text-blue-600">Tìm phòng</button>
+          <img src={sign} alt="" />
+          <button className="font-medium text-[#0068FF]">
+            Đường đến office
+          </button>
+        </div>
+        <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
+          <img src={people} alt="" />
+          <button className="font-medium text-[#0068FF]">Thông tin team</button>
+        </div>
+        <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
+          <img src={lineManager} alt="" />
+          <button className="font-medium text-[#0068FF]">Line Manager</button>
         </div>
       </div>
     </div>
