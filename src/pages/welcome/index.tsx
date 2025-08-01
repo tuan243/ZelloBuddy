@@ -126,28 +126,59 @@ const WelcomePage: React.FunctionComponent = () => {
       </div>
 
       {/* Schedule */}
-      <div className="bg-white p-3 rounded-xl">
-        <div className="font-medium text-gray-800 mb-3 flex items-center gap-2">
+      <div className="bg-white pt-4 rounded-xl">
+        <div className="font-medium px-4 text-gray-800 mb-4 flex items-center gap-2">
           <img src={calendar} alt="Smiley" className="" /> Lịch trình hôm nay
         </div>
-        <ul className="space-y-3">
+        <div className="flex flex-col items-start w-full px-4 my-2">
+          <div className="text-xs text-[#3D3D3D] text-center mb-1">
+            Tiến độ:{" "}
+            <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
+          </div>
+          <div className="w-full h-2 bg-gray-200 rounded-full">
+            <div
+              className="h-full bg-blue-500 rounded-full transition-all duration-300"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
+        <ul className="pl-4">
           {checkList.map((item, idx) => (
             <li key={idx}>
               <button
-                className="w-full flex justify-between items-start text-gray-700"
+                className="w-full justify-between items-center text-gray-700"
                 onClick={() => toggleCheck(idx)}
               >
                 <div className="flex gap-4">
                   <Checkbox value={""} checked={item.checked} />
-                  <div className="flex flex-col items-start">
-                    <div style={{ color: "#0D0D0D" }}>{item.time}</div>
-                    <div className="text-sm text-gray-600">{item.task}</div>
+                  <div className={`flex-1 py-4 flex justify-between items-center ${idx !== checkList.length - 1 ? "border-b border-black/10" : "" }`}>
+                    <div className="flex flex-col gap-1">
+                      <div style={{ color: "#0D0D0D" }} className="text-start">{item.time}</div>
+                      <div className="text-sm text-gray-600 text-start">{item.task}</div>
+                    </div>
+                    <div className={`text-sm font-medium pr-4 ${item.color}`}>
+                      {item.status}
+                    </div>
                   </div>
                 </div>
-                <div className={`text-sm font-medium ${item.color}`}>
-                  {item.status}
-                </div>
               </button>
+              {/* <button
+                className="flex justify-between items-start text-gray-700 w-full"
+                onClick={() => toggleCheck(idx)}
+              >
+                <div className="w-full flex gap-4 items-center pl-3">
+                  <Checkbox value="" checked={item.checked} />
+                  <div
+                    className={`flex-1 py-4 ${
+                      idx !== checkList.length - 1
+                        ? "border-b border-black/10"
+                        : ""
+                    }`}
+                  >
+                    <div className="text-[#0D0D0D] text-start">{item.text}</div>
+                  </div>
+                </div>
+              </button> */}
             </li>
           ))}
         </ul>

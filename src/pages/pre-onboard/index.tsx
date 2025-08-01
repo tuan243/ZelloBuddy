@@ -114,21 +114,21 @@ const PreOnboardPage: React.FunctionComponent = () => {
       </div>
 
       {/* Schedule */}
-      <div className="bg-white p-3 rounded-xl">
-        <div className="font-medium text-gray-800 mb-3 flex items-center gap-2">
+      <div className="bg-white pt-4 rounded-xl">
+        <div className="font-medium text-gray-800 mb-4 px-4 flex items-center gap-2">
           <img src={calendar} alt="Smiley" className="" /> Checklist chuẩn bị
         </div>
-        <ul className="space-y-3">
+        <ul className="pl-4">
           {checkList.map((item, idx) => (
             <li key={idx}>
               <button
-                className="flex justify-between items-start text-gray-700"
+                className="flex justify-between items-start text-gray-700 w-full"
                 onClick={() => toggleCheck(idx)}
               >
-                <div className="flex gap-4 items-center">
+                <div className="w-full flex gap-4 items-center">
                   <Checkbox value="" checked={item.checked} />
-                  <div>
-                    <div style={{ color: "#0D0D0D" }}>{item.text}</div>
+                  <div className={`flex-1 py-4 ${idx !== checkList.length - 1 ? "border-b border-black/10" : "" }`}>
+                    <div className="text-[#0D0D0D] text-start">{item.text}</div>
                   </div>
                 </div>
               </button>
