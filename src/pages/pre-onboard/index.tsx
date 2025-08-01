@@ -1,17 +1,17 @@
-import { Checkbox } from "zmp-ui";
 import { useNavigate } from "react-router-dom";
+import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
 import calendar from "../../static/calendar.svg";
-import mascot from "../../static/mascot2EyeClosed.svg";
-import company from "../../static/company.svg";
-import sign from "../../static/sign.svg";
-import people from "../../static/people.svg";
-import lineManager from "../../static/line-manager.svg";
 import chat from "../../static/chat.svg";
+import company from "../../static/company.svg";
+import lineManager from "../../static/line-manager.svg";
+import mascot from "../../static/mascot2EyeClosed.svg";
+import people from "../../static/people.svg";
+import sign from "../../static/sign.svg";
 
+import TransitionLink from "@/components/transition-link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import TransitionLink from "@/components/transition-link";
 
 const PreOnboardPage: React.FunctionComponent = () => {
   const initialChecklist = [
@@ -45,7 +45,16 @@ const PreOnboardPage: React.FunctionComponent = () => {
   }, [completedCount, checkList.length, navigate]);
 
   return (
-    <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
+    <div
+      className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto mt-16"
+      style={{
+        paddingTop: "var(--zaui-safe-area-inset-top, 16px)",
+      }}
+    >
+      <Header
+        title={<div className="h-[48px] flex items-center">Zello - ZHackathon</div>}
+        showBackIcon={false}
+      />
       {/* Onboarding Message */}
       <div className="bg-white rounded-2xl">
         <div

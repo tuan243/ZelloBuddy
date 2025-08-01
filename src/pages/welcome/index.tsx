@@ -1,12 +1,12 @@
-import { Checkbox } from "zmp-ui";
+import TransitionLink from "@/components/transition-link";
+import { useState } from "react";
+import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
 import calendar from "../../static/calendar.svg";
+import chat from "../../static/chat.svg";
 import checklist from "../../static/checklist.svg";
 import findRoom from "../../static/find-room.svg";
 import mascot from "../../static/mascot.svg";
-import chat from "../../static/chat.svg";
-import TransitionLink from "@/components/transition-link";
-import { useState } from "react";
 
 const WelcomePage: React.FunctionComponent = () => {
   const schedule = [
@@ -88,42 +88,50 @@ const WelcomePage: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
-      {/* Onboarding Message */}
-      <div
-        style={{ backgroundColor: "#0068FF" }}
-        className="text-white rounded-2xl p-4 mb-3 relative overflow-hidden"
-      >
-        <div className="font-medium text-lg leading-[1.5rem]">
-          Ngày onboard đầu tiên 🎉
+    <>
+    <Header title="Welcome" />
+      <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
+        {/* Onboarding Message */}
+        <div
+          style={{ backgroundColor: "#0068FF" }}
+          className="text-white rounded-2xl p-4 mb-3 relative overflow-hidden"
+        >
+          <div className="font-medium text-lg leading-[1.5rem]">
+            Ngày onboard đầu tiên 🎉
+          </div>
+          <div className="text-sm mt-[0.125rem]">
+            Chúc bạn một ngày tuyệt vời
+          </div>
+
+          <img
+            src={mascot}
+            alt="Smiley"
+            className="absolute right-0 bottom-0"
+          />
         </div>
-        <div className="text-sm mt-[0.125rem]">Chúc bạn một ngày tuyệt vời</div>
 
-        <img src={mascot} alt="Smiley" className="absolute right-0 bottom-0" />
-      </div>
-
-      {/* AI Greeting */}
-      <div className="flex flex-col">
-        <div className="flex items-start gap-2 mb-4">
-          {/* <div className="w-7 h-7 text-xs flex items-center justify-center rounded-full">
+        {/* AI Greeting */}
+        <div className="flex flex-col">
+          <div className="flex items-start gap-2 mb-4">
+            {/* <div className="w-7 h-7 text-xs flex items-center justify-center rounded-full">
         </div> */}
-          <img src={base} alt="Smiley" className="" />
-          <div className="bg-white border rounded-lg p-3 shadow-sm">
-            <div>
-              Chào buổi sáng! 👋 Hôm nay là ngày đặc biệt. Tôi sẽ đồng hành cùng
-              bạn từng bước nhé
+            <img src={base} alt="Smiley" className="" />
+            <div className="bg-white border rounded-lg p-3 shadow-sm">
+              <div>
+                Chào buổi sáng! 👋 Hôm nay là ngày đặc biệt. Tôi sẽ đồng hành
+                cùng bạn từng bước nhé
+              </div>
             </div>
           </div>
+          <TransitionLink
+            to="/chat"
+            style={{ backgroundColor: "#DBEBFF" }}
+            className="flex gap-2 items-center text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
+          >
+            <img src={chat} alt="" />
+            <div className="">Chat với AI Buddy</div>
+          </TransitionLink>
         </div>
-        <TransitionLink
-          to="/chat"
-          style={{ backgroundColor: "#DBEBFF" }}
-          className="flex gap-2 items-center text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
-        >
-          <img src={chat} alt="" />
-          <div className="">Chat với AI Buddy</div>
-        </TransitionLink>
-      </div>
 
       {/* Schedule */}
       <div className="bg-white pt-4 rounded-xl">
@@ -184,20 +192,21 @@ const WelcomePage: React.FunctionComponent = () => {
         </ul>
       </div>
 
-      {/* Bottom buttons */}
-      <div className="grid grid-cols-2 gap-3 mt-6">
-        <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-          <img src={checklist} alt="" />
-          <button className="font-medium text-blue-600">
-            Xem lại checklist <br /> pre-onboard
-          </button>
-        </div>
-        <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-          <img src={findRoom} alt="" />
-          <button className="font-medium text-blue-600">Tìm phòng</button>
+        {/* Bottom buttons */}
+        <div className="grid grid-cols-2 gap-3 mt-6">
+          <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
+            <img src={checklist} alt="" />
+            <button className="font-medium text-blue-600">
+              Xem lại checklist <br /> pre-onboard
+            </button>
+          </div>
+          <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
+            <img src={findRoom} alt="" />
+            <button className="font-medium text-blue-600">Tìm phòng</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
