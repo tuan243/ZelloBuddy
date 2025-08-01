@@ -46,10 +46,10 @@ const PreOnboardPage: React.FunctionComponent = () => {
 
   return (
     <div
-      className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto mt-16"
-      style={{
-        paddingTop: "var(--zaui-safe-area-inset-top, 16px)",
-      }}
+      className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto"
+      // style={{
+      //   paddingTop: "var(--zaui-safe-area-inset-top, 16px)",
+      // }}
     >
       <Header
         title={<div className="h-[48px] flex items-center">Zello - ZHackathon</div>}

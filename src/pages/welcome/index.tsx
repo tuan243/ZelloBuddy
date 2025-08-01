@@ -71,11 +71,15 @@ const WelcomePage: React.FunctionComponent = () => {
 
   return (
     <>
-    <Header title="Welcome" />
-      <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
+      <Header title="Welcome" />
+      <div
+        className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto"
+      >
         {/* Onboarding Message */}
         <div
-          style={{ backgroundColor: "#0068FF" }}
+          style={{
+            backgroundColor: "#0068FF",
+          }}
           className="text-white rounded-2xl p-4 mb-3 relative overflow-hidden"
         >
           <div className="font-medium text-lg leading-[1.5rem]">
@@ -115,87 +119,93 @@ const WelcomePage: React.FunctionComponent = () => {
           </TransitionLink>
         </div>
 
-      {/* Schedule */}
-      <div className="bg-white pt-4 rounded-xl">
-        <div className="font-medium px-4 text-gray-800 mb-4 flex items-center gap-2">
-          <img src={calendar} alt="Smiley" className="" /> Lịch trình hôm nay
-        </div>
-        <div className="flex flex-col items-start w-full px-4 my-2">
-          <div className="text-xs text-[#3D3D3D] text-center mb-1">
-            Tiến độ:{" "}
-            <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
+        {/* Schedule */}
+        <div className="bg-white pt-4 rounded-xl">
+          <div className="font-medium px-4 text-gray-800 mb-4 flex items-center gap-2">
+            <img src={calendar} alt="Smiley" className="" /> Lịch trình hôm nay
           </div>
-          <div className="w-full h-2 bg-gray-200 rounded-full">
-            <div
-              className="h-full bg-blue-500 rounded-full transition-all duration-300"
-              style={{ width: `${progressPercent}%` }}
-            />
+          <div className="flex flex-col items-start w-full px-4 my-2">
+            <div className="text-xs text-[#3D3D3D] text-center mb-1">
+              Tiến độ:{" "}
+              <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
+            </div>
+            <div className="w-full h-2 bg-gray-200 rounded-full">
+              <div
+                className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
           </div>
-        </div>
-        <ul className="pl-4">
-          {checkList.map((item, idx) => {
-            const isChecked = item.checked;
-            const firstIncompleteIndex = checkList.findIndex((i) => !i.checked);
-            const isNextAfterCurrent = idx === firstIncompleteIndex + 1;
+          <ul className="pl-4">
+            {checkList.map((item, idx) => {
+              const isChecked = item.checked;
+              const firstIncompleteIndex = checkList.findIndex(
+                (i) => !i.checked
+              );
+              const isNextAfterCurrent = idx === firstIncompleteIndex + 1;
 
-            let status = "";
-            let color = "";
-            if (isChecked) {
-              status = "Hoàn thành";
-              color = "text-green-600";
-            } else if (idx === firstIncompleteIndex) {
-              status = "Đang thực hiện";
-              color = "text-blue-600";
-            } else if (isNextAfterCurrent) {
-              status = "Sắp tới";
-              color = "text-orange-400";
-            } else {
-              status = "Chờ";
-              color = "text-gray-400";
-            }
+              let status = "";
+              let color = "";
+              if (isChecked) {
+                status = "Hoàn thành";
+                color = "text-green-600";
+              } else if (idx === firstIncompleteIndex) {
+                status = "Đang thực hiện";
+                color = "text-blue-600";
+              } else if (isNextAfterCurrent) {
+                status = "Sắp tới";
+                color = "text-orange-400";
+              } else {
+                status = "Chờ";
+                color = "text-gray-400";
+              }
 
-            const canInteract = idx === firstIncompleteIndex;
+              const canInteract = idx === firstIncompleteIndex;
 
-            return (
-              <li key={idx}>
-                <button
-                  className={`w-full justify-between items-center text-gray-700`}
-                  onClick={() => {
-                    if (canInteract) toggleCheck(idx);
-                  }}
-                  disabled={!canInteract}
-                >
-                  <div className="flex gap-4">
-                    <Checkbox value={""} checked={item.checked} disabled={!canInteract && !isChecked} />
-                    <div
-                      className={`flex-1 py-4 flex justify-between items-center ${
-                        idx !== checkList.length - 1
-                          ? "border-b border-black/10"
-                          : ""
-                      }`}
-                    >
-                      <div className="flex flex-col gap-1">
-                        <div
-                          style={{ color: "#0D0D0D" }}
-                          className="text-start"
-                        >
-                          {item.time}
+              return (
+                <li key={idx}>
+                  <button
+                    className={`w-full justify-between items-center text-gray-700`}
+                    onClick={() => {
+                      if (canInteract) toggleCheck(idx);
+                    }}
+                    disabled={!canInteract}
+                  >
+                    <div className="flex gap-4">
+                      <Checkbox
+                        value={""}
+                        checked={item.checked}
+                        disabled={!canInteract && !isChecked}
+                      />
+                      <div
+                        className={`flex-1 py-4 flex justify-between items-center ${
+                          idx !== checkList.length - 1
+                            ? "border-b border-black/10"
+                            : ""
+                        }`}
+                      >
+                        <div className="flex flex-col gap-1">
+                          <div
+                            style={{ color: "#0D0D0D" }}
+                            className="text-start"
+                          >
+                            {item.time}
+                          </div>
+                          <div className="text-sm text-gray-600 text-start">
+                            {item.task}
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-600 text-start">
-                          {item.task}
+                        <div className={`text-sm font-medium pr-4 ${color}`}>
+                          {status}
                         </div>
-                      </div>
-                      <div className={`text-sm font-medium pr-4 ${color}`}>
-                        {status}
                       </div>
                     </div>
-                  </div>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         {/* Bottom buttons */}
         <div className="grid grid-cols-2 gap-3 mt-6">

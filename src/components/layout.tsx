@@ -9,7 +9,12 @@ import { PageSkeleton } from "./skeleton";
 
 export default function Layout() {
   return (
-    <div className="w-screen h-screen flex flex-col bg-section text-foreground">
+    <div
+      className="w-screen h-screen flex flex-col bg-section text-foreground mt-12"
+      style={{
+        paddingTop: "var(--zaui-safe-area-inset-top, 16px)",
+      }}
+    >
       {/* <Header /> */}
       <div className="flex-1 overflow-y-auto">
         <Suspense fallback={<PageSkeleton />}>
