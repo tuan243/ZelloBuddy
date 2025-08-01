@@ -24,15 +24,15 @@ const router = createBrowserRouter(
       children: [
         {
           path: "/",
-          element: <WelcomePage />,
+          element: <PreOnboardPage />,
           handle: {
             logo: true,
             search: true,
           },
         },
         {
-          path: "/preonboard",
-          element: <PreOnboardPage />
+          path: "/onboard",
+          element: <WelcomePage />
         },
         {
           path: "/chat",

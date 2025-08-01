@@ -39,7 +39,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
     if (completedCount === checkList.length) {
       toast.success("Đã đến ngày onboard!");
       setTimeout(() => {
-        navigate("/");
+        navigate("/onboard");
       }, 1200);
     }
   }, [completedCount, checkList.length, navigate]);
