@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { GetMessagesResponse } from "@/types";
+import { doGet, doPost } from "@/utils/httpClient";
+import { useEffect, useRef, useState } from "react";
+import { getUserID } from "zmp-sdk";
 import { Header, Icon } from "zmp-ui";
 import base from "../../static/base.png";
 import chevronRight from "../../static/chevron-right.svg";
@@ -10,29 +13,47 @@ const SuggestPrompts = [
 ];
 
 type Message = {
-  id: number;
+  id: string | number;
   type: "user" | "bot";
   text: string;
 };
 
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, type: "bot", text: "Chào bạn, mình có thể giúp gì nè?" },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const userId = useRef<string>("");
+  const fetchTimeoutRef = useRef<any>(null);
 
   useEffect(() => {
     (window as any).fakeBotMessage = (text: string) => {
       setMessages((prev) => [
         ...prev,
         {
-          id: Date.now(),
+          id: Date.now().toString(),
           type: "bot",
           text,
         },
       ]);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchLoop = async () => {
+      await fetchMessages();
+      fetchTimeoutRef.current = setTimeout(fetchLoop, 1000);
+    };
+    getUserID().then((id) => {
+      console.log("User ID:", id);
+      userId.current = id;
+      fetchLoop();
+    });
+
+    return () => {
+      if (fetchTimeoutRef.current) {
+        clearTimeout(fetchTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -50,25 +71,111 @@ export default function ChatPage() {
     if (!trimmed) return;
 
     const newMessage: Message = {
-      id: Date.now(),
+      id: Date.now().toString(),
       type: "user",
       text: trimmed,
     };
 
+    doPost("http://localhost:8080/api/v1/messages", {
+      senderId: userId.current,
+      content: trimmed,
+    });
+
     setMessages([...messages, newMessage]);
     setInput("");
     setShowSuggestions(false);
+
+    // setTimeout(() => {
+    //   const fakeMessageResponse = [
+    //     {
+    //       id: "688c6e35f3af601cc0230e24",
+    //       conversationId: "1",
+    //       senderId: "1",
+    //       receiverId: "chatgpt",
+    //       content: "hello 3",
+    //       timestamp: 1754033717616,
+    //     },
+    //     {
+    //       id: "688c6e31f3af601cc0230e23",
+    //       conversationId: "1",
+    //       senderId: "zellobuddy",
+    //       receiverId: "chatgpt",
+    //       content: "hello 2",
+    //       timestamp: 1754033713582,
+    //     },
+
+    //     {
+    //       id: "688c6e31f3af601cc0230e24",
+    //       conversationId: "1",
+    //       senderId: "1",
+    //       receiverId: "chatgpt",
+    //       content: "hi",
+    //       timestamp: 1754033713584,
+    //     },
+    //   ];
+
+    //   setMessages(
+    //     fakeMessageResponse.map((msg) => ({
+    //       id: msg.id,
+    //       type: msg.senderId === "zellobuddy" ? "bot" : "user",
+    //       text: msg.content,
+    //     }))
+    //   );
+    //   setIsInputFocused(false);
+    // }, 100);
   };
 
   const handleSuggestionClick = (text: string) => {
     const newMessage: Message = {
-      id: Date.now(),
+      id: Date.now().toString(),
       type: "user",
       text,
     };
 
     setMessages([...messages, newMessage]);
     setShowSuggestions(false);
+  };
+
+  const fetchMessages = async () => {
+    try {
+      const { err, data }: { err: any; data: GetMessagesResponse } =
+        await doGet("http://localhost:8080/api/v1/messages?userId=1");
+
+      if (err) {
+        console.error("Failed to fetch messages:", err);
+        return;
+      }
+
+      // const temp = [
+      //   {
+      //     id: "688c6e35f3af601cc0230e24",
+      //     conversationId: "1",
+      //     senderId: "zellobuddy",
+      //     receiverId: "chatgpt",
+      //     content: "hello 3",
+      //     timestamp: 1754033717616,
+      //   },
+      //   {
+      //     id: "688c6e31f3af601cc0230e23",
+      //     conversationId: "1",
+      //     senderId: "1",
+      //     receiverId: "chatgpt",
+      //     content: "hello 2",
+      //     timestamp: 1754033713582,
+      //   },
+      // ];
+
+      const newMessages: Message[] = data.messages
+        .sort((a, b) => a.timestamp - b.timestamp)
+        .map((msg) => ({
+          id: msg.id,
+          type: msg.senderId === "zellobuddy" ? "bot" : "user",
+          text: msg.content,
+        }));
+      setMessages(newMessages);
+    } catch (error) {
+      console.error("Failed to fetch messages:", error);
+    }
   };
 
   return (
@@ -121,6 +228,16 @@ export default function ChatPage() {
             </div>
           );
         })}
+        <div className={`flex items-start mt-1`}>
+          <div className="w-8 mr-2 flex justify-center">
+            {<img src={base} alt="Smiley" className="" />}
+          </div>
+          <div
+            className={`p-3 rounded-xl shadow-sm max-w-[80%] bg-[#F8F9FB] text-gray-800`}
+          >
+            Chào bạn, mình có thể giúp gì nè?
+          </div>
+        </div>
         <div className={`flex items-start`}>
           <div className="w-8 mr-2 flex justify-center">
             <img src={base} alt="Smiley" className="" />
@@ -130,7 +247,7 @@ export default function ChatPage() {
         `}
           >
             <p className="m-0 font-medium text-base mb-1">
-              👋 {getWelcomeMoment()},Nguyễn Văn A2
+              👋 {getWelcomeMoment()}, Nguyễn Văn A2
             </p>
             <p>
               “Mách nhỏ bạn: Hãy là chính mình. Chỉ cần lịch sự, lắng nghe và tò
@@ -192,7 +309,7 @@ export default function ChatPage() {
           onBlurCapture={() => {
             setTimeout(() => {
               setIsInputFocused(false);
-            }, 100)
+            }, 100);
           }}
           // onBlur={(e) => {
           //   setIsInputFocused(false);

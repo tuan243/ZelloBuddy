@@ -1,3 +1,14 @@
+export interface GetMessagesResponse {
+  messages: Message[];
+}
+export interface Message {
+  id:string;
+  conversationId?: string;
+  senderId?: string;
+  receiverId?: string;
+  content: string;
+  timestamp: number;
+}
 export interface UserInfo {
   id: string;
   name: string;
