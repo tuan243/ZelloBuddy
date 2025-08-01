@@ -15,6 +15,7 @@ import PreOnboardPage from "./pages/pre-onboard";
 import ProfileEditorPage from "./pages/profile/editor";
 import WelcomePage from "./pages/welcome";
 import ChatPage from "./pages/chat";
+import FinishOnboardPage from "./pages/finish-onboard";
 
 const router = createBrowserRouter(
   [
@@ -28,15 +29,26 @@ const router = createBrowserRouter(
           handle: {
             logo: true,
             search: true,
+            scrollRestoration: 0,
           },
         },
         {
           path: "/onboard",
-          element: <WelcomePage />
+          element: <WelcomePage />,
+          handle: {
+            scrollRestoration: 0,
+          },
         },
         {
           path: "/chat",
-          element: <ChatPage />
+          element: <ChatPage />,
+        },
+        {
+          path: "/finish-onboard",
+          element: <FinishOnboardPage />,
+          handle: {
+            scrollRestoration: 0,
+          },
         },
         {
           path: "/categories",

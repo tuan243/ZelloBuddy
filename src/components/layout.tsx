@@ -28,7 +28,7 @@ export default function Layout() {
           top: "calc(50% - 24px)",
         }}
       />
-      <FloatingCartPreview />
+      {/* <FloatingCartPreview /> */}
       <ScrollRestoration />
     </div>
   );

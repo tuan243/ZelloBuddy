@@ -25,6 +25,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
   // Compute progress (in percent)
   const completedCount = checkList.filter((item) => item.checked).length;
   const progressPercent = Math.round((completedCount / checkList.length) * 100);
+  const dayLeft = completedCount === checkList.length ? 0 : 5;
   const navigate = useNavigate();
 
   const toggleCheck = (index: number) => {
@@ -52,7 +53,9 @@ const PreOnboardPage: React.FunctionComponent = () => {
       // }}
     >
       <Header
-        title={<div className="h-[48px] flex items-center">Zello - ZHackathon</div>}
+        title={
+          <div className="h-[48px] flex items-center">Zello - ZHackathon</div>
+        }
         showBackIcon={false}
       />
       {/* Onboarding Message */}
@@ -65,7 +68,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
             Chuẩn bị onboarding
           </div>
           <div className="text-sm mt-[0.125rem]">
-            5 ngày nữa đến ngày đầu tiên
+            {dayLeft} ngày nữa đến ngày đầu tiên
           </div>
 
           <img
@@ -80,7 +83,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
             style={{ color: "#0068FF" }}
             className="font-black text-5xl mt-2"
           >
-            5
+            {dayLeft}
           </div>
           <div style={{ color: "#3D3D3D" }} className="text-[15px] mt-2">
             ngày nữa đến ngày onboard
@@ -136,7 +139,13 @@ const PreOnboardPage: React.FunctionComponent = () => {
               >
                 <div className="w-full flex gap-4 items-center">
                   <Checkbox value="" checked={item.checked} />
-                  <div className={`flex-1 py-4 ${idx !== checkList.length - 1 ? "border-b border-black/10" : "" }`}>
+                  <div
+                    className={`flex-1 py-4 ${
+                      idx !== checkList.length - 1
+                        ? "border-b border-black/10"
+                        : ""
+                    }`}
+                  >
                     <div className="text-[#0D0D0D] text-start">{item.text}</div>
                   </div>
                 </div>

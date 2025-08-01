@@ -1,67 +1,65 @@
 import TransitionLink from "@/components/transition-link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
 import calendar from "../../static/calendar.svg";
 import chat from "../../static/chat.svg";
 import checklist from "../../static/checklist.svg";
-import findRoom from "../../static/find-room.svg";
-import mascot from "../../static/mascot.svg";
-import { useNavigate } from "react-router";
+import note from "../../static/note.svg";
+import mascot from "../../static/mascot2EyeClosedSmile.svg";
 
-const WelcomePage: React.FunctionComponent = () => {
+const FinishOnboardPage: React.FunctionComponent = () => {
   const schedule = [
     {
       time: "9:00",
       task: "Có mặt tại sảnh lễ tân",
-      checked: false,
+      checked: true,
     },
     {
       time: "9:00 - 9:10",
       task: "Ký các giấy tờ cần thiết",
-      checked: false,
+      checked: true,
     },
     {
       time: "9:10 - 9:45",
       task: "Onboarding với HR",
-      checked: false,
+      checked: true,
     },
     {
       time: "9:45 - 10:00",
       task: "Nhận thiết bị",
-      checked: false,
+      checked: true,
     },
     {
       time: "10:00 - 10:20",
       task: "Tham quan, về team",
-      checked: false,
+      checked: true,
     },
     {
       time: "12:00",
       task: "Team lunch",
-      checked: false,
+      checked: true,
     },
     {
       time: "13:30",
       task: "Meeting line manager",
-      checked: false,
+      checked: true,
     },
     {
       time: "15:00",
       task: "Training",
-      checked: false,
+      checked: true,
     },
     {
       time: "17:30",
       task: "Finish",
-      checked: false,
+      checked: true,
     },
   ];
   const [checkList, setCheckList] = useState(schedule);
 
   const completedCount = checkList.filter((item) => item.checked).length;
   const progressPercent = Math.round((completedCount / checkList.length) * 100);
-  const navigate = useNavigate();
 
   const toggleCheck = (index: number) => {
     setCheckList((prev) =>
@@ -71,83 +69,50 @@ const WelcomePage: React.FunctionComponent = () => {
     );
   };
 
-  useEffect(() => {
-    if (completedCount === checkList.length) {
-      // toast.success("Đã đến ngày onboard!");
-      setTimeout(() => {
-        navigate("/finish-onboard");
-        setTimeout(() => {
-          
-          window.scrollTo(0, 0);
-        }, 0);
-      }, 500);
-    }
-  }, [completedCount, checkList.length, navigate]);
-
   return (
     <>
       <Header title="Zello - ZHackathon" showBackIcon={false} />
       <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
         {/* Onboarding Message */}
-        <div
-          style={{
-            backgroundColor: "#0068FF",
-          }}
-          className="text-white rounded-2xl p-4 mb-3 relative overflow-hidden"
-        >
-          <div className="font-medium text-lg leading-[1.5rem]">
-            Ngày onboard đầu tiên 🎉
-          </div>
-          <div className="text-sm mt-[0.125rem]">
-            Chúc bạn một ngày tuyệt vời
+        <div className="bg-white rounded-2xl">
+          <div
+            style={{ backgroundColor: "#0068FF" }}
+            className="text-white rounded-2xl p-4 mb-3 relative"
+          >
+            <div className="font-medium text-lg leading-[1.5rem]">
+              Tuyệt vời 🎉
+            </div>
+            <div className="text-sm mt-[0.125rem]">
+              Bạn đã hoàn thành xuất sắc ngày <br /> onboarding đầu tiên
+            </div>
+
+            <img
+              src={mascot}
+              alt="Smiley"
+              className="absolute right-0 bottom-0"
+            />
           </div>
 
-          <img
-            src={mascot}
-            alt="Smiley"
-            className="absolute right-0 bottom-0"
-          />
-        </div>
-
-        {/* AI Greeting */}
-        <div className="flex flex-col">
-          <div className="flex items-start gap-2 mb-4">
-            {/* <div className="w-7 h-7 text-xs flex items-center justify-center rounded-full">
-        </div> */}
-            <img src={base} alt="Smiley" className="" />
-            <div className="bg-white border rounded-lg p-3 shadow-sm">
-              <div>
-                Chào buổi sáng! 👋 Hôm nay là ngày đặc biệt. Tôi sẽ đồng hành
-                cùng bạn từng bước nhé
+          <div className="flex flex-col items-center pb-[1rem]">
+            <div className="flex flex-col items-center w-full px-4">
+              <div className="text-xs text-[#3D3D3D] text-center mb-1">
+                Tiến độ chuẩn bị:{" "}
+                <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
+              </div>
+              <div className="w-full h-2 bg-gray-200 rounded-full">
+                <div
+                  className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                  style={{ width: `${progressPercent}%` }}
+                />
               </div>
             </div>
           </div>
-          <TransitionLink
-            to="/chat"
-            style={{ backgroundColor: "#DBEBFF" }}
-            className="flex gap-2 items-center text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
-          >
-            <img src={chat} alt="" />
-            <div className="">Chat với AI Buddy</div>
-          </TransitionLink>
         </div>
 
         {/* Schedule */}
-        <div className="bg-white pt-4 rounded-xl">
-          <div className="font-medium px-4 text-gray-800 mb-4 flex items-center gap-2">
-            <img src={calendar} alt="Smiley" className="" /> Lịch trình hôm nay
-          </div>
-          <div className="flex flex-col items-start w-full px-4 my-2">
-            <div className="text-xs text-[#3D3D3D] text-center mb-1">
-              Tiến độ:{" "}
-              <span className="text-[15px] font-medium">{`${progressPercent}%`}</span>
-            </div>
-            <div className="w-full h-2 bg-gray-200 rounded-full">
-              <div
-                className="h-full bg-blue-500 rounded-full transition-all duration-300"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
+        <div className="bg-white pt-4 rounded-xl mt-6">
+          <div className="font-medium px-4 text-gray-800 flex items-center gap-2">
+            <img src={calendar} alt="Smiley" className="" /> Hoàn thành hôm nay
           </div>
           <ul className="pl-4">
             {checkList.map((item, idx) => {
@@ -198,13 +163,7 @@ const WelcomePage: React.FunctionComponent = () => {
                         }`}
                       >
                         <div className="flex flex-col gap-1">
-                          <div
-                            style={{ color: "#0D0D0D" }}
-                            className="text-start"
-                          >
-                            {item.time}
-                          </div>
-                          <div className="text-sm text-gray-600 text-start">
+                          <div className="text-sm text-[#0D0D0D] text-start">
                             {item.task}
                           </div>
                         </div>
@@ -220,17 +179,25 @@ const WelcomePage: React.FunctionComponent = () => {
           </ul>
         </div>
 
-        {/* Bottom buttons */}
-        <div className="grid grid-cols-2 gap-3 mt-6">
-          <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-            <img src={checklist} alt="" />
-            <button className="font-medium text-blue-600">
-              Xem lại checklist <br /> pre-onboard
-            </button>
+        {/* AI Greeting */}
+        <div className="flex flex-col mt-6">
+          <div className="flex items-start gap-2">
+            <img src={base} alt="Smiley" className="" />
+            <div className="bg-white border rounded-lg p-3 shadow-sm">
+              <div>
+                Chúc mừng bạn! Tuần tới chúng ta sẽ tiếp tục hành trình với những mục tiêu mới. Hẹn gặp lại! 😊
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom buttons */}
+        <div className="grid grid-cols-1 gap-3 mt-6">
           <div className="flex flex-col items-center bg-white border rounded-xl py-3 gap-1 justify-center">
-            <img src={findRoom} alt="" />
-            <button className="font-medium text-blue-600">Tìm phòng</button>
+            <img src={note} alt="" />
+            <button className="font-medium text-blue-600">
+              Xem kế hoạch tuần tới
+            </button>
           </div>
         </div>
       </div>
@@ -238,4 +205,4 @@ const WelcomePage: React.FunctionComponent = () => {
   );
 };
 
-export default WelcomePage;
+export default FinishOnboardPage;
