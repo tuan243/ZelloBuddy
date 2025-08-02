@@ -16,12 +16,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const PreOnboardPage: React.FunctionComponent = () => {
-  const initialChecklist = [
-    { text: "Chuẩn bị bản sao CCCD", checked: false },
-    { text: "Chụp ảnh 3x4, 4x6", checked: false },
-    { text: "Khám sức khỏe định kỳ", checked: false },
-  ];
-
   const setCheckList = useSetAtom(preOnboardCheckList);
   const checkList = useAtomValue(preOnboardCheckList);
   // const [checkList, setCheckList] = useState(initialChecklist);

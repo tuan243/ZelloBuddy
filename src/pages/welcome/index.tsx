@@ -1,6 +1,6 @@
 import TransitionLink from "@/components/transition-link";
-import { showBackIconState } from "@/state";
-import { useSetAtom } from "jotai";
+import { onBoardingCheckList, showBackIconState } from "@/state";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Checkbox, Header } from "zmp-ui";
@@ -59,7 +59,10 @@ const WelcomePage: React.FunctionComponent = () => {
       checked: false,
     },
   ];
-  const [checkList, setCheckList] = useState(schedule);
+  // const
+  // const [checkList, setCheckList] = useState(schedule);
+  const checkList = useAtomValue(onBoardingCheckList);
+  const setOnBoardingCheckList = useSetAtom(onBoardingCheckList);
 
   const completedCount = checkList.filter((item) => item.checked).length;
   const progressPercent = Math.round((completedCount / checkList.length) * 100);
@@ -67,7 +70,7 @@ const WelcomePage: React.FunctionComponent = () => {
   const setShowBackIcon = useSetAtom(showBackIconState);
 
   const toggleCheck = (index: number) => {
-    setCheckList((prev) =>
+    setOnBoardingCheckList((prev) =>
       prev.map((item, i) =>
         i === index ? { ...item, checked: !item.checked } : item
       )

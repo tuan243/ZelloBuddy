@@ -38,6 +38,54 @@ export const preOnboardCheckList = atom([
   { text: "Khám sức khỏe định kỳ", checked: false },
 ]);
 
+export const onBoardingCheckList = atom([
+  {
+    time: "9:00",
+    task: "Có mặt tại sảnh lễ tân",
+    checked: false,
+  },
+  {
+    time: "9:00 - 9:10",
+    task: "Ký các giấy tờ cần thiết",
+    checked: false,
+  },
+  {
+    time: "9:10 - 9:45",
+    task: "Onboarding với HR",
+    checked: false,
+  },
+  {
+    time: "9:45 - 10:00",
+    task: "Nhận thiết bị",
+    checked: false,
+  },
+  {
+    time: "10:00 - 10:20",
+    task: "Tham quan, về team",
+    checked: false,
+  },
+  {
+    time: "12:00",
+    task: "Team lunch",
+    checked: false,
+  },
+  {
+    time: "13:30",
+    task: "Meeting line manager",
+    checked: false,
+  },
+  {
+    time: "15:00",
+    task: "Training",
+    checked: false,
+  },
+  {
+    time: "17:30",
+    task: "Finish",
+    checked: false,
+  },
+]);
+
 export const userInfoKeyState = atom(0);
 
 export const userInfoState = atom<Promise<UserInfo>>(async (get) => {

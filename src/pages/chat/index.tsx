@@ -1,6 +1,6 @@
 import { GetMessagesResponse } from "@/types";
 import { doGet, doPost } from "@/utils/httpClient";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getUserID } from "zmp-sdk";
 import { Header, Icon } from "zmp-ui";
 import base from "../../static/base.png";
@@ -53,7 +53,17 @@ export default function ChatPage() {
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const userId = useRef<string>("");
+  const bottomRef = useRef<HTMLDivElement>(null);
   const fetchTimeoutRef = useRef<any>(null);
+
+  const randomPromts = useMemo(
+    () => getRandomElements([...SuggestPrompts], 3),
+    []
+  );
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     (window as any).fakeBotMessage = (text: string) => {
@@ -196,6 +206,7 @@ export default function ChatPage() {
         {/* Chat messages */}
         <div className="flex-1 overflow-y-auto">
           <div className="flex-1 flex flex-col-reverse h-full p-4 overflow-y-auto whitespace-pre-line">
+            <div ref={bottomRef}></div>
             {[...messages].map((msg, i, arr) => {
               const prev = arr[i + 1];
               const isSameSender = prev?.type === msg.type;
@@ -245,10 +256,11 @@ export default function ChatPage() {
                   và tò mò – là ổn rồi.”
                 </p>
                 <div className="flex flex-col items-start gap-2 mt-3">
-                  {getRandomElements(SuggestPrompts, 3).map((prompt, idx) => (
+                  {randomPromts.map((prompt, idx) => (
                     <div
                       className="bg-[#F0F7FF] text-[#0068FF] px-3 py-2 gap-1.5 rounded-xl text-sm font-normal flex w-full active:brightness-95 transition-all cursor-pointer"
                       key={idx}
+                      onClick={() => handleSuggestionClick(prompt)}
                     >
                       <p className="m-0">{prompt}</p>
                       <img src={chevronRight} alt="" className="ml-auto" />
@@ -281,7 +293,7 @@ export default function ChatPage() {
               ].map((text, idx) => (
                 <button
                   key={idx}
-                  className="flex flex-col items-start gap-[6px] w-[154px] text-[#3D3D3D] text-start flex-shrink-0 px-3 py-[12px] bg-white text-blue-600 rounded-xl border text-sm"
+                  className="flex flex-col items-start gap-[6px] w-[154px] text-start flex-shrink-0 px-3 py-[12px] bg-white text-blue-600 rounded-xl border text-sm"
                   onClick={() => handleSuggestionClick(text)}
                 >
                   <img src={star} alt="" className="" />
