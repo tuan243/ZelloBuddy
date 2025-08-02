@@ -53,9 +53,6 @@ const PreOnboardPage: React.FunctionComponent = () => {
   return (
     <div
       className="w-full px-4 py-2 text-sm font-sans max-w-sm mx-auto"
-      // style={{
-      //   paddingTop: "var(--zaui-safe-area-inset-top, 16px)",
-      // }}
     >
       <Header
         title={
@@ -122,8 +119,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
         </div>
         <TransitionLink
           to="/chat"
-          style={{ backgroundColor: "#DBEBFF" }}
-          className="flex gap-2 items-center text-blue-600 text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
+          className="flex gap-2 items-center bg-[#0068FF] text-white text-[15px] font-medium mb-5 rounded-3xl py-[14px] px-[24px] self-end"
         >
           <img src={chat} alt="" />
           <div className="">Chat với AI Buddy</div>

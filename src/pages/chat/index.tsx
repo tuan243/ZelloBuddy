@@ -155,7 +155,7 @@ export default function ChatPage() {
     try {
       const { err, data }: { err: any; data: GetMessagesResponse } =
         await doGet(
-          "https://zah-7.123c.vn/api/v1/messages?userId=1&limit=10&after="
+          `https://zah-7.123c.vn/api/v1/messages?userId=${userId.current}&limit=10&after=`
         );
 
       console.log("err", err);

@@ -72,7 +72,7 @@ const FinishOnboardPage: React.FunctionComponent = () => {
   return (
     <>
       <Header title="Zello - ZHackathon" showBackIcon={false} />
-      <div className="w-full min-h-screen px-4 py-2 text-sm font-sans max-w-sm mx-auto">
+      <div className="w-full px-4 py-2 text-sm font-sans max-w-sm mx-auto">
         {/* Onboarding Message */}
         <div className="bg-white rounded-2xl">
           <div
@@ -181,14 +181,22 @@ const FinishOnboardPage: React.FunctionComponent = () => {
 
         {/* AI Greeting */}
         <div className="flex flex-col mt-6">
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-2 mb-4">
             <img src={base} alt="Smiley" className="" />
             <div className="bg-white border rounded-lg p-3 shadow-sm">
               <div>
-                Chúc mừng bạn! Tuần tới chúng ta sẽ tiếp tục hành trình với những mục tiêu mới. Hẹn gặp lại! 😊
+                Chúc mừng bạn! Tuần tới chúng ta sẽ tiếp tục hành trình với
+                những mục tiêu mới. Hẹn gặp lại! 😊
               </div>
             </div>
           </div>
+          <TransitionLink
+            to="/chat"
+            className="flex gap-2 items-center bg-[#0068FF] text-white text-[15px] font-medium rounded-3xl py-[14px] px-[24px] self-end"
+          >
+            <img src={chat} alt="" />
+            <div className="">Chat với AI Buddy</div>
+          </TransitionLink>
         </div>
 
         {/* Bottom buttons */}
