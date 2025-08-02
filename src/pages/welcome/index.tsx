@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
+import zelloBuddy from "../../static/zellobuddy-avatar.jpg";
 import calendar from "../../static/calendar.svg";
 import chat from "../../static/chat.svg";
 import checklist from "../../static/checklist.svg";
@@ -12,53 +13,53 @@ import findRoom from "../../static/find-room.svg";
 import mascot from "../../static/mascot.svg";
 
 const WelcomePage: React.FunctionComponent = () => {
-  const schedule = [
-    {
-      time: "9:00",
-      task: "Có mặt tại sảnh lễ tân",
-      checked: false,
-    },
-    {
-      time: "9:00 - 9:10",
-      task: "Ký các giấy tờ cần thiết",
-      checked: false,
-    },
-    {
-      time: "9:10 - 9:45",
-      task: "Onboarding với HR",
-      checked: false,
-    },
-    {
-      time: "9:45 - 10:00",
-      task: "Nhận thiết bị",
-      checked: false,
-    },
-    {
-      time: "10:00 - 10:20",
-      task: "Tham quan, về team",
-      checked: false,
-    },
-    {
-      time: "12:00",
-      task: "Team lunch",
-      checked: false,
-    },
-    {
-      time: "13:30",
-      task: "Meeting line manager",
-      checked: false,
-    },
-    {
-      time: "15:00",
-      task: "Training",
-      checked: false,
-    },
-    {
-      time: "17:30",
-      task: "Finish",
-      checked: false,
-    },
-  ];
+  // const schedule = [
+  //   {
+  //     time: "9:00",
+  //     task: "Có mặt tại sảnh lễ tân",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "9:00 - 9:10",
+  //     task: "Ký các giấy tờ cần thiết",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "9:10 - 9:45",
+  //     task: "Onboarding với HR",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "9:45 - 10:00",
+  //     task: "Nhận thiết bị",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "10:00 - 10:20",
+  //     task: "Tham quan, về team",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "12:00",
+  //     task: "Team lunch",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "13:30",
+  //     task: "Meeting line manager",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "15:00",
+  //     task: "Training",
+  //     checked: false,
+  //   },
+  //   {
+  //     time: "17:30",
+  //     task: "Finish",
+  //     checked: false,
+  //   },
+  // ];
   // const
   // const [checkList, setCheckList] = useState(schedule);
   const checkList = useAtomValue(onBoardingCheckList);
@@ -119,7 +120,7 @@ const WelcomePage: React.FunctionComponent = () => {
           <div className="flex items-start gap-2 mb-4">
             {/* <div className="w-7 h-7 text-xs flex items-center justify-center rounded-full">
         </div> */}
-            <img src={base} alt="Smiley" className="" />
+            <img src={zelloBuddy} alt="Smiley" className="w-8 rounded-full" />
             <div className="bg-white border rounded-lg p-3 shadow-sm">
               <div>
                 Chào buổi sáng! 👋 Hôm nay là ngày đặc biệt. Tôi sẽ đồng hành

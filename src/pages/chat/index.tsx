@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getUserID } from "zmp-sdk";
 import { Header, Icon } from "zmp-ui";
 import base from "../../static/base.png";
+import zelloBuddy from "../../static/zellobuddy-avatar.jpg";
 import chevronRight from "../../static/chevron-right.svg";
 import star from "../../static/star.svg";
 import TypingDots from "./TypingDots";
@@ -11,13 +12,13 @@ const SuggestPrompts = [
   "💡 Đứng thẳng → tự tin 200%.",
   "💡 7 giây: thời gian tạo ấn tượng đầu.",
   "💡 Hỏi mở → Dễ bắt chuyện hơn 80%",
-  "💡 Ghi chú tay → Nhớ lâu gấp 2 lần.",
-  "💡 Trang phục gọn gàng → Trông chuyên nghiệp hơn 150%.",
-  "💡 Thái độ > Kỹ năng trong tuần đầu.",
-  "💡 Giao tiếp mắt → Tạo cảm giác tin cậy hơn.",
-  "💡 Tới sớm 10 phút → Luôn là người chủ động.",
-  "💡 Giữ thái độ tích cực → Giải quyết tình huống tốt hơn.",
-  "💡 Đừng sợ không biết → Hỏi đúng mới là giỏi.",
+  // "💡 Ghi chú tay → Nhớ lâu gấp 2 lần.",
+  // "💡 Trang phục gọn gàng → Trông chuyên nghiệp hơn 150%.",
+  // "💡 Thái độ > Kỹ năng trong tuần đầu.",
+  // "💡 Giao tiếp mắt → Tạo cảm giác tin cậy hơn.",
+  // "💡 Tới sớm 10 phút → Luôn là người chủ động.",
+  // "💡 Giữ thái độ tích cực → Giải quyết tình huống tốt hơn.",
+  // "💡 Đừng sợ không biết → Hỏi đúng mới là giỏi.",
 ];
 
 type Message = {
@@ -56,12 +57,10 @@ export default function ChatPage() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const fetchTimeoutRef = useRef<any>(null);
 
-  const randomPromts = useMemo(
-    () => getRandomElements([...SuggestPrompts], 3),
-    []
-  );
+  const randomPromts = useMemo(() => SuggestPrompts, []);
 
   useEffect(() => {
+    // console.log("scrool down");
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -82,13 +81,15 @@ export default function ChatPage() {
 
   useEffect(() => {
     const fetchLoop = async () => {
-      if (amount > 3) {
-        clearTimeout(fetchTimeoutRef.current);
-        return;
+      try {
+        if (amount < 3) {
+          await fetchMessages();
+        }
+      } catch {
+        fetchTimeoutRef.current = setTimeout(fetchLoop, 5000);
       }
+
       amount++;
-      await fetchMessages();
-      fetchTimeoutRef.current = setTimeout(fetchLoop, 1000);
     };
     getUserID().then((id) => {
       console.log("User ID:", id);
@@ -168,7 +169,6 @@ export default function ChatPage() {
           `https://zah-7.123c.vn/api/v1/messages?userId=${userId.current}&limit=10&after=`
         );
 
-      console.log("err", err);
       if (err) {
         console.error("Failed to fetch messages:", err);
         return;
@@ -223,7 +223,11 @@ export default function ChatPage() {
                   {isBot && (
                     <div className="w-8 mr-2 flex justify-center">
                       {showAvatar && (
-                        <img src={base} alt="Smiley" className="" />
+                        <img
+                          src={zelloBuddy}
+                          alt="Smiley"
+                          className="rounded-full"
+                        />
                       )}
                     </div>
                   )}

@@ -2,6 +2,7 @@ import TransitionLink from "@/components/transition-link";
 import { useState } from "react";
 import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
+import zelloBuddy from "../../static/zellobuddy-avatar.jpg";
 import calendar from "../../static/calendar.svg";
 import chat from "../../static/chat.svg";
 import checklist from "../../static/checklist.svg";
@@ -182,7 +183,7 @@ const FinishOnboardPage: React.FunctionComponent = () => {
         {/* AI Greeting */}
         <div className="flex flex-col mt-6">
           <div className="flex items-start gap-2 mb-4">
-            <img src={base} alt="Smiley" className="" />
+            <img src={zelloBuddy} alt="Smiley" className="w-8 rounded-full" />
             <div className="bg-white border rounded-lg p-3 shadow-sm">
               <div>
                 Chúc mừng bạn! Tuần tới chúng ta sẽ tiếp tục hành trình với

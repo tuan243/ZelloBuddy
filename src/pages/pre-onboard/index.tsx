@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Header } from "zmp-ui";
 import base from "../../static/base.png";
+import zelloBuddy from "../../static/zellobuddy-avatar.jpg";
 import calendar from "../../static/calendar.svg";
 import chat from "../../static/chat.svg";
 import company from "../../static/company.svg";
@@ -103,7 +104,7 @@ const PreOnboardPage: React.FunctionComponent = () => {
       {/* AI Greeting */}
       <div className="flex flex-col mt-6">
         <div className="flex items-start gap-2 mb-4">
-          <img src={base} alt="Smiley" className="" />
+          <img src={zelloBuddy} alt="Smiley" className="w-8 rounded-full" />
           <div className="bg-white border rounded-lg p-3 shadow-sm">
             <div>
               Chào buổi sáng! 👋 Hôm nay là ngày đặc biệt. Tôi sẽ đồng hành cùng
