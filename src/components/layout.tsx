@@ -16,11 +16,9 @@ export default function Layout() {
       }}
     >
       {/* <Header /> */}
-      <div className="flex-1">
         <Suspense fallback={<PageSkeleton />}>
           <Outlet />
         </Suspense>
-      </div>
       {/* <Footer /> */}
       <Toaster
         containerClassName="toast-container"

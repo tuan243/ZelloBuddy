@@ -6,6 +6,8 @@ export async function doGet(path: string) {
     },
   });
 
+  console.log('response get', response);
+
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

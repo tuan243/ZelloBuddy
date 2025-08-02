@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "ZaUI F&B",
-    "textColor": "white",
+    "textColor": "black",
     "headerColor": "#ffffff",
     "statusBar": "transparent",
     "actionBarHidden": true,
